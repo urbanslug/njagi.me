@@ -1,18 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  {{ page.title }}
-</h1>
-<p class="subtitle"><strong>{{ page.date }}</strong></p>
-{{ page.date | date(format="%B %d, %Y") }}
-{% if page.taxonomies.tags %}
-- 
-<span class="tags">
-    {% for tag in page.taxonomies.tags %}
-    <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}">{{ tag }}</a>
-    {% endfor %}
-</span>
-{% endif %}
-{{ page.content | safe }}
+
+<div class="row justify-content-center">
+    <div class="col-md-10">  <!-- start post heading -->
+        
+
+        <div class="float-end">
+            {{ page.date | date(format="%B %d, %Y") }}
+
+            <p>
+                {% if page.taxonomies.tags %}
+                Tags:
+                <span class="tags">
+                    {% for tag in page.taxonomies.tags %}
+                    <button type="button" class="btn btn-link">
+                        <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}">{{ tag }}</a>
+                    </button>
+                    {% endfor %}
+                </span>
+                {% endif %}
+            </p>
+
+        </div> <!-- page metadata -->
+
+        <h1 class="title">{{ page.title }}</h1>
+    </div> <!-- end post heading -->
+
+    <div class="col-md-8"> <!-- start post content -->
+        {{ page.content | safe }}
+    </div> <!-- end post content -->
+
+</div> <!--  -->
+
+
 {% endblock content %}

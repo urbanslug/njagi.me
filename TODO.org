@@ -1,2 +1,6 @@
+* Important
+** TODO Copy posts, notes & wikis from previous pages
+
 * nitpick
-** Rename template/post-page.html to template/post.html
+** TODO Rename template/post-page.html to template/post.html
+** TODO Reword the word "tags" to "Tags" in the tags page
