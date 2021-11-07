@@ -1,0 +1,2 @@
+* nitpick
+** Rename template/post-page.html to template/post.html

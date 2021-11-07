@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>{{ term.pages | length }} pages tagged with "{{ term.name }}"</h1>
+<div class="taxonomy-container">
+    {% for page in term.pages %}
+    <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+    {% endfor %}
+</div>
+{% endblock content %}
