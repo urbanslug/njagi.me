@@ -1,10 +1,25 @@
-* Important
-** DONE Copy posts, notes & wikis from previous pages
+#+STARTUP: overview
+
+* General
+** DONE [#A] Copy posts, notes & wikis from previous pages
    CLOSED: [2021-11-12 Fri 10:11]
-** DONE Rename branch "master" to "publish"
+** DONE [#C] Rename branch "master" to "publish"
    CLOSED: [2021-11-12 Fri 10:17]
-** DONE add a 404 page
+** DONE [#C] add a 404 page
    CLOSED: [2021-11-12 Fri 10:17]
+
+
+* Writing
+** TODO [#B] Fix latex issues in stats note or remove it
+
+* Design
+** TODO [#C] Add a favicon
+** TODO [#C] Switch to dark mode
+** TODO [#B] Add spacing between headings and text
+   
+* Deployment
+** TODO [#A] Deploy on GitHub Pages and replace current njagi.me
+** TODO [#A] Redirect blog.urbanslug.com to njagi.me
 
 * nitpick
 ** CANCELED Rename template/post-page.html to template/post.html
