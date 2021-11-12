@@ -1,6 +1,13 @@
 * Important
-** TODO Copy posts, notes & wikis from previous pages
+** DONE Copy posts, notes & wikis from previous pages
+   CLOSED: [2021-11-12 Fri 10:11]
+** DONE Rename branch "master" to "publish"
+   CLOSED: [2021-11-12 Fri 10:17]
+** DONE add a 404 page
+   CLOSED: [2021-11-12 Fri 10:17]
 
 * nitpick
-** TODO Rename template/post-page.html to template/post.html
-** TODO Reword the word "tags" to "Tags" in the tags page
+** CANCELED Rename template/post-page.html to template/post.html
+   CLOSED: [2021-11-12 Fri 10:17]
+** DONE Reword the word "tags" to "Tags" in the tags page
+   CLOSED: [2021-11-12 Fri 10:18]

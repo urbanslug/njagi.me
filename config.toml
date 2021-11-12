@@ -19,9 +19,11 @@ compile_sass = true
 build_search_index = true
 
 taxonomies = [
-  { name = "tags", feed = true }
+  { name = "tags", feed = true },
+  { name = "categories", feed = true }
 ]
 
+katex_enable = true
 
 [markdown]
 # Whether to do syntax highlighting

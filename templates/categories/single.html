@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h3>{{ term.pages | length }} pages tagged with "{{ term.name }}"</h3>
+
+        <div class="list-group list-group-flush">
+            {% for page in term.pages %}
+            <a class="list-group-item list-group-item-action" href="{{ page.permalink | safe }}">
+                {{ page.title }}
+                <div class="float-end">{{ page.date | date(format="%b %d, %Y") }}</div>
+            </a>
+            {% endfor %}
+        </div> <!-- list -->
+
+
+    </div> <!-- column -->
+</div> <!-- row -->
+
+
+
+{% endblock content %}
