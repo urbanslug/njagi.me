@@ -1,5 +1,5 @@
 +++
-title = "Notes on IdeSession"
+title = "IdeSession"
 date = 2015-04-27
 
 [taxonomies]
