@@ -8,7 +8,7 @@
 
         <div class="list-group list-group-flush">
             {% for page in section.pages %}
-            <a class="list-group-item list-group-item-action" href="{{ page.permalink | safe }}">
+            <a class="list-group-item list-group-item-action list-group-item-dark" href="{{ page.permalink | safe }}">
                 {{ page.title }}
                 <div class="float-end">{{ page.date | date(format="%b %d, %Y") }}</div>
             </a>

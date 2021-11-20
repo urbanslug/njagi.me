@@ -14,9 +14,14 @@
 
 * Design
 ** TODO [#C] Add a favicon
-** TODO [#C] Switch to dark mode
-** TODO [#B] Add spacing between headings and text
-   
+** DONE [#C] Add a footer
+   CLOSED: [2021-11-20 Sat 23:53]
+** DONE [#C] Switch to dark mode
+   CLOSED: [2021-11-20 Sat 23:53]
+** DONE [#B] Add spacing between headings and text   
+   CLOSED: [2021-11-20 Sat 23:53]
+** TODO [#B] Figure out tables
+ 
 * Deployment
 ** TODO [#A] Deploy on GitHub Pages and replace current njagi.me
 ** TODO [#A] Redirect blog.urbanslug.com to njagi.me
