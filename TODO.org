@@ -1,35 +1,25 @@
 #+STARTUP: overview
 
-* General
-** DONE [#A] Copy posts, notes & wikis from previous pages
+** DONE [#A] Copy posts, notes & wikis from previous pages          :General:
    CLOSED: [2021-11-12 Fri 10:11]
-** DONE [#C] Rename branch "master" to "publish"
-   CLOSED: [2021-11-12 Fri 10:17]
-** DONE [#C] add a 404 page
-   CLOSED: [2021-11-12 Fri 10:17]
-
-
-* Writing
-** TODO [#B] Fix latex issues in stats note or remove it
-
-* Design
-** TODO [#C] Add a favicon
-** DONE [#C] Add a footer
+** DONE [#A] Deploy on GitHub Pages and replace current njagi.me :Deployment:
+   CLOSED: [2021-11-21 Sun 12:34]
+** DONE [#B] Add spacing between headings and text                   :Design:
    CLOSED: [2021-11-20 Sat 23:53]
-** DONE [#C] Switch to dark mode
-   CLOSED: [2021-11-20 Sat 23:53]
-** DONE [#B] Add spacing between headings and text   
-   CLOSED: [2021-11-20 Sat 23:53]
-** DONE [#B] Figure out tables
+** DONE [#B] Figure out tables                                       :Design:
    CLOSED: [2021-11-21 Sun 11:47]
- 
-
-* Deployment
-** TODO [#A] Deploy on GitHub Pages and replace current njagi.me
-** TODO [#A] Redirect blog.urbanslug.com to njagi.me
-
-* nitpick
-** CANCELED Rename template/post-page.html to template/post.html
-   CLOSED: [2021-11-12 Fri 10:17]
-** DONE Reword the word "tags" to "Tags" in the tags page
+** TODO [#B] Fix latex issues in stats note or remove it            :Writing:
+** DONE [#C] Add a footer                                            :Design:
+   CLOSED: [2021-11-20 Sat 23:53]
+** DONE [#C] Switch to dark mode                                     :Design:
+   CLOSED: [2021-11-20 Sat 23:53]
+** DONE [#C] Rename template/post-page.html to template/post.html   :Nitpick:
+   CLOSED: [2021-11-21 Sun 12:39]
+** DONE [#C] Reword the word "tags" to "Tags" in the tags page      :Nitpick:
    CLOSED: [2021-11-12 Fri 10:18]
+** DONE [#C] Rename branch "master" to "publish"                    :General:
+   CLOSED: [2021-11-12 Fri 10:17]
+** DONE [#C] add a 404 page                                         :General:
+   CLOSED: [2021-11-12 Fri 10:17]
+** TODO [#C] Add a favicon                                           :Design:
+** TODO [#C] Redirect blog.urbanslug.com to njagi.me  :Deployment:
