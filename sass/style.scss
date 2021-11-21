@@ -1,18 +1,10 @@
-.margin-vertical-20 {
-    margin: 30px 0 0 0
-}
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Noto+Serif+SC:100,300,300italic,400,400italic,600,700,700italic);
 
-#post-title {
-    margin-bottom: 0.5em;
-    font-size: 45px;
-}
-
-#post-metadata {
-    margin-bottom: 5em;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin-top: 2.0em;
+html,
+body {
+    font-size: 100%;
+    font-family: 'Noto Serif SC', sans-serif;
 }
 
 body, .list-group-item {
@@ -20,14 +12,49 @@ body, .list-group-item {
     background-color: #202124;
 }
 
-.list-group-item {
-    border: 1px solid #444;
+.margin-vertical-20   { margin: 30px 0 0 0 }
+
+#post-title   {
+    margin-bottom: 0.5em;
+    font-size: 45px;
 }
 
-a {
-    color: #6495ED;
+#post-metadata   { margin-bottom: 5em; }
+
+h1, h2, h3, h4, h5, h6   { margin-top: 2.0em; }
+
+
+/* Code Blocks*/
+pre		{ padding: 20px; }
+
+/* Lists */
+.list-group-item   { border: 1px solid #444; }
+
+/* Links */
+
+a		{ color: #6495ED; }
+
+/* Table */
+table {
+    margin: 2em auto 2em auto;
+    border-collapse: collapse;
 }
 
+thead {
+    border-bottom: 1px solid #444;
+}
+
+td, th {
+    text-align: left;
+    padding: 0 50px 0 0px;
+}
+
+/* Alternatively color rows in a table */
+tr:nth-child(even)		{ background-color: #22262b; }
+tr:nth-child(odd)		{ background-color:  #202124; }
+
+
+/* Footer */
 footer {
     bottom: 0;
     margin-top: 15em;
