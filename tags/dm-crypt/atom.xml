@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - dm-crypt</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/dm-crypt/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2016-09-11T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/dm-crypt/atom.xml</id>
+	<entry xml:lang="en">
+		<title>dm-crypt, luks, systemd-boot and UEFI on Archlinux</title>
+		<published>2016-09-11T00:00:00+00:00</published>
+		<updated>2016-09-11T00:00:00+00:00</updated>
+		<link href="https://njagi.me/wiki/dm-crypt-systemd-boot-and-efi-on-archlinux/" type="text/html"/>
+		<id>https://njagi.me/wiki/dm-crypt-systemd-boot-and-efi-on-archlinux/</id>
+		<content type="html">&lt;p&gt;Here I provide a little help for setting up an archlinux system with full disk
+encryption, efi and using systemd-boot as the boot loader. This is really just
+what I learned from the &lt;a href=&quot;https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;&quot;&gt;arch wiki&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;mattiaslundberg&#x2F;8620837&quot;&gt;Mattias Lundberg&#x27;s gist&lt;&#x2F;a&gt;
+and &lt;a href=&quot;http:&#x2F;&#x2F;www.brandonkester.com&#x2F;tech&#x2F;2014&#x2F;03&#x2F;16&#x2F;full-disk-encryption-in-arch-linux-with-uefi.html&quot;&gt;Brandon Kester&#x27;s post&lt;&#x2F;a&gt;. I&#x27;ll assume you have installed arch before and
+just need a little help getting everything up and running.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Desired setup:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;100M &#x2F;boot
+&lt;&#x2F;span&gt;&lt;span&gt;100G &#x2F;root
+&lt;&#x2F;span&gt;&lt;span&gt;8G swap
+&lt;&#x2F;span&gt;&lt;span&gt;the rest for &#x2F;home
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;em&gt;Unlike &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mattiaslundberg&quot;&gt;Mattias Lundberg&lt;&#x2F;a&gt; I see no reason for separate &lt;code&gt;boot&lt;&#x2F;code&gt; and &lt;code&gt;efi&lt;&#x2F;code&gt;
+patitions.&lt;&#x2F;em&gt; Although some people have a problem with having their &#x2F;boot in
+fat32 due to permissions reasons.&lt;&#x2F;p&gt;
+&lt;p&gt;This will be in 3 parts:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Partitioning, encrypting and repartitioning.&lt;&#x2F;li&gt;
+&lt;li&gt;Installing the base system(arch).&lt;&#x2F;li&gt;
+&lt;li&gt;Configuring the bootloader.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;partitioning-encrypting-and-repartitioning&quot;&gt;Partitioning, encrypting and repartitioning.&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# I like gdisk.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;gdisk&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;sdX
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Clear everything
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; o
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# The first 100M efi partition
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; n -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; ... -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; +100M -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; ... -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; EF00
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# power through this by always pressing enter.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# default hex code is 8E00
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; n -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; ...  -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;8&lt;&#x2F;span&gt;&lt;span&gt;E00
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Expected gdisk output should be 2 partitions, something along the lines of:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# In the end `p` in gdisk or `gdisk -l` should give you two partitions along the lines of:
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Device      Start       End   Sectors   Size Type
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# &#x2F;dev&#x2F;sda1    2048    514047    512000   250M EFI System
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# &#x2F;dev&#x2F;sda2  514048 976773134 976259087 465.5G Linux filesystem
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h4 id=&quot;format-encrypt-repartition-and-format-respectively&quot;&gt;Format, encrypt, repartition and format respectively.&lt;&#x2F;h4&gt;
+&lt;p&gt;The steps would be as follows:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Format sdX1 in fat32&lt;&#x2F;li&gt;
+&lt;li&gt;Encrypt sdX2
+&lt;ul&gt;
+&lt;li&gt;Decrypt and repartition&lt;&#x2F;li&gt;
+&lt;li&gt;format the partitions in ext4&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# EFI only works with FAT32 so we format the 100M patition with FAT 32
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mkfs.vfat&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; -F32&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;sdX1
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Let&amp;#39;s encrypt the other partition.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;cryptsetup&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; -c&lt;&#x2F;span&gt;&lt;span&gt; aes-xts-plain64&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; -y --use-random&lt;&#x2F;span&gt;&lt;span&gt; luksFormat &#x2F;dev&#x2F;sdX2
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Let&amp;#39;s access our encrypted partition.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;cryptsetup&lt;&#x2F;span&gt;&lt;span&gt; luksOpen &#x2F;dev&#x2F;sdX2 luks
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Now to create partitions inside the encrypted partition. &#x2F;root &#x2F;home and &#x2F;swap
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;pvcreate&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;mapper&#x2F;luks
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;vgcreate&lt;&#x2F;span&gt;&lt;span&gt; vg0 &#x2F;dev&#x2F;mapper&#x2F;luks
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;lvcreate&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; --size&lt;&#x2F;span&gt;&lt;span&gt; 8G vg0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; --name&lt;&#x2F;span&gt;&lt;span&gt; swap
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;lvcreate&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; --size&lt;&#x2F;span&gt;&lt;span&gt; 100G vg0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; --name&lt;&#x2F;span&gt;&lt;span&gt; root
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;lvcreate&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; -l&lt;&#x2F;span&gt;&lt;span&gt; +100&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;FREE&lt;&#x2F;span&gt;&lt;span&gt; vg0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; --name&lt;&#x2F;span&gt;&lt;span&gt; home
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Your &#x2F;dev&#x2F;mapper should now have:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;#   &#x2F;dev&#x2F;mapper&#x2F;vg0-home
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;#   &#x2F;dev&#x2F;mapper&#x2F;vg0-root
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;#   &#x2F;dev&#x2F;mapper&#x2F;vg0-swap
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Create file systems on the encrypted partitions.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# I don&amp;#39;t know much about file systems so I just go with ext4.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mkfs.ext4&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;mapper&#x2F;vg0-root
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mkfs.ext4&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;mapper&#x2F;vg0-home
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mkswap&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;mapper&#x2F;vg0-swap
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Mount the partitions.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Make sure to start with the root.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mount&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;mapper&#x2F;vg0-root &#x2F;mnt
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;swapon&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;mapper&#x2F;vg0-swap    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Not needed but a good thing to test
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mkdir&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;mnt&#x2F;boot
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mount&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;sdX1 &#x2F;mnt&#x2F;boot
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mkdir&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;mnt&#x2F;home
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mount&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;mapper&#x2F;vg0-home &#x2F;mnt&#x2F;home
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-arch&quot;&gt;Install arch&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Install the base system
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;pacstrap&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;mnt base base-devel
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h4 id=&quot;generate-fstab&quot;&gt;Generate fstab&lt;&#x2F;h4&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;genfstab&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; -pU&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;mnt &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;mnt&#x2F;etc&#x2F;fstab
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Make &#x2F;tmp a ramdisk (add the following line to &#x2F;mnt&#x2F;etc&#x2F;fstab)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;tmpfs&lt;&#x2F;span&gt;&lt;span&gt;	&#x2F;tmp	tmpfs	defaults,noatime,mode=1777	0	0
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Verify that your fstab makes sense.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Change relatime on all non-boot partitions to noatime (reduces wear if using an SSD)&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;For example:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;#
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# &#x2F;etc&#x2F;fstab: static file system information
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;#
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# &amp;lt;file system&amp;gt; &amp;lt;dir&amp;gt;   &amp;lt;type&amp;gt;  &amp;lt;options&amp;gt;       &amp;lt;dump&amp;gt;  &amp;lt;pass&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# &#x2F;dev&#x2F;mapper&#x2F;vg0-root
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;UUID&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;9a180980-d2bf-40d6-a09a-7a95a378f5e3       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span&gt;               ext4            rw,relatime,data=ordered        0 1
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# &#x2F;dev&#x2F;mapper&#x2F;vg0-home
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;UUID&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;01e98383-e71a-4319-a70c-348783b1fc4c       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;&#x2F;home&lt;&#x2F;span&gt;&lt;span&gt;           ext4            rw,relatime,data=ordered        0 2
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# &#x2F;dev&#x2F;sda1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;UUID&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;F679-59DA          &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;&#x2F;boot&lt;&#x2F;span&gt;&lt;span&gt;           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro    0 2
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# make &#x2F;tmp a ramdisk
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;tmpfs&lt;&#x2F;span&gt;&lt;span&gt;                   &#x2F;tmp            tmpfs           defaults,noatime,mode=1777                              0 0
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h4 id=&quot;chroot&quot;&gt;chroot&lt;&#x2F;h4&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# chroot into the new system
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;arch-chroot&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;mnt
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Setup system clock
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;ln&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; -s&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Africa&#x2F;Nairobi &#x2F;etc&#x2F;localtime
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;hwclock&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; --systohc --utc
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Set the hostname
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt;cool-comp-name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt; &amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;etc&#x2F;hostname
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Update locale
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;echo&lt;&#x2F;span&gt;&lt;span&gt; LANG=en_US.UTF-8 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;etc&#x2F;locale.conf
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# set password for root
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;passwd
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# add a sudo group because that&amp;#39;s cool
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;groupadd&lt;&#x2F;span&gt;&lt;span&gt; sudo
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Add a user
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useradd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; -m -g&lt;&#x2F;span&gt;&lt;span&gt; sudo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; -s&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;bin&#x2F;zsh &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt;username&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;passwd &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt;username&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# add your user to sudoers
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;visudo
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h4 id=&quot;mkinitcpio&quot;&gt;mkinitcpio&lt;&#x2F;h4&gt;
+&lt;p&gt;Configure mkinitcpio with modules needed for the initrd image.&lt;&#x2F;p&gt;
+&lt;p&gt;Add &#x27;ext4&#x27; to MODULES (or whatever fs you use)&lt;&#x2F;p&gt;
+&lt;p&gt;Add &#x27;encrypt&#x27;, &#x27;lvm2&#x27; and &#x27;resume&#x27; to HOOKS before filesystems&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;MODULES&lt;&#x2F;code&gt; and &lt;code&gt;HOOKS&lt;&#x2F;code&gt; should be something along the following lines:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;less&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;etc&#x2F;mkinitcpio.con
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;MODULES&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;ext4&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;.
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;.
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;.
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;HOOKS&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;base udev autodetect modconf block keymap encrypt lvm2 resume filesystems keyboard fsck&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;configure-the-bootloader&quot;&gt;Configure the bootloader.&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Given you mounted &#x2F;dev&#x2F;sdX1 on &#x2F;mnt&#x2F;boot
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;bootctl&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; --path&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;boot install
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Populate the systemd-boot configs
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;blkid&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;dev&#x2F;sda2 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;| &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;awk &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;{print $2}&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;| &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;sed &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;s&#x2F;&amp;quot;&#x2F;&#x2F;g&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;boot&#x2F;loader&#x2F;entries&#x2F;arch.conf
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Edit the config generated above.
+Use &lt;code&gt;allow-discards&lt;&#x2F;code&gt; when using an SSD&lt;&#x2F;p&gt;
+&lt;p&gt;To quote &lt;a href=&quot;http:&#x2F;&#x2F;www.brandonkester.com&#x2F;tech&#x2F;2014&#x2F;03&#x2F;16&#x2F;full-disk-encryption-in-arch-linux-with-uefi.html&quot;&gt;Brandon Kester&#x27;s post&lt;&#x2F;a&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;&amp;quot;The resume= option will enable hibernation on the device.
+The nice thing about having an encrypted swap partition is that your hibernation
+data will be encrypted just like the rest of the at-rest data.
+This makes hibernation a very secure alternative to leaving your
+machine in stand-by mode, which is vulnerable to the cold boot attack.&amp;quot;&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Your &#x2F;boot&#x2F;loader&#x2F;entries&#x2F;arch.conf should be along the lines of:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;title&lt;&#x2F;span&gt;&lt;span&gt;   Arch Linux
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;linux&lt;&#x2F;span&gt;&lt;span&gt;   &#x2F;vmlinuz-linux
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;initrd&lt;&#x2F;span&gt;&lt;span&gt;  &#x2F;initramfs-linux.img
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;options&lt;&#x2F;span&gt;&lt;span&gt; cryptdevice=UUID=53f48717-2f23-466d-aad8-ce513286af42:lvm:allow-discards resume=&#x2F;dev&#x2F;mapper&#x2F;vg0-swap root=&#x2F;dev&#x2F;mapper&#x2F;vg0-root home=&#x2F;dev&#x2F;mapper&#x2F;vg0-home rw quiet
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&#x2F;boot&#x2F;loader&#x2F;loader.conf should be along the lines of:
+note default arch refers to the entries&#x2F;arch.conf from above
+I like 0 timeout because speed &#x2F;boot&#x2F;loader&#x2F;loader.conf&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;timeout&lt;&#x2F;span&gt;&lt;span&gt; 0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;default&lt;&#x2F;span&gt;&lt;span&gt; arch
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;editor&lt;&#x2F;span&gt;&lt;span&gt; 0
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Finishing up.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# generate the ramdisk
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mkinitcpio&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; -p&lt;&#x2F;span&gt;&lt;span&gt; linux
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# I hope your &#x2F;boot is sane.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# Mine is along the lines of:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; tree &#x2F;boot
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;&#x2F;boot
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;├──&lt;&#x2F;span&gt;&lt;span&gt; EFI
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span&gt;   ├── BOOT
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span&gt;   │   └── BOOTX64.EFI
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span&gt;   └── systemd
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span&gt;       └── systemd-bootx64.efi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;├──&lt;&#x2F;span&gt;&lt;span&gt; initramfs-linux-fallback.img
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;├──&lt;&#x2F;span&gt;&lt;span&gt; initramfs-linux.img
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;├──&lt;&#x2F;span&gt;&lt;span&gt; loader
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span&gt;   ├── entries
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span&gt;   │   └── arch.conf
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span&gt;   └── loader.conf
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;└──&lt;&#x2F;span&gt;&lt;span&gt; vmlinuz-linux
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;5&lt;&#x2F;span&gt;&lt;span&gt; directories, 7 files
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# exit the chroot
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;exit
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# unmount the drives
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;umount&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;mnt&#x2F;home
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;umount&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;mnt&#x2F;boot
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;umount&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;mnt
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# yaaay
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;reboot
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+</feed>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+              crossorigin="anonymous"
+        >
+
+        
+
+        <link rel="stylesheet" href="https://njagi.me/style.css">
+
+        <title>Mostly Programming</title>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Home</a>
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/posts/">Posts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/notes/">Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/wiki/">Wiki</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tags/">Tags</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+                </ul>
+
+            </div> <!-- container fluid -->
+        </nav>
+
+        <div class="container">
+            <div class="margin-vertical-20">
+                
+
+<div class="row">
+    <div class="row justify-content-end"> <!-- start post heading -->
+        <div class="col-md-10">
+
+            <h1 id="post-title">wai-devel final submission</h1>
+
+            <div id="post-metadata">
+                August 21, 2015
+
+                <p>
+                    
+                    Tags:
+                    <span class="tags">
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/programming/">Programming</a>
+                        </button>
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/haskell/">Haskell</a>
+                        </button>
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/gsoc/">GSoC</a>
+                        </button>
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/wai/">WAI</a>
+                        </button>
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/wai-devel/">wai-devel</a>
+                        </button>
+                        
+                    </span>
+                    
+                </p>
+
+            </div> <!-- page metadata -->
+        </div>
+    </div> <!-- end post heading -->
+
+    <div class="row justify-content-center">  <!-- start post content -->
+        <div class="col-md-8">
+            <p>This is the final day of code submissions to Google for Google Summer of Code.
+So it's only fair that I give the community a report on the current state of affairs regarding wai-devel.<br />
+This is more of a very detailed changelog than a blog post about wai-devel.</p>
+<span id="continue-reading"></span><h2 id="what-wai-devel-expects-from-your-application">What wai-devel expects from your application.</h2>
+<p><strong>NOTHING</strong><br />
+Yes, wai-devel expects nothing from your application.
+However, your application shall receive a port number through the environment variable <code>PORT</code>.</p>
+<p><em>UPDATE:</em>
+Due to it's reliance on ide-backend you also have to set the environment variable <code>GHC_PACKAGE_PATH</code></p>
+<h3 id="what-port-is-used-for">What PORT is used for:</h3>
+<p>Your application shall listen for connections on <code>localhost:&lt;PORT&gt;</code>
+wai-devel by default creates a reverse proxy from port number 3000 to your application which is listening in on PORT.<br />
+You can change the port from the default port 3000 by setting the environment variable PORT yourself.</p>
+<p>wai-devel takes PORT and then cycles through various port numbers adding 1 to PORT to find a port that is free, sets that as the destination port and changes the PORT environment variable to that destination port. Therefore we can reverse proxy from PORT to a random port.</p>
+<p>Reverse proxying is important for error reporting, future proofing and other ways of abstracting away the services wai-devel provides to your application.</p>
+<h2 id="more-reliable-dirtiness-checking">More reliable dirtiness checking.</h2>
+<p>wai-devel will use the the module you have chosen to find the files to watch for changes in.
+It watches the files it imports and their Template Haskell dependencies as well as the cabal file.</p>
+<h2 id="compatibility-with-haskell-wai-applications">Compatibility with Haskell wai-applications.</h2>
+<p>wai-devel works with your usual yesod scaffold from yesod-bin out of the box and should work with other haskell wai apps as long as they use the PORT environment variable.</p>
+<p>You can pass the filepath and function to run via command line arguments <code>--path</code> or <code>-p</code> and function <code>--function</code> or <code>-f</code>.
+When these aren't passed it assumes Application.develMain (borrowed from yesod).</p>
+<h2 id="yet-to-come">Yet to come.</h2>
+<p>I will be actively developing wai-devel well after Google Summer of Code is over (that is today).</p>
+<p>The following are coming next:</p>
+<ul>
+<li>Show build progress in the browser.</li>
+<li>Provide a dashboard page with compilation status, garbage collection statistics, and other useful meta-information.</li>
+<li>Port to Windows. (This depends on ide-backend getting ported to Windows.)</li>
+</ul>
+
+        </div>
+    </div>  <!-- end post content -->
+
+</div> <!--  -->
+
+
+
+            </div>
+        </div>
+
+    </body>
+
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <p class="p-copyright">
+                        All work is under the <a href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License, Version 1.3</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</html>

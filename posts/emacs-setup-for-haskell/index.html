@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+              crossorigin="anonymous"
+        >
+
+        
+
+        <link rel="stylesheet" href="https://njagi.me/style.css">
+
+        <title>Mostly Programming</title>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Home</a>
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/posts/">Posts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/notes/">Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/wiki/">Wiki</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tags/">Tags</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+                </ul>
+
+            </div> <!-- container fluid -->
+        </nav>
+
+        <div class="container">
+            <div class="margin-vertical-20">
+                
+
+<div class="row">
+    <div class="row justify-content-end"> <!-- start post heading -->
+        <div class="col-md-10">
+
+            <h1 id="post-title">Emacs Setup for Haskell</h1>
+
+            <div id="post-metadata">
+                April 13, 2015
+
+                <p>
+                    
+                    Tags:
+                    <span class="tags">
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/emacs/">Emacs</a>
+                        </button>
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/haskell/">Haskell</a>
+                        </button>
+                        
+                    </span>
+                    
+                </p>
+
+            </div> <!-- page metadata -->
+        </div>
+    </div> <!-- end post heading -->
+
+    <div class="row justify-content-center">  <!-- start post content -->
+        <div class="col-md-8">
+            <p>This post assumes that you have a little experience with emacs and maybe some experience writing haskell.<br />
+I assume that you're using emacs and not xemacs or something else and therefore your init file is ~/.emacs. You can also find your init file via <code>M-: RET (find-file user-init-file) RET</code>.</p>
+<span id="continue-reading"></span>
+<p>To set up emacs so that you can install packages add the following to your ~/.emacs:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(</span><span style="color:#859900;">require</span><span> &#39;package)
+</span><span>(add</span><span style="color:#657b83;">-</span><span style="color:#859900;">to</span><span style="color:#657b83;">-</span><span style="color:#859900;">list</span><span> &#39;package</span><span style="color:#657b83;">-</span><span>archives
+</span><span>  &#39;(&quot;</span><span style="color:#2aa198;">melpa</span><span>&quot; . &quot;</span><span style="color:#2aa198;">http://melpa.milkbox.net/packages/</span><span>&quot;) </span><span style="color:#b58900;">t</span><span>)
+</span><span>(package</span><span style="color:#657b83;">-</span><span>initialize)
+</span></code></pre>
+<p>I personally believe that melpa alone is enough.</p>
+<p>Then to install packages:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>M-x RET package-install RET &lt;package-name&gt; RET RET
+</span></code></pre>
+<p>Every time you make a save your ~/.emacs file instead of restarting emacs to make sure everything is still okay, run</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>M-x eval-buffer RET
+</span></code></pre>
+<p>To install haskell packages (I assume you already have cabal) use:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>$ cabal install &lt;package-name&gt;
+</span></code></pre>
+<p>Let's get started. Here's a list of all the things that we'll need.<br />
+You can chose to install them all now or install them as we go on and as you see the need for them.</p>
+<h4 id="haskell-packages-to-install">Haskell packages to install</h4>
+<ul>
+<li><a href="https://github.com/chrisdone/structured-haskell-mode">structured-haskell-mode</a></li>
+<li><a href="http://hackage.haskell.org/package/hasktags">hasktags</a></li>
+</ul>
+<h4 id="emacs-packages-to-install">Emacs packages to install</h4>
+<ul>
+<li><a href="http://www.flycheck.org/">flycheck</a></li>
+<li><a href="https://github.com/chrisdone/haskell-flycheck">flycheck-haskell</a></li>
+<li><a href="https://github.com/haskell/haskell-mode/wiki">haskell-mode</a></li>
+<li><a href="www.emacswiki.org/emacs/RainbowDelimiters">rainbow-delimiters</a></li>
+<li>shm (the emacs package isn't called structured-haskell-mode but shm)</li>
+<li><a href="http://www.emacswiki.org/emacs/AceJump">ace-jump-mode</a></li>
+<li><a href="http://www.emacswiki.org/emacs/AutoComplete">auto-complete-mode</a></li>
+</ul>
+<h2 id="setting-up-the-path-for-emacs">Setting up the PATH for emacs.</h2>
+<p>To have emacs point to where your haskell packages are installed add this to your ~/.emacs:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(</span><span style="color:#859900;">let </span><span>((my</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>path (</span><span style="color:#859900;">expand</span><span style="color:#657b83;">-</span><span>file</span><span style="color:#657b83;">-</span><span>name &quot;</span><span style="color:#2aa198;">~/.cabal/bin</span><span>&quot;)))
+</span><span>  (setenv &quot;</span><span style="color:#2aa198;">PATH</span><span>&quot; (concat my</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>path &quot;</span><span style="color:#2aa198;">:</span><span>&quot; (getenv &quot;</span><span style="color:#2aa198;">PATH</span><span>&quot;)))
+</span><span>  (add</span><span style="color:#657b83;">-</span><span style="color:#859900;">to</span><span style="color:#657b83;">-</span><span style="color:#859900;">list</span><span> &#39;exec</span><span style="color:#657b83;">-</span><span>path my</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>path))
+</span></code></pre>
+<p>You can replace <code>&quot;~/.cabal/bin&quot;</code> with a sandbox but I had issues with this when the sandbox cabal version didn't keep up with the universal packages. So I would recommend you use the user-wide one ~/.cabal/bin.<br />
+<em>Mind you, you can can use this to add anything to your emacs specific PATH.</em></p>
+<h2 id="haskell-mode">Haskell mode</h2>
+<p>I hope you are already using haskell mode but if you aren't it's okay. This post is for you. This is going to be the major mode that you will be using. It would be wise to read the <a href="https://github.com/haskell/haskell-mode/wiki">haskell mode wiki</a>.</p>
+<p>Install haskell-mode from within emacs.</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>M-x RET package-install RET haskell-mode RET RET
+</span></code></pre>
+<p>To enable the minor mode which activates keybindings associated with interactive mode, add:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(</span><span style="color:#859900;">require</span><span> &#39;haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>(</span><span style="color:#859900;">require</span><span> &#39;haskell</span><span style="color:#657b83;">-</span><span>process)
+</span><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook &#39;interactive</span><span style="color:#657b83;">-</span><span>haskell</span><span style="color:#657b83;">-</span><span>mode)
+</span></code></pre>
+<p><em>Make sure to use haskell-interactive-mode as done above and not inferor haskell mode which has been deprecated.</em></p>
+<p>To jump to the import list add this. <em>I prefer to bind this to f12.</em></p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map</span><span> [f12] &#39;haskell</span><span style="color:#657b83;">-</span><span>navigate</span><span style="color:#657b83;">-</span><span>imports)
+</span></code></pre>
+<p>To get import suggestions. For adding, removing or commenting out of imports and a process log use:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(custom</span><span style="color:#657b83;">-</span><span style="color:#859900;">set</span><span style="color:#657b83;">-</span><span>variables
+</span><span>  &#39;(haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>suggest</span><span style="color:#657b83;">-</span><span style="color:#859900;">remove</span><span style="color:#657b83;">-</span><span style="color:#859900;">import</span><span style="color:#657b83;">-</span><span>lines </span><span style="color:#b58900;">t</span><span>)
+</span><span>  &#39;(haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>auto</span><span style="color:#657b83;">-</span><span style="color:#859900;">import</span><span style="color:#657b83;">-</span><span>loaded</span><span style="color:#657b83;">-</span><span>modules </span><span style="color:#b58900;">t</span><span>)
+</span><span>  &#39;(haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span style="color:#859900;">log </span><span style="color:#b58900;">t</span><span>))
+</span></code></pre>
+<p>General emacs haskell-mode bindings from the haskell-mode wiki:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-l</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span style="color:#859900;">load</span><span style="color:#657b83;">-</span><span style="color:#859900;">or</span><span style="color:#657b83;">-</span><span>reload)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-`</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>bring)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-t</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span style="color:#859900;">do</span><span style="color:#657b83;">-</span><span>type)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-i</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span style="color:#859900;">do</span><span style="color:#657b83;">-</span><span>info)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-c</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>build)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-k</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>clear)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c c</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>cabal)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">SPC</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>contextual</span><span style="color:#657b83;">-</span><span>space)
+</span></code></pre>
+<p><em>It will always prompt to begin a new project. Don't fight it, just go with it. It won't create any files.</em></p>
+<p>Same as the ones above but are good to have in cabal-mode i.e when one is in the repl.</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-`</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>bring)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-k</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>clear)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-c</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>build)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c c</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>cabal)
+</span></code></pre>
+<p>Which GHCi process will we use in our repl? I prefer using cabal-repl instead of ghci because it loads one entire project automatically.
+If you're using a modern version of cabal I would go with cabal repl.<br />
+To use cabal-repl as your GHCi process add the following:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(custom</span><span style="color:#657b83;">-</span><span style="color:#859900;">set</span><span style="color:#657b83;">-</span><span>variables
+</span><span>  &#39;(haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>type &#39;cabal</span><span style="color:#657b83;">-</span><span>repl))
+</span></code></pre>
+<h5 id="tags">Tags</h5>
+<p>You sometimes need to jump to the definition of a function that you are using in the same file. For this we have tags within haskell-mode. It however requires the haskell package hasktags so:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>$ cabal install hasktags
+</span></code></pre>
+<p>To enable generation of tags when you save a file use:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(custom</span><span style="color:#657b83;">-</span><span style="color:#859900;">set</span><span style="color:#657b83;">-</span><span>variables
+</span><span>  &#39;(haskell</span><span style="color:#657b83;">-</span><span>tags</span><span style="color:#657b83;">-</span><span>on</span><span style="color:#657b83;">-</span><span>save </span><span style="color:#b58900;">t</span><span>))
+</span></code></pre>
+<p>To use both ghci and tags for jumping to a definition you can use the following. This way when GHCi fails because the code can't compile it will fall back to tags.</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">M-.</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>jump</span><span style="color:#657b83;">-</span><span style="color:#859900;">to</span><span style="color:#657b83;">-</span><span>def</span><span style="color:#657b83;">-</span><span style="color:#859900;">or</span><span style="color:#657b83;">-</span><span>tag)
+</span></code></pre>
+<p><em>This will be generating a file with the name TAGS within your projects. It's a good idea to put this file in your .gitignore</em></p>
+<p>To have what we see in our repl look good we could use, <a href="https://github.com/haskell/haskell-mode/wiki/Haskell-Interactive-Mode-REPL#printing-mode">printing in the repl</a></p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(</span><span style="color:#859900;">setq</span><span> haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">eval</span><span style="color:#657b83;">-</span><span>mode &#39;haskell</span><span style="color:#657b83;">-</span><span>mode)
+</span></code></pre>
+<h5 id="debugging">Debugging</h5>
+<p>Check out how to use the <a href="https://github.com/haskell/haskell-mode/wiki/Haskell-Interactive-Mode-Debugger">debugger in haskell mode</a>.</p>
+<h5 id="autocompletion">Autocompletion.</h5>
+<p>Since ghc version 7.8 you can use the <code>TAB</code> key to auto complete suggestions.</p>
+<h2 id="flycheck-and-haskell-flycheck">Flycheck and haskell-flycheck.</h2>
+<p>These are gems my friend. GEMS I TELL YA!!</p>
+<p>They compliment each other to compile your code in the background each time you save the file you are working on. If there is an error in your code the line with an error is underlined in red and in case of a warning it's underlined in yellow. You get a pop up when you hover over the error with the mouse, the minibuffer also shows the error when the cursor is over the line in question. This means you don't have to wait for compilation to fix those tiny errors.</p>
+<p>Much to my surprise <a href="http://www.flycheck.org/">flycheck</a> and <a href="https://github.com/chrisdone/haskell-flycheck">haskell-flycheck</a> also give style suggestions as I assume HLint would top of error and warning checking.</p>
+<p>I previously used ghc-mod for the purposes for which I am using flycheck now. I prefer flycheck because it does this for many more langauges.</p>
+<p>To install
+Install flycheck and haskell-flycheck from within emacs.</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>M-x RET package-install RET flycheck flycheck-haskell RET RET
+</span></code></pre>
+<p>To use flycheck add this to your .emacs</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;after</span><span style="color:#657b83;">-</span><span>init</span><span style="color:#657b83;">-</span><span>hook </span><span style="color:#cb4b16;">#&#39;global-flycheck-mode</span><span>)
+</span><span>(</span><span style="color:#859900;">eval</span><span style="color:#657b83;">-</span><span>after</span><span style="color:#657b83;">-</span><span style="color:#859900;">load</span><span> &#39;flycheck
+</span><span>  &#39;(add</span><span style="color:#657b83;">-</span><span>hook &#39;flycheck</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook </span><span style="color:#cb4b16;">#&#39;flycheck-haskell-setup</span><span>))
+</span></code></pre>
+<h2 id="structured-haskell-mode-and-shm">Structured Haskell Mode and shm</h2>
+<p>The emacs package <code>shm</code> depends on the haskell package <code>structured-haskell-mode</code> so you have to install both.
+{% highlight bash%}
+$ cabal install structured-haskell-mode</p>
+<pre style="background-color:#002b36;color:#839496;"><code><span>
+</span><span>```lisp
+</span><span>M-x RET package-install RET shm RET RET
+</span></code></pre>
+<p>It's the most impressive haskell in emacs &quot;feature&quot; for me. You should definitely read the <a href="https://github.com/chrisdone/structured-haskell-mode#structured-haskell-mode">structured haskell mode README</a> if you want to know how to use it well.</p>
+<p>It helps you write in a clear and consistent style all through. It also helps with those little things that IDEs do and text editors don't plus much more. You'll understand what I mean after you use it.</p>
+<p>To enable this I you should add the following to your init file:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook &#39;structured</span><span style="color:#657b83;">-</span><span>haskell</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key shm</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-s</span><span>&quot;) &#39;shm</span><span style="color:#657b83;">/</span><span style="color:#859900;">case</span><span style="color:#657b83;">-</span><span style="color:#859900;">split</span><span>)
+</span></code></pre>
+<p>If you try structured haskell mode and you don't like it replace the above with:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook &#39;turn</span><span style="color:#657b83;">-</span><span>on</span><span style="color:#657b83;">-</span><span>haskell</span><span style="color:#657b83;">-</span><span>indentation)
+</span></code></pre>
+<h2 id="rainbow-delimiters">Rainbow delimiters.</h2>
+<p>I haven't yet actually felt the value addition of this yet but it's purpose it to show you brackets in different colours so that it's simple to identify when you have an open bracket or something.</p>
+<p>You can check it out in the <a href="http://www.emacswiki.org/emacs/RainbowDelimiters">rainbow delimiters wiki page</a>.</p>
+<p>It's not very useful when I have structured haskell mode which automatically closes brackets. I'll probably unistall it. You can however try it if you want.</p>
+<p>Installing rainbow delimiters mode:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>M-x RET package-install RET rainbow-delimiters RET RET
+</span></code></pre>
+<p>For usage:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(</span><span style="color:#859900;">require</span><span> &#39;rainbow</span><span style="color:#657b83;">-</span><span>delimiters)
+</span><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;</span><span style="color:#859900;">prog</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook &#39;rainbow</span><span style="color:#657b83;">-</span><span>delimiters</span><span style="color:#657b83;">-</span><span>mode)
+</span></code></pre>
+<h2 id="auto-compelete-mode">Auto-compelete mode</h2>
+<p>This does just that. I'm not sure if there's need for it or haskell-mode already does auto complete but I love it because I get autocomplete in other modes not just haskell mode.</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(package</span><span style="color:#657b83;">-</span><span>initialize) (global</span><span style="color:#657b83;">-</span><span>auto</span><span style="color:#657b83;">-</span><span>complete</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;</span><span style="color:#859900;">prog</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook &#39;auto</span><span style="color:#657b83;">-</span><span>complete</span><span style="color:#657b83;">-</span><span>mode) </span><span style="color:#586e75;">;; Added for all programming modes.
+</span></code></pre>
+<h2 id="ace-jump-mode">Ace jump mode.</h2>
+<p>This also has nothing to do with haskell it's just really handy and you can use it anywhere.
+Use it to jump to a letter that is at the start of a word. It eliminates a whole lot of scrolling about.</p>
+<p>Installing ace jump mode:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>M-x RET package-install RET ace-jump-mode RET RET
+</span></code></pre>
+<p>To use it, add the following to your init file:</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span>(add</span><span style="color:#657b83;">-</span><span style="color:#859900;">to</span><span style="color:#657b83;">-</span><span style="color:#859900;">list</span><span> &#39;</span><span style="color:#859900;">load</span><span style="color:#657b83;">-</span><span>path &quot;</span><span style="color:#2aa198;">which-folder-ace-jump-mode-file-in/</span><span>&quot;)
+</span><span>(</span><span style="color:#859900;">require</span><span> &#39;ace</span><span style="color:#657b83;">-</span><span>jump</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key global</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c SPC</span><span>&quot;) &#39;ace</span><span style="color:#657b83;">-</span><span>jump</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>(</span><span style="color:#859900;">setq</span><span> ace</span><span style="color:#657b83;">-</span><span>jump</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>gray</span><span style="color:#657b83;">-</span><span>background) </span><span style="color:#586e75;">;; This line makes it work in black background coloured terminals.
+</span></code></pre>
+<p><em>You can use ace-jump mode with other backgrounds not just grey, I use grey because it just worked great for me.</em></p>
+<h4 id="stuff-that-i-think-would-be-fun-to-try-out">Stuff that I think would be fun to try out:</h4>
+<ul>
+<li>present <em>(this failed to install due to ghc 7.10 dependency issues so I will update this post regarding it after I have used it.)</em></li>
+</ul>
+<h2 id="handy-keybindings-to-remember">Handy keybindings to remember:</h2>
+<p>There are many more of course but I really love these:</p>
+<table><thead><tr><th align="center">Key binding</th><th align="center">Purpose</th></tr></thead><tbody>
+<tr><td align="center">C-j</td><td align="center">Newline indent, also automatically adds a newline and comma when creating a list.</td></tr>
+<tr><td align="center">M-^</td><td align="center">Delete indentation relative to parent. Opposite of C-j.</td></tr>
+<tr><td align="center">M-a</td><td align="center">Jump to start of a parent</td></tr>
+<tr><td align="center">)</td><td align="center">Jump to end of a parent</td></tr>
+<tr><td align="center">M-r</td><td align="center">Raise the current node to replace its parent</td></tr>
+<tr><td align="center">C-c C-s</td><td align="center">Case split.</td></tr>
+<tr><td align="center">M-;</td><td align="center">Wrap in multiline comment i.e   <code>{- &lt;code&gt;  -}</code></td></tr>
+<tr><td align="center">C-c C-q</td><td align="center">Works with C-j to add imports, this qualifies/unqualifies them.</td></tr>
+<tr><td align="center">M-k</td><td align="center">Kill/paste node taking indentation to account.</td></tr>
+<tr><td align="center">C-k</td><td align="center">Kill/paste line taking indentation to account.</td></tr>
+<tr><td align="center">C-y</td><td align="center">Yank/copy take indentation into account</td></tr>
+<tr><td align="center">C- `</td><td align="center">Start the REPL buffer. The project not loaded in it.</td></tr>
+<tr><td align="center">C-c C-l</td><td align="center">Compile and load a Haskell module into your REPL.</td></tr>
+<tr><td align="center">C-c C-c</td><td align="center">Compile the whole Cabal project.</td></tr>
+<tr><td align="center">C-x `</td><td align="center">Jump to the next error, or you can move your cursor to an error in the REPL and hit <code>RET</code> to jump to it.</td></tr>
+<tr><td align="center">C-c C-k</td><td align="center">Clear screen in REPL.</td></tr>
+<tr><td align="center">F12</td><td align="center">Jump to import list.</td></tr>
+<tr><td align="center">C-u C-c c</td><td align="center">To run an arbitrary Cabal command.</td></tr>
+<tr><td align="center">C-c c</td><td align="center">To run some common Cabal commands.</td></tr>
+<tr><td align="center">C-u C-c C-t</td><td align="center">To print the type of the top-level identifier at point.</td></tr>
+<tr><td align="center">C-c C-t</td><td align="center">To print the type of the top-level identifier at point in the REPL and in the message buffer.</td></tr>
+<tr><td align="center">C-c C-i</td><td align="center">To print the info of the identifier at point in a buffer. Hit q to close.</td></tr>
+<tr><td align="center">M-.</td><td align="center">Jump to definition or tag.</td></tr>
+<tr><td align="center">C-c SPC</td><td align="center">Use ace jump mode.</td></tr>
+</tbody></table>
+<h2 id="finally">Finally</h2>
+<p>All that init file code in one file that you can conveniently paste in your init file.</p>
+<pre data-lang="lisp" style="background-color:#002b36;color:#839496;" class="language-lisp "><code class="language-lisp" data-lang="lisp"><span style="color:#586e75;">;; --------- Package lists
+</span><span>(</span><span style="color:#859900;">require</span><span> &#39;package)
+</span><span>(add</span><span style="color:#657b83;">-</span><span style="color:#859900;">to</span><span style="color:#657b83;">-</span><span style="color:#859900;">list</span><span> &#39;package</span><span style="color:#657b83;">-</span><span>archives
+</span><span>  &#39;(&quot;</span><span style="color:#2aa198;">melpa</span><span>&quot; . &quot;</span><span style="color:#2aa198;">http://melpa.milkbox.net/packages/</span><span>&quot;) </span><span style="color:#b58900;">t</span><span>)
+</span><span>(package</span><span style="color:#657b83;">-</span><span>initialize)
+</span><span style="color:#586e75;">;; --------- &lt;/ Package lists
+</span><span>
+</span><span>
+</span><span style="color:#586e75;">;; ---------------- Haskell-mode
+</span><span>(</span><span style="color:#859900;">let </span><span>((my</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>path (</span><span style="color:#859900;">expand</span><span style="color:#657b83;">-</span><span>file</span><span style="color:#657b83;">-</span><span>name &quot;</span><span style="color:#2aa198;">~/.cabal/bin</span><span>&quot;)))
+</span><span>  (setenv &quot;</span><span style="color:#2aa198;">PATH</span><span>&quot; (concat my</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>path &quot;</span><span style="color:#2aa198;">:</span><span>&quot; (getenv &quot;</span><span style="color:#2aa198;">PATH</span><span>&quot;)))
+</span><span>  (add</span><span style="color:#657b83;">-</span><span style="color:#859900;">to</span><span style="color:#657b83;">-</span><span style="color:#859900;">list</span><span> &#39;exec</span><span style="color:#657b83;">-</span><span>path my</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>path))
+</span><span>
+</span><span>(</span><span style="color:#859900;">require</span><span> &#39;haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>(</span><span style="color:#859900;">require</span><span> &#39;haskell</span><span style="color:#657b83;">-</span><span>process)
+</span><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook &#39;interactive</span><span style="color:#657b83;">-</span><span>haskell</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>  
+</span><span style="color:#586e75;">; Makes editor focus on imports block in source file
+</span><span style="color:#586e75;">;; (eval-after-load &#39;haskell-mode
+</span><span style="color:#586e75;">;;          &#39;(define-key haskell-mode-map [f12] &#39;haskell-navigate-imports))
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map</span><span> [f12] &#39;haskell</span><span style="color:#657b83;">-</span><span>navigate</span><span style="color:#657b83;">-</span><span>imports)
+</span><span>
+</span><span style="color:#586e75;">;;; For module import suggestions.
+</span><span>(custom</span><span style="color:#657b83;">-</span><span style="color:#859900;">set</span><span style="color:#657b83;">-</span><span>variables
+</span><span>  &#39;(haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>suggest</span><span style="color:#657b83;">-</span><span style="color:#859900;">remove</span><span style="color:#657b83;">-</span><span style="color:#859900;">import</span><span style="color:#657b83;">-</span><span>lines </span><span style="color:#b58900;">t</span><span>)
+</span><span>  &#39;(haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>auto</span><span style="color:#657b83;">-</span><span style="color:#859900;">import</span><span style="color:#657b83;">-</span><span>loaded</span><span style="color:#657b83;">-</span><span>modules </span><span style="color:#b58900;">t</span><span>)
+</span><span>  &#39;(haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span style="color:#859900;">log </span><span style="color:#b58900;">t</span><span>))
+</span><span>
+</span><span style="color:#586e75;">;; Key bindings from the wiki
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-l</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span style="color:#859900;">load</span><span style="color:#657b83;">-</span><span style="color:#859900;">or</span><span style="color:#657b83;">-</span><span>reload)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-`</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>bring)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-t</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span style="color:#859900;">do</span><span style="color:#657b83;">-</span><span>type)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-i</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span style="color:#859900;">do</span><span style="color:#657b83;">-</span><span>info)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-c</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>build)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-k</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>clear)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c c</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>cabal)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">SPC</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>contextual</span><span style="color:#657b83;">-</span><span>space)
+</span><span>
+</span><span style="color:#586e75;">; The below commands pretty much match the ones above, but are handy to have in cabal-mode, too:
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-`</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>bring)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-k</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>clear)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-c</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>build)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>cabal</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c c</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>cabal)
+</span><span>
+</span><span style="color:#586e75;">; ghci process within emacs
+</span><span>(custom</span><span style="color:#657b83;">-</span><span style="color:#859900;">set</span><span style="color:#657b83;">-</span><span>variables
+</span><span>  &#39;(haskell</span><span style="color:#657b83;">-</span><span>process</span><span style="color:#657b83;">-</span><span>type &#39;cabal</span><span style="color:#657b83;">-</span><span>repl))
+</span><span>
+</span><span style="color:#586e75;">; Hasktags
+</span><span style="color:#586e75;">; customization variable to enable tags generation on save
+</span><span>(custom</span><span style="color:#657b83;">-</span><span style="color:#859900;">set</span><span style="color:#657b83;">-</span><span>variables
+</span><span>  &#39;(haskell</span><span style="color:#657b83;">-</span><span>tags</span><span style="color:#657b83;">-</span><span>on</span><span style="color:#657b83;">-</span><span>save </span><span style="color:#b58900;">t</span><span>))
+</span><span>
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">M-.</span><span>&quot;) &#39;haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>jump</span><span style="color:#657b83;">-</span><span style="color:#859900;">to</span><span style="color:#657b83;">-</span><span>def</span><span style="color:#657b83;">-</span><span style="color:#859900;">or</span><span style="color:#657b83;">-</span><span>tag)
+</span><span>
+</span><span style="color:#586e75;">;printing mode
+</span><span>(</span><span style="color:#859900;">setq</span><span> haskell</span><span style="color:#657b83;">-</span><span>interactive</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span style="color:#859900;">eval</span><span style="color:#657b83;">-</span><span>mode &#39;haskell</span><span style="color:#657b83;">-</span><span>mode)
+</span><span style="color:#586e75;">;; ---------------- &lt;/ Haskell-mode
+</span><span>
+</span><span style="color:#586e75;">;; --------------- flycheck
+</span><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;after</span><span style="color:#657b83;">-</span><span>init</span><span style="color:#657b83;">-</span><span>hook </span><span style="color:#cb4b16;">#&#39;global-flycheck-mode</span><span>)
+</span><span>(</span><span style="color:#859900;">eval</span><span style="color:#657b83;">-</span><span>after</span><span style="color:#657b83;">-</span><span style="color:#859900;">load</span><span> &#39;flycheck
+</span><span>  &#39;(add</span><span style="color:#657b83;">-</span><span>hook &#39;flycheck</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook </span><span style="color:#cb4b16;">#&#39;flycheck-haskell-setup</span><span>))
+</span><span style="color:#586e75;">;; --------------- &lt;/ flycheck
+</span><span>
+</span><span>
+</span><span style="color:#586e75;">;; -------------- structured haskell mode
+</span><span>(</span><span style="color:#859900;">require</span><span> &#39;shm)
+</span><span style="color:#586e75;">;; use indentation from structured haskell mode
+</span><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;haskell</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook &#39;structured</span><span style="color:#657b83;">-</span><span>haskell</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key shm</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c C-s</span><span>&quot;) &#39;shm</span><span style="color:#657b83;">/</span><span style="color:#859900;">case</span><span style="color:#657b83;">-</span><span style="color:#859900;">split</span><span>)
+</span><span style="color:#586e75;">;; -------------- structured haskell mode
+</span><span>
+</span><span>
+</span><span style="color:#586e75;">;; ------------------- Auto complete mode
+</span><span>(package</span><span style="color:#657b83;">-</span><span>initialize) (global</span><span style="color:#657b83;">-</span><span>auto</span><span style="color:#657b83;">-</span><span>complete</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;</span><span style="color:#859900;">prog</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook &#39;auto</span><span style="color:#657b83;">-</span><span>complete</span><span style="color:#657b83;">-</span><span>mode) </span><span style="color:#586e75;">;; Added for all programming modes.
+</span><span style="color:#586e75;">;; -------------------- &lt;/ Auto complete mode
+</span><span>
+</span><span>
+</span><span style="color:#586e75;">;; -------------------- Ace jump
+</span><span>(add</span><span style="color:#657b83;">-</span><span style="color:#859900;">to</span><span style="color:#657b83;">-</span><span style="color:#859900;">list</span><span> &#39;</span><span style="color:#859900;">load</span><span style="color:#657b83;">-</span><span>path &quot;</span><span style="color:#2aa198;">which-folder-ace-jump-mode-file-in/</span><span>&quot;)
+</span><span>(</span><span style="color:#859900;">require</span><span> &#39;ace</span><span style="color:#657b83;">-</span><span>jump</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>(define</span><span style="color:#657b83;">-</span><span>key global</span><span style="color:#657b83;">-</span><span style="color:#859900;">map </span><span>(kbd &quot;</span><span style="color:#2aa198;">C-c SPC</span><span>&quot;) &#39;ace</span><span style="color:#657b83;">-</span><span>jump</span><span style="color:#657b83;">-</span><span>mode)
+</span><span>(</span><span style="color:#859900;">setq</span><span> ace</span><span style="color:#657b83;">-</span><span>jump</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>gray</span><span style="color:#657b83;">-</span><span>background) </span><span style="color:#586e75;">;; Otherwise it will set background to same as emacs backgorund in terminal.
+</span><span style="color:#586e75;">;; ---------------------- &lt;/ ace jump
+</span><span>
+</span><span>
+</span><span style="color:#586e75;">;; --------- Rainbow delimiters
+</span><span style="color:#586e75;">; show each level of parenthesis or braces in a different color.
+</span><span>(</span><span style="color:#859900;">require</span><span> &#39;rainbow</span><span style="color:#657b83;">-</span><span>delimiters)
+</span><span>(add</span><span style="color:#657b83;">-</span><span>hook &#39;</span><span style="color:#859900;">prog</span><span style="color:#657b83;">-</span><span>mode</span><span style="color:#657b83;">-</span><span>hook &#39;rainbow</span><span style="color:#657b83;">-</span><span>delimiters</span><span style="color:#657b83;">-</span><span>mode)
+</span><span style="color:#586e75;">;;--------- &lt;/ Rainbow delimiters
+</span><span>
+</span></code></pre>
+
+        </div>
+    </div>  <!-- end post content -->
+
+</div> <!--  -->
+
+
+
+            </div>
+        </div>
+
+    </body>
+
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <p class="p-copyright">
+                        All work is under the <a href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License, Version 1.3</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</html>

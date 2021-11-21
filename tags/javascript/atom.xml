@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Javascript</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/javascript/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2018-06-29T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/javascript/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Flux, React and Redux</title>
+		<published>2018-06-29T00:00:00+00:00</published>
+		<updated>2018-06-29T00:00:00+00:00</updated>
+		<link href="https://njagi.me/wiki/react/" type="text/html"/>
+		<id>https://njagi.me/wiki/react/</id>
+		<content type="html">&lt;p&gt;React is declarative.&lt;&#x2F;p&gt;
+&lt;p&gt;An advantage &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&#x2F;&quot;&gt;vue.js&lt;&#x2F;a&gt; has over react is that react requires JSX and JSX 
+mangles up the data and operations.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;react-component-class-or-react-component-type&quot;&gt;React Component class or react component type&lt;&#x2F;h2&gt;
+&lt;p&gt;A component takes parameters called &lt;code&gt;props&lt;&#x2F;code&gt;, short for &lt;em&gt;properties&lt;&#x2F;em&gt;, and returns
+a hierarchy of views to display via the &lt;code&gt;render&lt;&#x2F;code&gt; method.&lt;&#x2F;p&gt;
+&lt;p&gt;In Haskell speak it&#x27;s as if a render is a functor and component is &lt;code&gt;fmap&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;component &lt;&#x2F;span&gt;&lt;span&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;render &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;props &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;hierarchy &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;of &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;views
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;code&gt;render&lt;&#x2F;code&gt; returns a description of what you wish to render
+react takes the description and renders it to a screen
+&lt;code&gt;render&lt;&#x2F;code&gt; returns a react element (a lightweight description of what to render)&lt;&#x2F;p&gt;
+&lt;p&gt;Each React element is a real JavaScript object that you can store in a variable 
+or pass around your program.&lt;&#x2F;p&gt;
+&lt;p&gt;React components can have state by setting &lt;code&gt;this.state&lt;&#x2F;code&gt; in the constructor,
+which should be considered &lt;em&gt;private to the component&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In JavaScript classes, you need to explicitly call &lt;code&gt;super();&lt;&#x2F;code&gt; when defining the 
+constructor of a subclass.&lt;&#x2F;p&gt;
+&lt;p&gt;We even have a topic on &lt;em&gt;lifting&lt;&#x2F;em&gt; state &lt;&#x2F;p&gt;
+&lt;p&gt;When you want to aggregate data from multiple children or to have two child
+components communicate with each other, move the state upwards so that it lives
+in the parent component.&lt;&#x2F;p&gt;
+&lt;p&gt;The parent can then pass the state back down to the children via props, so that
+the child components are always in sync with each other and with the parent&lt;&#x2F;p&gt;
+&lt;p&gt;It is conventional in React apps to use on* names for the attributes and handle*
+for the handler methods.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Controlled components&lt;&#x2F;strong&gt; child components that receive their state from a
+parent component.&lt;&#x2F;p&gt;
+&lt;p&gt;React components are made up of react elements which so far look just like HTML
+elements to me.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rendering&quot;&gt;rendering&lt;&#x2F;h2&gt;
+&lt;p&gt;Imperative rendering&lt;&#x2F;p&gt;
+&lt;p&gt;React comes in here:
+re renders diffs&lt;&#x2F;p&gt;
+&lt;p&gt;From: &lt;a href=&quot;https:&#x2F;&#x2F;www.cs.utexas.edu&#x2F;users&#x2F;EWD&#x2F;transcriptions&#x2F;EWD02xx&#x2F;EWD215.html&quot;&gt;A Case against the GO TO Statement by Edward Dijkstra&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;we should do (as wise programmers aware of our limitations) our utmost best 
+to shorten the conceptual gap between the static  program and the dynamic
+process, to make the correspondence between the program (spread out in text 
+space) and the process (spread out in time) as trivial as possible.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Make things snapshottable:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;one state to next state&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;When data changes react re renders entire component&lt;&#x2F;p&gt;
+&lt;p&gt;referentially transparent functions&#x2F;endpoints&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;trivial to predict for given input&lt;&#x2F;li&gt;
+&lt;li&gt;easy to test&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Stateful DOM or any stateful UI toolkit&lt;&#x2F;p&gt;
+&lt;p&gt;Solution is a virtual DOM which is implemented in a lib called react&lt;&#x2F;p&gt;
+&lt;p&gt;immutability plays well with diffing two states&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;functional-components&quot;&gt;Functional components&lt;&#x2F;h2&gt;
+&lt;p&gt;Rather than return a class extending React.Component, write a fn that takes 
+props and returns what should be rendered.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;state&quot;&gt;state&lt;&#x2F;h2&gt;
+&lt;p&gt;State is similar to props, but it is private and fully controlled by the component.
+Local state is exactly that: a feature available only to classes.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;state-updates-may-be-asynchronous&quot;&gt;State updates may be asynchronous&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;React&lt;&#x2F;strong&gt; may batch multiple &lt;code&gt;setState()&lt;&#x2F;code&gt; calls into a single update for
+performance.
+Because &lt;code&gt;this.props&lt;&#x2F;code&gt; and &lt;code&gt;this.state&lt;&#x2F;code&gt; may be updated asynchronously, you should 
+not rely on their values for calculating the next state.&lt;&#x2F;p&gt;
+&lt;p&gt;to fix this use a version of  &lt;code&gt;setState&lt;&#x2F;code&gt; that accepts a function e.g&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#d33682;&quot;&gt;this&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;setState&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;((&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;prevState&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;props&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;counter&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;prevState&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;counter &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;+ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;props&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;increment
+&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;state-updates-are-merged&quot;&gt;State updates are merged&lt;&#x2F;h3&gt;
+&lt;p&gt;merges the object you provide into the current state.
+merging is shallow i.e. leaves other key value pairs untouched&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;handling-events&quot;&gt;Handling events&lt;&#x2F;h2&gt;
+&lt;p&gt;When using React you should generally not need to call addEventListener to add 
+listeners to a DOM element after it is created. Instead, just provide a listener
+when the element is initially rendered.&lt;&#x2F;p&gt;
+&lt;p&gt;You have to be careful about the meaning of this in JSX callbacks. In JavaScript,
+class methods are not bound by default. If you forget to bind this.handleClick 
+and pass it to onClick, this will be undefined when the function is actually 
+called.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.smashingmagazine.com&#x2F;2014&#x2F;01&#x2F;understanding-javascript-function-prototype-bind&#x2F;&quot;&gt;Understanding JavaScript Bind ()&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;You can use an arrow fn in the callback e.g &lt;code&gt;onClick={(e) =&amp;gt; this.handleClick(e)}&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The problem with this syntax is that a different callback is created each time 
+the LoggingButton renders.
+In most cases, this is fine. However, if this callback is passed as a prop to 
+lower components, those components might do an extra re-rendering.
+We generally recommend binding in the constructor or using the class fields 
+syntax, to avoid this sort of performance problem.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lifecycle-hooks&quot;&gt;Lifecycle hooks&lt;&#x2F;h2&gt;
+&lt;p&gt;Methods run during the life cycle events
+such as mounting and umounting&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;componentDidMount&lt;&#x2F;code&gt;: runs after the component output has been 
+rendered to the DOM.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;componentWillUnmount&lt;&#x2F;code&gt;: &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;code&gt;this.setState({})&lt;&#x2F;code&gt; takes an object of new state
+&lt;code&gt;constructor&lt;&#x2F;code&gt; runs before the object is created&lt;&#x2F;p&gt;
+&lt;p&gt;modifying state directly e.g this.state.comment = &amp;quot;I&#x27;m new...&amp;quot; 
+doesn&#x27;t lead to a rerender. use set state&lt;&#x2F;p&gt;
+&lt;p&gt;The only place where you can assign &lt;code&gt;this.state&lt;&#x2F;code&gt; is the 
+&lt;code&gt;constructor&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Read more under:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;React.Component https:&#x2F;&#x2F;reactjs.org&#x2F;docs&#x2F;react-component.html&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;kaznet&quot;&gt;kaznet&lt;&#x2F;h3&gt;
+&lt;p&gt;App.js has all the paths
+triggers container for that component&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hooks&quot;&gt;Hooks&lt;&#x2F;h2&gt;
+&lt;p&gt;From Kent C. Dotts videos 13-19
+Used to maintain component state&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;react-usestate&quot;&gt;React.useState&lt;&#x2F;h3&gt;
+&lt;p&gt;Takes the initial value. Returns an array containing the name and a 
+setter for the name.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;function &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;MyComponent&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;setName&lt;&#x2F;span&gt;&lt;span&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;React&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useState&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;handleChange &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;event =&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;setName&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;event&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;target&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;value&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name2&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;setName2&lt;&#x2F;span&gt;&lt;span&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;React&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useState&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;handleChange2 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;event =&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;setName&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;event&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;target&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;value&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;form&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;!-- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;htmlFor is like for &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;html for but JSX&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;--&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;label htmlFor&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;&amp;gt;&amp;lt;&#x2F;label&lt;&#x2F;span&gt;&lt;span style=&quot;background-color:#6e2e32;color:#2aa198;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;input id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;onChange&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;handleChange&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;input&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;form&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt; ? &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;strong&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Helllo &lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;}&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;strong&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; : &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Please type in name&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;      
+&lt;&#x2F;span&gt;&lt;span&gt;      &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;form&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;!-- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;htmlFor is like for &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;html for but JSX&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;--&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;label htmlFor&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name2&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;&amp;gt;&amp;lt;&#x2F;label&lt;&#x2F;span&gt;&lt;span style=&quot;background-color:#6e2e32;color:#2aa198;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;input id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name2&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;onChange&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;handleChange2&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;input&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;form&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name2&lt;&#x2F;span&gt;&lt;span&gt; ? &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;strong&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Yes&lt;&#x2F;span&gt;&lt;span&gt;? {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;}&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;strong&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; : &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Please type in name&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;react-useeffect&quot;&gt;React.useEffect&lt;&#x2F;h3&gt;
+&lt;p&gt;A react hook that lets us do things that have side effects e.g save
+value to &lt;code&gt;localStorage&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;useEffect takes a lambda and an array of dependencies where we pass
+what we want to sync the state of the world with the state of our 
+app.&lt;&#x2F;p&gt;
+&lt;p&gt;Check the dependency array with &lt;a href=&quot;https:&#x2F;&#x2F;www.npmjs.com&#x2F;package&#x2F;eslint-plugin-react-hooks&quot;&gt;eslint-plugin-react-hooks&lt;&#x2F;a&gt;
+to keep the array up to date.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;function &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;MyComponent&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; First get what&amp;#39;s in localStorage
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;setName&lt;&#x2F;span&gt;&lt;span&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;React&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useState&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;* pass a lambda here to make this initialization lazy
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;       it will only be called to fetch the intiial value and not in 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;       re-renders
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;     *&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;window&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;localStorage&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;getItem&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;|| &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;handleChange &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;event =&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;setName&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;event&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;target&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;value&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; in this case we want to store only name
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;React&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useEffect&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;window&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;localStorage&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;setItem&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  }, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;[name]&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name2&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;setName2&lt;&#x2F;span&gt;&lt;span&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;React&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useState&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;handleChange2 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;event =&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;setName&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;event&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;target&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;value&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;form&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;!-- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;htmlFor is like for &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;html for but JSX&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;--&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;label htmlFor&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;&amp;gt;&amp;lt;&#x2F;label&lt;&#x2F;span&gt;&lt;span style=&quot;background-color:#6e2e32;color:#2aa198;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;input id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;onChange&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;handleChange&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;input&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;form&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt; ? &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;strong&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Helllo &lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;}&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;strong&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; : &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Please type in name&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;      
+&lt;&#x2F;span&gt;&lt;span&gt;      &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;form&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;!-- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;htmlFor is like for &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;html for but JSX&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;--&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;label htmlFor&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name2&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;&amp;gt;&amp;lt;&#x2F;label&lt;&#x2F;span&gt;&lt;span style=&quot;background-color:#6e2e32;color:#2aa198;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;input id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name2&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;onChange&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;handleChange2&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;input&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;form&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name2&lt;&#x2F;span&gt;&lt;span&gt; ? &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;strong&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Yes&lt;&#x2F;span&gt;&lt;span&gt;? {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;}&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;strong&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; : &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Please type in name&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The localStorage pattern is common so there&#x27;s an npm package for it
+that has an API like the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;function &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useLocalStorage&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;key&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;defaultValue&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;state&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;setState&lt;&#x2F;span&gt;&lt;span&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;React&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useState&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;window&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;localStorage&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;getItem&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;key&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;|| &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;defaultValue
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;React&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useEffect&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;window&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;localStorage&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;setItem&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;key&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;state&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  }, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;[state]&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;[state&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;setState]
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;function &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;MyComponent&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;setName&lt;&#x2F;span&gt;&lt;span&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useLocalStorage&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, &amp;#39;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;handleChange &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;event =&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;setName&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;event&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;target&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;value&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;form&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;!-- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;htmlFor is like for &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;html for but JSX&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;--&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;label htmlFor&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;&amp;gt;&amp;lt;&#x2F;label&lt;&#x2F;span&gt;&lt;span style=&quot;background-color:#6e2e32;color:#2aa198;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;input id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;onChange&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;handleChange&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;input&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;form&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt; ? &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;strong&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Helllo &lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;}&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;strong&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; : &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Please type in name&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It&#x27;s convention to have custom hooks begin with &lt;code&gt;use&lt;&#x2F;code&gt; that way
+&lt;a href=&quot;https:&#x2F;&#x2F;www.npmjs.com&#x2F;package&#x2F;eslint-plugin-react-hooks&quot;&gt;eslint-plugin-react-hooks&lt;&#x2F;a&gt; can check out custom hooks for 
+mistakes.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;react-useref&quot;&gt;React.useRef&lt;&#x2F;h3&gt;
+&lt;p&gt;A ref is a reference to the DOM node created by react.
+To get it we use &lt;code&gt;React.useRef&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;A ref is an object with a mutable current property&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ts&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-ts &quot;&gt;&lt;code class=&quot;language-ts&quot; data-lang=&quot;ts&quot;&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;function &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Tild&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;children&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;const tiltRef &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;React&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useRef&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;    This code runs after react has updated the DOM
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;    Interacting with the DOM is impure so we use a useRef hook
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;   *&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;React&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;useEffect&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;console&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;log&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;tiltRef&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;current&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; tiltNode is our DOM node with class name my-class
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;tiltNode &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;tiltRef&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;current
+&lt;&#x2F;span&gt;&lt;span&gt;   
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; We may need to clean up our DOM node.
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; Ran when the component is unmounted from the page
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;tiltNode&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;vanillaTilt&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;destroy&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;   }
+&lt;&#x2F;span&gt;&lt;span&gt;  }, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;[]&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; the empty dependency array makes us not run useEffect between re-renders.
+&lt;&#x2F;span&gt;&lt;span&gt;  
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;div ref&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;tiltRef&lt;&#x2F;span&gt;&lt;span&gt;} &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;className&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;my-class&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;...
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;flux&quot;&gt;Flux&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;facebook.github.io&#x2F;flux&#x2F;&quot;&gt;Flux&lt;&#x2F;a&gt; architecture for building UIs using react.&lt;&#x2F;p&gt;
+&lt;p&gt;Think of flux as new MVC&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;action&lt;&#x2F;strong&gt;: comes into the system&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;dispatcher&lt;&#x2F;strong&gt;: traffic controller for the whole thing &lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;store&lt;&#x2F;strong&gt;: data layer updates whenever we get a new action&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;view&lt;&#x2F;strong&gt;: re render whenever store says something has changed&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Difference from MVC&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;use explicit data instead of derived data&lt;&#x2F;li&gt;
+&lt;li&gt;separate data from view state&lt;&#x2F;li&gt;
+&lt;li&gt;avoid cascading effects by preventing nested updates
+&lt;ul&gt;
+&lt;li&gt;x updates y which updates z&lt;&#x2F;li&gt;
+&lt;li&gt;let data layer completely finish processing before triggering any 
+additional actions&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;single direction flow:
+&lt;img src=&quot;https:&#x2F;&#x2F;drive.google.com&#x2F;uc?id=1DkAZI2u3Tm0mYu0r30777zx_mTuVIAM7&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;flux
+&lt;img src=&quot;https:&#x2F;&#x2F;drive.google.com&#x2F;uc?id=1ZqK27JXsy3K5jWjpufpn6h8aEFyNB3gL&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;the dispatcher ensures that until store is done
+views or anything else can&#x27;t put an action through the system&lt;&#x2F;p&gt;
+&lt;p&gt;advantages:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;improved data consistency: everything in sync&lt;&#x2F;li&gt;
+&lt;li&gt;easier to pinpoint root of a bug&lt;&#x2F;li&gt;
+&lt;li&gt;easier unit tests because modules are pure-ish&#x2F;atomic&#x2F;functional&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;views&quot;&gt;views&lt;&#x2F;h2&gt;
+&lt;p&gt;can trigger actions&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dispatcher&quot;&gt;dispatcher&lt;&#x2F;h2&gt;
+&lt;p&gt;enforces no cascading effects once an action goes
+into store you can&#x27;t put another until store is done processing it&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;hackernooon-post-summary&quot;&gt;Hackernooon post summary&lt;&#x2F;h1&gt;
+&lt;p&gt;An implementation of the Flux architecture— a pattern for passing data around in a React app.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Under classic Flux, app state is held within stores.
+Dispatched actions cause this state to change, afterwhich the views that listen to these 
+state changes will re-render themselves accordingly&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;flux-1&quot;&gt;Flux&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;hackernoon.com&#x2F;hn-images&#x2F;1*stmn8kxXJrX9hbk39hHQJA.png&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;redux&quot;&gt;Redux&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;hackernoon.com&#x2F;hn-images&#x2F;1*9kbmrgH8voxp_rx25LPqIw.png&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dir-structure&quot;&gt;Dir structure&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&#x2F;src&#x2F;component&#x2F;&lt;&#x2F;code&gt; &lt;em&gt;Dumb&lt;&#x2F;em&gt; React components that have no knowledge of Redux&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;&#x2F;src&#x2F;containers&#x2F;&lt;&#x2F;code&gt;  &lt;em&gt;Smart&lt;&#x2F;em&gt; React components that are connected to our Redux store&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;&#x2F;src&#x2F;services&lt;&#x2F;code&gt; Abstraction facades for external API (like backend servers)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;&#x2F;src&#x2F;store&lt;&#x2F;code&gt; All Redux-specific code goes here, including all business-logic of our app&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The store directory is organized by domain, each containing:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&#x2F;src&#x2F;store&#x2F;{domain}&#x2F;reducer.js&lt;&#x2F;code&gt; Reducer as a default export with all selectors as named exports&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;&#x2F;src&#x2F;store&#x2F;{domain}&#x2F;actions.js&lt;&#x2F;code&gt; All the domain action handlers (thunks and plain object creators)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The &lt;em&gt;reducer&lt;&#x2F;em&gt; holds the state and updates it.&lt;&#x2F;p&gt;
+&lt;p&gt;Rules:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Smart components are not allowed to have any logic except dispatching actions.&lt;&#x2F;li&gt;
+&lt;li&gt;Services must be completely stateless.&lt;&#x2F;li&gt;
+&lt;li&gt;Smart components should always access state through selectors.&lt;&#x2F;li&gt;
+&lt;li&gt;Minimize view logic in smart components by extracting it into dumb components.&lt;&#x2F;li&gt;
+&lt;li&gt;Place all business logic inside action handlers (thunks), selectors and reducers.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;selectors&quot;&gt;Selectors&lt;&#x2F;h3&gt;
+&lt;p&gt;A selector is a pure function that takes the global state as argument and returns some transformation over it
+Selectors are tightly coupled to reducers and are located inside reducer.js&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;redux-1&quot;&gt;Redux&lt;&#x2F;h1&gt;
+&lt;p&gt;Redux has no relation to react but works especially well with it because react 
+let&#x27;s you describe the UI as a function of state.
+Redux emits state updates in response to actions.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;redux.js.org&#x2F;introduction&#x2F;getting-started&quot;&gt;Redux docs&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;actions&quot;&gt;actions&lt;&#x2F;h2&gt;
+&lt;p&gt;pure functions in redux
+only 2 things allowed to interact with the store
+one is a reducer it changes the state
+others are selectors retrieve data from the state&lt;&#x2F;p&gt;
+&lt;p&gt;containers are components aware of global state&lt;&#x2F;p&gt;
+&lt;p&gt;all things that fetch lists should be aware of pagination&lt;&#x2F;p&gt;
+&lt;p&gt;page numbers&lt;&#x2F;p&gt;
+&lt;p&gt;generic for tasks, locations clients&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;connect-mapstatetoprops-mapdispatchtoprops-mergeprops-options&quot;&gt;connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])&lt;&#x2F;h3&gt;
+&lt;p&gt;Connects a React component to a Redux store. 
+&lt;code&gt;connect&lt;&#x2F;code&gt; is a facade around &lt;code&gt;connectAdvanced&lt;&#x2F;code&gt;, providing a convenient API for 
+the most common use cases.&lt;&#x2F;p&gt;
+&lt;p&gt;It doesn&#x27;t modify the component class passed to it; instead
+it returns a new, connected component class for you to use.&lt;&#x2F;p&gt;
+&lt;p&gt;References&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.sohamkamani.com&#x2F;blog&#x2F;2017&#x2F;03&#x2F;31&#x2F;react-redux-connect-explained&#x2F;&quot;&gt;React-redux &amp;quot;connect&amp;quot; explained&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;redux.js.org&#x2F;basics&#x2F;usage-with-react&quot;&gt;Usage with React&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;reduxjs&#x2F;react-redux&quot;&gt;source code&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;mapstatetoprops&quot;&gt;mapStateToProps&lt;&#x2F;h3&gt;
+&lt;p&gt;The result must be a plain object which will be &lt;strong&gt;merged&lt;&#x2F;strong&gt; into the component&#x27;s 
+props.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;mapdispatchtoprops&quot;&gt;mapDispatchToProps&lt;&#x2F;h3&gt;
+&lt;h2 id=&quot;provider&quot;&gt;Provider&lt;&#x2F;h2&gt;
+&lt;p&gt;To allow all components to access the store use a special react redux 
+component &lt;Provider&gt; to make the store available to all container components in
+the app without passing it explicitly.&lt;&#x2F;p&gt;
+&lt;p&gt;Read more:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;reduxjs&#x2F;react-redux&#x2F;blob&#x2F;master&#x2F;docs&#x2F;api.md#provider-store&quot;&gt;provider docs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;action-creator&quot;&gt;Action creator&lt;&#x2F;h3&gt;
+&lt;p&gt;A function that creates an action.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;action is a payload of information, and an action creator is a factory that 
+creates an action.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Calling an action creator only produces the action but does not dispatch it.
+You need to call the store&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;redux.js.org&#x2F;api-reference&#x2F;store#dispatch&quot;&gt;dispatch&lt;&#x2F;a&gt; fn to actually cause the mutation&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;reducer&quot;&gt;Reducer&lt;&#x2F;h2&gt;
+&lt;p&gt;Also called a reducing function function that accepts an accumulation and a 
+value and returns a new value&lt;&#x2F;p&gt;
+&lt;p&gt;reduce in other langs or fold in haskell.&lt;&#x2F;p&gt;
+&lt;p&gt;reduce a collection of values into a single values&lt;&#x2F;p&gt;
+&lt;p&gt;most important concept in redux&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;combinereducers&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;redux.js.org&#x2F;api-reference&#x2F;combinereducers&quot;&gt;combineReducers&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;A helper function that turns an object whose values are different reducing 
+functions into a single reducing fn you can pass to &lt;a href=&quot;https:&#x2F;&#x2F;redux.js.org&#x2F;api-reference&#x2F;createstore&quot;&gt;&lt;code&gt;createStore&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;the resulting reducer calls every child reducer and gethers the resilt into a
+single state object&lt;&#x2F;p&gt;
+&lt;p&gt;The state produced by &lt;code&gt;combineReducers()&lt;&#x2F;code&gt; namespaces the states of each reducer 
+under their keys as passed to &lt;code&gt;combineReducers()&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;createstore&quot;&gt;createStore&lt;&#x2F;h3&gt;
+&lt;p&gt;creates a single redux store that holds the complete state of your app.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Your app should have a single store&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;args: reducer, preloadedState, enhancer&lt;&#x2F;p&gt;
+&lt;p&gt;enhancer: &lt;strong&gt;store enhancer&lt;&#x2F;strong&gt; optionally specify it to enhance the store with 
+third party capabilities such as middleware, time travel, persistence etc&lt;&#x2F;p&gt;
+&lt;p&gt;the only store enhancer that ships with redux is &lt;a href=&quot;https:&#x2F;&#x2F;redux.js.org&#x2F;api-reference&#x2F;applymiddleware&quot;&gt;&lt;code&gt;applyMiddleware&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;applymiddleware&quot;&gt;applyMiddleware&lt;&#x2F;h3&gt;
+&lt;p&gt;Lets you wrap the store&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;redux.js.org&#x2F;api-reference&#x2F;store#dispatch&quot;&gt;&lt;code&gt;dispatch&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; method
+Middleware is composable&lt;&#x2F;p&gt;
+&lt;p&gt;Most common use case is to support async actions without much boilerplate code 
+or lib dependency.
+Does so by letting you dispatch &lt;a href=&quot;https:&#x2F;&#x2F;redux.js.org&#x2F;glossary#async-action&quot;&gt;&lt;code&gt;async actions&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; in addition to normal
+actions.&lt;&#x2F;p&gt;
+&lt;p&gt;https:&#x2F;&#x2F;redux.js.org&#x2F;api&#x2F;applymiddleware&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;thunk-redux&quot;&gt;thunk-redux&lt;&#x2F;h4&gt;
+&lt;p&gt;lets the action creators invert control by dispatching functions.
+They would receive &lt;code&gt;dispatch&lt;&#x2F;code&gt; as an arg and may call it async. 
+Such functions are called thunks.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;redux-promise&quot;&gt;redux-promise&lt;&#x2F;h4&gt;
+&lt;p&gt;Lets you dispatch a promise async action and dispatches a normal action when
+the promise resolves.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Middleware is not baked into createStore and is not a fundamental part of the 
+Redux architecture, but we consider it useful enough to be supported right in 
+the core. This way, there is a single standard way to extend dispatch in the 
+ecosystem, and different middleware may compete in expressiveness and utility.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h4 id=&quot;async-action&quot;&gt;Async action&lt;&#x2F;h4&gt;
+&lt;p&gt;A value that is sent to a dispatching function but not yet ready for 
+consumption by the reducer.
+It will be transformed by middleware into an action before being sent to the 
+base dispatch fn.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;store&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;redux.js.org&#x2F;api-reference&#x2F;store#dispatch&quot;&gt;Store&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Holds the whole state tree of your app.
+A store is not a class. It&#x27;s just an object with a few methods on it.&lt;&#x2F;p&gt;
+&lt;p&gt;There&#x27;s no way to directly modify the store only way is through reducers and 
+only way to trigger reducers is to dispatch actions.&lt;&#x2F;p&gt;
+&lt;p&gt;to change data dispatch and action
+to obtain data we should (need to) go through a selector &lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;we get the state of the application at the time we made the select&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;components&quot;&gt;Components&lt;&#x2F;h2&gt;
+&lt;p&gt;Smart components are not allowed to have any logic except dispatching actions.
+Smart components should always access state through selectors.&lt;&#x2F;p&gt;
+&lt;p&gt;Place all business logic inside action handlers (thunks), selectors and reducers.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;presentational-and-container-components&quot;&gt;Presentational and container components&lt;&#x2F;h3&gt;
+&lt;p&gt;reference: &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@dan_abramov&#x2F;smart-and-dumb-components-7ca2f9a7c7d0&quot;&gt;Medium---Presentational and Container Components&lt;&#x2F;a&gt;
+aka stateful and pure components among other names&lt;&#x2F;p&gt;
+&lt;p&gt;This approach achieves:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;separation of concerns&lt;&#x2F;li&gt;
+&lt;li&gt;reusability&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;services&quot;&gt;Services&lt;&#x2F;h2&gt;
+&lt;p&gt;Abstract an external API&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;services must be stateless&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;state-1&quot;&gt;State&lt;&#x2F;h2&gt;
+&lt;p&gt;In Redux, the reducer is the construct that holds state and updates it&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;hackernoon.com&#x2F;redux-step-by-step-a-simple-and-robust-workflow-for-real-life-apps-1fdf7df46092&quot;&gt;Hackernoon---Redux Step by Step: A Simple and Robust Workflow for Real Life Apps&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;service-workers&quot;&gt;Service workers&lt;&#x2F;h1&gt;
+&lt;h1 id=&quot;appendix&quot;&gt;Appendix&lt;&#x2F;h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;thunk&lt;&#x2F;strong&gt;: a function that takes no argument not like a &lt;a href=&quot;https:&#x2F;&#x2F;wiki.haskell.org&#x2F;Thunk&quot;&gt;haskell thunk&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Other implementions of the store&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;backbone: instagram&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+</feed>

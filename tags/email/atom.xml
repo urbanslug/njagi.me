@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Email</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/email/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2014-03-26T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/email/atom.xml</id>
+	<entry xml:lang="en">
+		<title>mail @ urbanslug</title>
+		<published>2014-03-26T00:00:00+00:00</published>
+		<updated>2014-03-26T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/mail-at-urbanslug/" type="text/html"/>
+		<id>https://njagi.me/posts/mail-at-urbanslug/</id>
+		<content type="html">&lt;p&gt;So uh since I am not allowed by society to wear a tinfoil hat and I believe that the we are under attack I have decided to leave gmail and set up my own mail server. Futile efforts but at least I shall have a fighting chance.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;FYI I heard not to wear a tinfoil hat because amplify the waves instead wear a wet towel on your head but you might get a cold or worse.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;hosting&quot;&gt;Hosting.&lt;&#x2F;h3&gt;
+&lt;p&gt;I will get hosting from &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;computionist&quot;&gt;@computionist&lt;&#x2F;a&gt; on twitter. I don&#x27;t know him personally but I know him from #nothaskell on freenode and twitter. A great guy to say the least.&lt;&#x2F;p&gt;
+&lt;p&gt;He is passionate about a ton of things.&lt;&#x2F;p&gt;
+&lt;p&gt;He gave me &lt;strong&gt;free&lt;&#x2F;strong&gt; hosting.&lt;&#x2F;p&gt;
+&lt;p&gt;He&#x27;s got free hosting for minorities, LGBT, newbies, &lt;a href=&quot;http:&#x2F;&#x2F;www.haskellnow.org&#x2F;CodeOfConduct&quot;&gt;haskell-now&lt;&#x2F;a&gt; members and #nothaskell members. I don&#x27;t know under which criteria I qualified but I thank him.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-stack&quot;&gt;The Stack.&lt;&#x2F;h3&gt;
+&lt;p&gt;The plan was for a full FOSS stack and if possible GPL compatibilty and copyleft.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Operating System&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Linux
+CentOS because systemd baybie :) and my redhat fanboyism.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Mail Server&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I decided to go with IMAP and SMTP because well it is the most flexible as far as I can tell.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;SMTP&lt;&#x2F;em&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Simple_Mail_Transfer_Protocol&quot;&gt;SMTP&lt;&#x2F;a&gt; server I have decided to use will be &lt;strong&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.postfix.org&#x2F;&quot;&gt;Postfix&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;. I had issues with the choice because it is &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;IBM_Public_License&quot;&gt;IPL (IBM Public Licence)&lt;&#x2F;a&gt; . It&#x27;s &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Free_software&quot;&gt;free&lt;&#x2F;a&gt; and &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Copyleft&quot;&gt;copyleft&lt;&#x2F;a&gt; but not &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;GNU_General_Public_License&quot;&gt;GPL&lt;&#x2F;a&gt; compatible. A moral conundrum ey? Anyway it has a community around it and having read on it&#x27;s incompatibility with the GPL I decided to go with it. This is the cause iof incompatibility: &amp;quot;The IPL differs from the GPL in the handling of patents, as IPL terminates the license upon patent disputes.&amp;quot;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;IMAP&lt;&#x2F;em&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Transport_Layer_Security&quot;&gt;IMAP&lt;&#x2F;a&gt; server I will use will be &lt;strong&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Cyrus_IMAP_server&quot;&gt;Cyrus&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;. This was a hard choice due to it&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;BSD_licenses#4-clause_license_.28original_.22BSD_License.22.29&quot;&gt;original BSD license&lt;&#x2F;a&gt;. I honestly don&#x27;t like anything BSD licensed let alone an older one with an advertising clause that I just learned about.&lt;&#x2F;p&gt;
+&lt;p&gt;However I was consoled by this statement. &amp;quot;the Free Software Foundation, recommends developers not use the license, though it states there is no reason not to use software already using it.&amp;quot;&lt;&#x2F;p&gt;
+&lt;p&gt;Worth noting that the choice in Cyrus and Postfix was mostly because &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;computionist&quot;&gt;@computionist&lt;&#x2F;a&gt; already uses them and recommended them. I just wanted to make sure I was using FOSS and my choices were well documented plus had communities around them.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;security&quot;&gt;Security.&lt;&#x2F;h3&gt;
+&lt;p&gt;Well I will be hosting in the USA so I have to try extra hard to make sure the NSA doesn&#x27;t listen in. The can break my encryption in 5 years after they have quantum computers strong enough. I don&#x27;t care.&lt;&#x2F;p&gt;
+&lt;p&gt;What I know I want:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure the server hardware and software are secure.&lt;&#x2F;li&gt;
+&lt;li&gt;Reduce to a minimum and if possible eliminate any chances of mail being in plaintext whilst in the server.&lt;&#x2F;li&gt;
+&lt;li&gt;TLS connection to the server.&lt;&#x2F;li&gt;
+&lt;li&gt;Outgoing mail to be encrypted opportunistically i.e where the remote end supports it.&lt;&#x2F;li&gt;
+&lt;li&gt;Hopefully encrypt mail while it is on the server.&lt;&#x2F;li&gt;
+&lt;li&gt;Key pair per user and when they get a message, generate a random symmetric key and encrypt their email with it. Then encrypt that symmetric key to the users public key and store that with the encrypted message. This way even I can&#x27;t decrypt it. Only the user with the secret key can.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;How to achieve all this I am not yet sure since it might get tricky but not much worry since most of the time I, and any other users if there will be, will be using end to end encyption for my mail.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;visual-representation&quot;&gt;Visual Representation.&lt;&#x2F;h3&gt;
+&lt;p&gt;Below is a high overview diagram of how a mail server works with the IMAP server routing local mail to the IMAP server and foward the rest to another SMTP server. This may change depending on one&#x27;s configuration of course. I left out the crypto bits.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Created with GIMP and my mad graphics skills lulz&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;Content&#x2F;Educate&#x2F;mail.png&quot; alt=&quot;mail image&quot; title=&quot;mail image overview&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

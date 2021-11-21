@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Linux</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/linux/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2014-12-09T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/linux/atom.xml</id>
+	<entry xml:lang="en">
+		<title>My Gnome 3 Experience</title>
+		<published>2014-12-09T00:00:00+00:00</published>
+		<updated>2014-12-09T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/my-gnome-3-experience/" type="text/html"/>
+		<id>https://njagi.me/posts/my-gnome-3-experience/</id>
+		<content type="html">&lt;p&gt;I&#x27;ve used the usual ones xfce, KDE, MATE, Cinnamon, and a little unity in the past.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Then I used xmonad on top of xorg without a Desktop Manager. It wasn&#x27;t fun. It felt like I was spending too much time writing scripts to do things that I knew makers of DEs have done better and I used the terminal instead of shortcuts a lot. Anyway, I didn&#x27;t work for me.&lt;&#x2F;p&gt;
+&lt;p&gt;Now I&#x27;m on Gnome 3 and do I say. This Desktop Environment is the best I&#x27;ve used. As far as compatibilty with devices goes (compatibilty is a major linux issue). It works with just about everything out of the box like projectors (something KDE didn&#x27;t do). I haven&#x27;t tried it with HDMI yet but if it worked with a random Sony projector it will most likely work. I have GTK apps for just about everything so I don&#x27;t have to worry about themes for GTK or Qt and what not. This means more time spent doing other things instead of constantly fixing breakage in different parts of the system. This must be what mac users feel like. That wasn&#x27;t a compliment Mac user. Forever FOSS.&lt;&#x2F;p&gt;
+&lt;p&gt;Apps I have liked: Rhythmbox for music and &lt;strong&gt;NOT&lt;&#x2F;strong&gt; Gnome music I have found it very good with podcasts and scrobbling and editing metadata. Gnome music is not yet okay to use right now because it&#x27;s still in active development. It failed in listing tracks as I wanted it to and sometimes it did not load songs at all. It did other things well like fetch album art and looking preety instead of playing music when I wanted it to, also no scrobbling yet :-(. Though I will use it as soon it goes stable and hopefully stick to it.&lt;&#x2F;p&gt;
+&lt;p&gt;Bottomline, I&#x27;ve found home and if by any chance I ditch Gnome 3 I&#x27;ll probably look for something close to what I with is xmonad on xorg but with wayland instead of xorg. Hope I get to try wayland soon.&lt;&#x2F;p&gt;
+&lt;p&gt;Fun times :-)&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Pulseaudio Mute on Boot</title>
+		<published>2014-12-02T00:00:00+00:00</published>
+		<updated>2014-12-02T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/pulseaudio-mute-on-boot/" type="text/html"/>
+		<id>https://njagi.me/posts/pulseaudio-mute-on-boot/</id>
+		<content type="html">&lt;p&gt;This might work for you or fail to. Doesn&#x27;t hurt to try.&lt;&#x2F;p&gt;
+&lt;p&gt;I got this info at &lt;a href=&quot;http:&#x2F;&#x2F;www.pclinuxos.com&#x2F;forum&#x2F;index.php?topic=112440.0&quot;&gt;Pulseaudio original post&lt;&#x2F;a&gt; and just refined it.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Open &#x2F;usr&#x2F;share&#x2F;pulseaudio&#x2F;alsa-mixer&#x2F;paths&#x2F;analog-output.conf&lt;&#x2F;p&gt;
+&lt;p&gt;Locate the following sections:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;[Element Speaker]
+&lt;&#x2F;span&gt;&lt;span&gt;switch = mute
+&lt;&#x2F;span&gt;&lt;span&gt;volume = off
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[Element Desktop Speaker]
+&lt;&#x2F;span&gt;&lt;span&gt;switch = mute
+&lt;&#x2F;span&gt;&lt;span&gt;volume = off
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Change the &amp;quot;volume&amp;quot; value so that it reads:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;[Element Speaker]
+&lt;&#x2F;span&gt;&lt;span&gt;switch = mute
+&lt;&#x2F;span&gt;&lt;span&gt;volume = merge
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[Element Desktop Speaker]
+&lt;&#x2F;span&gt;&lt;span&gt;switch = mute
+&lt;&#x2F;span&gt;&lt;span&gt;volume = merge
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I have noticed after installing rythmbox this issue has returned. I shall find a fix for it soon. Also music on rhythmbox is awesome. Gnome music looks good but it doesn&#x27;t work. Ever. I shall update with a fix for rhythmbox.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Programming, GSoC, Yesod, Yesod-Devel</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/programming-gsoc-yesod-yesod-devel/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2015-07-19T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/programming-gsoc-yesod-yesod-devel/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Google Summer of Code (2015)</title>
+		<published>2015-07-19T00:00:00+00:00</published>
+		<updated>2015-07-19T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/google-summer-of-code-2015/" type="text/html"/>
+		<id>https://njagi.me/posts/google-summer-of-code-2015/</id>
+		<content type="html">&lt;p&gt;This post is long overdue and I should&#x27;ve started writing on this a while ago but oh well I will write as much in the remaining time and try to make up for lost time.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;So I sent in a proposal for Google Summer of Code aimed at &lt;a href=&quot;https:&#x2F;&#x2F;www.haskell.org&quot;&gt;haskell.org&lt;&#x2F;a&gt;.
+The aim of the proposal was &lt;strong&gt;To build an improved yesod-devel server&lt;&#x2F;strong&gt;. Let the name not fool you, this server is supposed to work with all &lt;a href=&quot;https:&#x2F;&#x2F;www.yesodweb.com&#x2F;book&#x2F;web-application-interface&quot;&gt;WAI&lt;&#x2F;a&gt; compliant haskell web applications such as yesod, spock, scotty applications among others.
+My mentor has been &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;snoyberg&quot;&gt;Michael Snoyman&lt;&#x2F;a&gt;. I&#x27;ve also been working closely with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mgsloan&quot;&gt;Michael Sloan&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ncreep&quot;&gt;Daniel Beskin&lt;&#x2F;a&gt;.
+It started on a high note. I was added to the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;fpco&quot;&gt;FP Complete github organisation&lt;&#x2F;a&gt;. That had me very excited because of the kind of people who are in that organisation plus it&#x27;s &lt;strong&gt;THE HASKELL&lt;&#x2F;strong&gt; organisation in my opinion. So that&#x27;s the social aspect. Let&#x27;s talk programming.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;ide-backend&quot;&gt;ide-backend&lt;&#x2F;h1&gt;
+&lt;p&gt;So FP Complete recently released a library that acts as a wrapper around the &lt;a href=&quot;https:&#x2F;&#x2F;wiki.haskell.org&#x2F;GHC&#x2F;As_a_library&quot;&gt;GHC API&lt;&#x2F;a&gt;, that is, &lt;a href=&quot;https:&#x2F;&#x2F;hackage.haskell.org&#x2F;package&#x2F;ide-backend-0.9.0.2&quot;&gt;ide-backend&lt;&#x2F;a&gt; (I wrote about it in an earlier post).
+This library was extracted from the online FP Complete haskell ide. It was therefore still aimed at working  a cleint - server model where the client and server are on different boxes. The client (the package depending on ide-backend) had to explicitly specify the files to be copied from the cleint to the server. This worked in the FP Complete use case but wouldn&#x27;t work in our use case.&lt;&#x2F;p&gt;
+&lt;p&gt;So we had to make it work in a local environment. This was my first task.&lt;&#x2F;p&gt;
+&lt;p&gt;The aim here was to enable automatic source file (as well as data files and everything else) discovery by ide-backend so that it can submit these files for compilationa by GHC.&lt;br &#x2F;&gt;
+To do this, one has to specify that they want to use ide-backend with a local working directory under &lt;code&gt;configLocalWorkingDir&lt;&#x2F;code&gt; in &lt;a href=&quot;http:&#x2F;&#x2F;hackage.haskell.org&#x2F;package&#x2F;ide-backend-0.9.0.2&#x2F;docs&#x2F;IdeSession.html#v:defaultSessionConfig&quot;&gt;&lt;code&gt;defaultSessionConfig&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;. &lt;code&gt;configLocalWorkingDir&lt;&#x2F;code&gt; is a value of type &lt;code&gt;Maybe FilePath&lt;&#x2F;code&gt;. It defaults to (Nothing :: Maybe FilePath) and has ide-backend working in a client-server environment. When &lt;code&gt;configLocalWorkingDir&lt;&#x2F;code&gt; is set it uses the given file path as the place it will look for source files, data files and everything in between.&lt;&#x2F;p&gt;
+&lt;p&gt;Functionality for ide-backend to work in a non-server environment was finally merged in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;fpco&#x2F;ide-backend&#x2F;tree&#x2F;19561d9ff5f496d6556f38992bc8d08896d54091&quot;&gt;this commit onwards on github&lt;&#x2F;a&gt;. It&#x27;s not yet on the hackage version of ide-backend as of writing this post but it will be pushed soon enough.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;yesod-devel&quot;&gt;yesod-devel&lt;&#x2F;h1&gt;
+&lt;p&gt;Then came the challenge of yesod-devel. This is the &amp;quot;client&amp;quot; in our case that depends on ide-backend. 
+Quite honestly the fact is that ide-backend is the one doing most of the heavy lifting while yesod-devel coordinates everything.&lt;&#x2F;p&gt;
+&lt;p&gt;The objectives of yesod-devel are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatic source and data file discovery.&lt;&#x2F;li&gt;
+&lt;li&gt;Load code&lt;&#x2F;li&gt;
+&lt;li&gt;Compile to bytecode&lt;&#x2F;li&gt;
+&lt;li&gt;Run the code&lt;&#x2F;li&gt;
+&lt;li&gt;Read environment variables&lt;&#x2F;li&gt;
+&lt;li&gt;Grab compiler error messages and display them on the browser&lt;&#x2F;li&gt;
+&lt;li&gt;Listening for changes in the current working directory&lt;&#x2F;li&gt;
+&lt;li&gt;Automatic code reloading and recompilation&lt;&#x2F;li&gt;
+&lt;li&gt;Perform reverse proxying for the web application&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>yesod-devel</title>
+		<published>2015-07-19T00:00:00+00:00</published>
+		<updated>2015-07-19T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/yesod-devel/" type="text/html"/>
+		<id>https://njagi.me/posts/yesod-devel/</id>
+		<content type="html">&lt;p&gt;A new development server is upon us. It&#x27;s name is yesod-devel.&lt;br &#x2F;&gt;
+This post is about yesod-devel which is my Google Summer of Code project and not the current yesod-devel that is part of the yesod framework. It&#x27;s not yet available and is still under development, meaning a lot of things in this post may change.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;yesod-devel is a development server for haskell web applications that are &lt;a href=&quot;https:&#x2F;&#x2F;www.yesodweb.com&#x2F;book&#x2F;web-application-interface&quot;&gt;WAI&lt;&#x2F;a&gt; compliant.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;what-we-expect-from-the-application&quot;&gt;What we expect from the application.&lt;&#x2F;h1&gt;
+&lt;p&gt;This is my opinion of what &lt;strong&gt;I&lt;&#x2F;strong&gt; expect from the web application and this may therefore change depending on what the community thinks. I think this design is good and losely coupled and leaves a lot of freedom to the web application.&lt;&#x2F;p&gt;
+&lt;p&gt;At the heart of your application (the root of your web application) we expect you to have an &lt;code&gt;Application.hs&lt;&#x2F;code&gt; file which holds the Appliaction module. This is the file pointed to by your &lt;code&gt;main-is&lt;&#x2F;code&gt; section of the .cabal file.:&lt;&#x2F;p&gt;
+&lt;p&gt;This Application.hs file holds the &lt;code&gt;main&lt;&#x2F;code&gt; function which fires up a &lt;a href=&quot;http:&#x2F;&#x2F;hackage.haskell.org&#x2F;package&#x2F;warp&quot;&gt;&lt;code&gt;warp&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; server at a an address and port specified in an environment variable.
+Yesod devel will read everything it needs from the web application from environment variables and not from a config file.&lt;br &#x2F;&gt;
+It is the responsibility of the web application to set environment variables(setEnv). This way yesod-devel is very losely coupled to the web application. That is, we(yesod-devel) will not have to specify the names, paths of your config files or which serialization format it will use.&lt;&#x2F;p&gt;
+&lt;p&gt;The environment variables we currently need are:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;haskellWebAddress&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;&amp;lt;ip_address&amp;gt;&#x2F;localhost&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;haskellWebPort&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;&amp;lt;port_number&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;what-you-should-expect-from-yesod-devel&quot;&gt;What you should expect from yesod-devel.&lt;&#x2F;h1&gt;
+&lt;h4 id=&quot;automatic-source-and-data-file-discovery&quot;&gt;Automatic source and data file discovery.&lt;&#x2F;h4&gt;
+&lt;p&gt;You shouldn&#x27;t expect to tell yesod-devel where your source files or data files (hamelet files and so forth) are as long as your web application knows where everything is. All you need to do is call the yesod-devel binary inside your app&#x27;s root.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;building-and-running-your-code&quot;&gt;Building and running your code.&lt;&#x2F;h4&gt;
+&lt;p&gt;yesod-devel when run in your web application&#x27;s working directory will run build and run your application on localhost:3000.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;automatic-code-reloading&quot;&gt;Automatic code reloading.&lt;&#x2F;h4&gt;
+&lt;p&gt;Yesod-devel supports automatic code reloading for any file modified in the current working directory. This is more proof of just how losely coupled yesod-devel will be from your application.&lt;&#x2F;p&gt;
+&lt;p&gt;Newly added files don&#x27;t trigger a recompile and neither do deleted files. However, file modifications do trigger a recompile.
+This is a deliberate design choice. Text editors as well as other programs keep adding and removing files from the file system and if we listened for any randomly created file or deleted file to trigger a recompile we would end up triggering useless recompiles.&lt;&#x2F;p&gt;
+&lt;p&gt;This however means there&#x27;s a trade-off. For being so losely coupled we have to manually restart yesod-devel everytime we add or delete files.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;reverse-proxying&quot;&gt;Reverse proxying.&lt;&#x2F;h4&gt;
+&lt;p&gt;Yesod-devel will start listening on the address and port specified in your environment variables &lt;code&gt;haskellWebAddress&lt;&#x2F;code&gt; and &lt;code&gt;haskellWebPort&lt;&#x2F;code&gt; respectively and reverse proxy it to your &lt;strong&gt;localhost:3000&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;report-error-messages-to-the-browser&quot;&gt;Report error messages to the browser.&lt;&#x2F;h4&gt;
+&lt;p&gt;Yesod-devel will report error messages from ghc to the web browser on localhost:3000.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;command-line-arguments&quot;&gt;Command line arguments.&lt;&#x2F;h4&gt;
+&lt;p&gt;Currently yesod-devel takes no command line arguments.&lt;&#x2F;p&gt;
+&lt;p&gt;However, in the plans are the following.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;--configure-with &lt;config flags to cabal configure&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;--no-reverse-proxying&lt;&#x2F;li&gt;
+&lt;li&gt;--show-iface fileName.hs&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;You should be fine without passing any of these arguments unless you have a special reason to.&lt;&#x2F;p&gt;
+&lt;p&gt;Currently yesod-devel will configure your web application with the following flags to cabal.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;-flibrary-only&lt;&#x2F;li&gt;
+&lt;li&gt;--disable-tests&amp;quot;&lt;&#x2F;li&gt;
+&lt;li&gt;--disable-benchmarks&amp;quot;&lt;&#x2F;li&gt;
+&lt;li&gt;-fdevel&lt;&#x2F;li&gt;
+&lt;li&gt;--disable-library-profiling&lt;&#x2F;li&gt;
+&lt;li&gt;--with-ld=yesod-ld-wrapper&lt;&#x2F;li&gt;
+&lt;li&gt;--with-ghc=yesod-ghc-wrapper&lt;&#x2F;li&gt;
+&lt;li&gt;--with-ar=yesod-ar-wrapper&lt;&#x2F;li&gt;
+&lt;li&gt;--with-hc-pkg=ghc-pkg&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I assume that these arguments are self explanatory.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

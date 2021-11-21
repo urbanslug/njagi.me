@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - packaging</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/packaging/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2016-02-14T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/packaging/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Packaging Python Projects</title>
+		<published>2016-02-14T00:00:00+00:00</published>
+		<updated>2016-02-14T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/packaging-python-projects/" type="text/html"/>
+		<id>https://njagi.me/posts/packaging-python-projects/</id>
+		<content type="html">&lt;p&gt;A while ago I had quite a problem figuring out how to package a python project.
+This is because the python community has no set standard on how to
+package python projects.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;So I decided to fix this for those who shall come after me
+and wish to make something quick in python.
+As an example project I came up with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;Arithmetic&quot;&gt;Arithmetic&lt;&#x2F;a&gt;
+and had to come up with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;WaterInfrastructure&quot;&gt;WaterInfrastructure&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;It is something close to a python project quickstart.&lt;br &#x2F;&gt;
+Incidentally, it also happens to be an example of
+&lt;strong&gt;functional programming in python&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The point is to show you how to structure:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;your tests (which testing framework might be good)&lt;&#x2F;li&gt;
+&lt;li&gt;code&lt;&#x2F;li&gt;
+&lt;li&gt;package it for distribution via a tool like pip or pypy and so forth&lt;&#x2F;li&gt;
+&lt;li&gt;(all these in functional style)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;I use Python 3.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;arithmetic&quot;&gt;Arithmetic&lt;&#x2F;h3&gt;
+&lt;p&gt;The directory structure for this is as follows:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;.
+&lt;&#x2F;span&gt;&lt;span&gt;├── README.md
+&lt;&#x2F;span&gt;&lt;span&gt;├── arithmetic
+&lt;&#x2F;span&gt;&lt;span&gt;│   ├── __init__.py
+&lt;&#x2F;span&gt;&lt;span&gt;│   ├── __main__.py
+&lt;&#x2F;span&gt;&lt;span&gt;│   ├── division
+&lt;&#x2F;span&gt;&lt;span&gt;│   │   ├── __init__.py
+&lt;&#x2F;span&gt;&lt;span&gt;│   │   ├── __main__.py
+&lt;&#x2F;span&gt;&lt;span&gt;│   │   └── divide.py
+&lt;&#x2F;span&gt;&lt;span&gt;│   ├── multiplication
+&lt;&#x2F;span&gt;&lt;span&gt;│   │   ├── __init__.py
+&lt;&#x2F;span&gt;&lt;span&gt;│   │   ├── __main__.py
+&lt;&#x2F;span&gt;&lt;span&gt;│   │   └── multiply.py
+&lt;&#x2F;span&gt;&lt;span&gt;│   └── tests
+&lt;&#x2F;span&gt;&lt;span&gt;│       ├── __init__.py
+&lt;&#x2F;span&gt;&lt;span&gt;│       ├── __main__.py
+&lt;&#x2F;span&gt;&lt;span&gt;│       ├── division
+&lt;&#x2F;span&gt;&lt;span&gt;│       │   └── test_divide.py
+&lt;&#x2F;span&gt;&lt;span&gt;│       └── multiplication
+&lt;&#x2F;span&gt;&lt;span&gt;│           └── test_multiply.py
+&lt;&#x2F;span&gt;&lt;span&gt;└── setup.py
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;waterinfrastructure&quot;&gt;WaterInfrastructure&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;WaterInfrastructure&quot;&gt;WaterInfrastructure&lt;&#x2F;a&gt; is the other project I wrote following the above guidelines.
+This was as an interview question (this is a form of attribution :D).&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Question: I have a problem, do python projects have to have .pyc files in
+the same directory as the source file?&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;There really isn&#x27;t much to say here you can learn more by browsing through
+the code.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

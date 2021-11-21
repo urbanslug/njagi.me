@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Shell</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/shell/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2015-04-02T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/shell/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Using Emacs with Universal Environment Variables</title>
+		<published>2015-04-02T00:00:00+00:00</published>
+		<updated>2015-04-02T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/universal-environment-variables/" type="text/html"/>
+		<id>https://njagi.me/posts/universal-environment-variables/</id>
+		<content type="html">&lt;p&gt;We want to have environment variables that are accessible from within emacs and our shell as well as other REPLs (cabal repl or ghci if you&#x27;re writing haskell).&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Why would we want to use environment variables? It depends really, mainly if we want to pass info to our app&#x2F;code and we can&#x27;t put that in config files plus we are clever enough not to hardcode such things.&lt;&#x2F;p&gt;
+&lt;p&gt;I run emacs from withing Xorg like most people do. The problem with this is that it couldn&#x27;t read the environment variables set in my &lt;code&gt;~&#x2F;.bashrc&lt;&#x2F;code&gt;, &lt;code&gt;~&#x2F;.zshrc&lt;&#x2F;code&gt; et cetera. So I needed to find a way to set these variables in a place where they could be accessible from other &amp;quot;places&amp;quot; and not just emacs. Something more &lt;em&gt;universal&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;There is a solution that involves setting environment variables that will be used &lt;strong&gt;WITHIN&lt;&#x2F;strong&gt; emacs in the ~&#x2F;.emacs file but that isn&#x27;t what I wanted. In case you want to read on it here&#x27;s the &lt;a href=&quot;http:&#x2F;&#x2F;ergoemacs.org&#x2F;emacs&#x2F;emacs_env_var_paths.html&quot;&gt;environment variables within link.&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-solution&quot;&gt;The solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Short version: Add the environment variables to your &lt;code&gt;~&#x2F;.profile&lt;&#x2F;code&gt; or &lt;code&gt;&#x2F;etc&#x2F;profile&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Long version: Lo and behold this file &lt;code&gt;~&#x2F;.profile&lt;&#x2F;code&gt; or &lt;code&gt;&#x2F;etc&#x2F;profile&lt;&#x2F;code&gt;.&lt;br &#x2F;&gt;
+You can set your environment variables there that will be loaded before X starts and that will be loaded even when you log in via SSH. You can then access these variables accross everything that runs in the terminal, from within xorg and so forth.&lt;&#x2F;p&gt;
+&lt;p&gt;So the basic workflow is:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;text&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-text &quot;&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&lt;span&gt;open or create ~&#x2F;.profile or &#x2F;etc&#x2F;profile depending on your purpose
+&lt;&#x2F;span&gt;&lt;span&gt;add your environment variables.
+&lt;&#x2F;span&gt;&lt;span&gt;Save the file.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I recommend that look at this &lt;a href=&quot;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;11005478&#x2F;how-to-access-a-bash-environment-variable-from-within-r-in-emacs-ess&quot;&gt;stack overflow question&lt;&#x2F;a&gt; which is where I drew my answer.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

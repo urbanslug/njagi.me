@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+              crossorigin="anonymous"
+        >
+
+        
+
+        <link rel="stylesheet" href="https://njagi.me/style.css">
+
+        <title>Mostly Programming</title>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Home</a>
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/posts/">Posts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/notes/">Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/wiki/">Wiki</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tags/">Tags</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+                </ul>
+
+            </div> <!-- container fluid -->
+        </nav>
+
+        <div class="container">
+            <div class="margin-vertical-20">
+                
+
+<div class="row">
+    <div class="row justify-content-end"> <!-- start post heading -->
+        <div class="col-md-10">
+
+            <h1 id="post-title">Creating the Initial Variation Graph</h1>
+
+            <div id="post-metadata">
+                July 15, 2019
+
+                <p>
+                    
+                    Tags:
+                    <span class="tags">
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/variation-graphs/">Variation Graphs</a>
+                        </button>
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/graphs/">Graphs</a>
+                        </button>
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/bioinformatics/">Bioinformatics</a>
+                        </button>
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/graphite/">Graphite</a>
+                        </button>
+                        
+                    </span>
+                    
+                </p>
+
+            </div> <!-- page metadata -->
+        </div>
+    </div> <!-- end post heading -->
+
+    <div class="row justify-content-center">  <!-- start post content -->
+        <div class="col-md-8">
+            <p>Variation graphs represent the reference genome as a graph.
+For an introduction, read my previous post <a href="https://njagi.me/posts/creating-the-initial-variation-graph/2019-06-22-Introduction-to-Variation-Graphs.html">An Introduction to Variation Graphs</a>
+or <a href="https://ekg.github.io/2019/07/09/Untangling-graphical-pangenomics">Untangling graphical pangenomics</a> by Erik Garrison.</p>
+<span id="continue-reading"></span>
+<p>Core to variation graphs is the maintenance of a tight mapping
+between the reference and the graph.
+To maintain this mapping we establish a <em>coordinate system</em> — a way to reliably
+associate a node in the graph, with a position in the reference and vice versa.
+<img src="/images/Content/Graphs/coordinate_system.png" alt="coordinate systems" /></p>
+<h1 id="a-coordinate-system">A Coordinate System</h1>
+<p>We use the concepts <strong>offset</strong> and <strong>ref</strong> to maintain a coordinate system.</p>
+<p>An <strong>offset</strong> is the number of bases from the first node where the
+variation occurs; offsets are one-indexed in the reference but zero-indexed in
+the graph. Offsets are suited to translating linear reference to graphs because
+it's how variations are viewed within the reference anyway.</p>
+<p>For example, we could represent a variation &quot;A&quot; occuring at position 3 in the 
+reference &quot;ATCGAT&quot; as:
+<img src="/images/Content/Graphs/offsets.svg" alt="offsets" /></p>
+<p><em>Notice how we start counting from 0 in the graph? We call that being zero-indexed.</em></p>
+<p>A <strong>ref</strong> is a unique identifier which we get from the reference
+<a href="https://en.wikipedia.org/wiki/FASTA_format#Description_line">description line</a>. A graph created from just one reference will have all nodes
+contain the same value in the <code>ref</code> field.</p>
+<p>As you may have suspected, some problems arise from this coordinate system.
+They are a matter of <em>progressive update</em> and <em>read alignment</em> but not a matter
+of initial graph construction and are therefore beyond the scope of this post.
+They include:</p>
+<ol>
+<li>Dealing with nodes that are from alignments i.e. not aligned to a linear
+sequence</li>
+<li>Changes in the linear reference which change the coordinate system.</li>
+</ol>
+<h1 id="structure-of-the-graph">Structure of the Graph</h1>
+<p>Properties of our graph:</p>
+<ol>
+<li>Directed acyclic graph</li>
+<li>Offsets are <strong>increasing/ascending</strong> natural numbers as we walk through the
+graph</li>
+</ol>
+<h2 id="node">Node</h2>
+<p>A node is built out of a racket <code>structure</code>, a <code>struct</code> in many
+languages, with the following fields:</p>
+<table><thead><tr><th align="center">Name</th><th align="center">Description</th></tr></thead><tbody>
+<tr><td align="center">segment</td><td align="center">a string of alphabet A, T, C, and G</td></tr>
+<tr><td align="center">offset</td><td align="center">offset from zero on the reference</td></tr>
+<tr><td align="center">id</td><td align="center">sha256 hash of the concatenation of segment, &quot;+&quot; and offset</td></tr>
+<tr><td align="center">ref</td><td align="center">reference from which the segment is derived</td></tr>
+<tr><td align="center">links</td><td align="center">a list of the IDs of the next nodes</td></tr>
+</tbody></table>
+<p>The use of <code>segment</code> and <code>links</code> to mean <code>vertices</code> and <code>edges</code> are inspired by
+<a href="https://lh3.github.io/2014/07/19/a-proposal-of-the-grapical-fragment-assembly-format">A proposal of the Graphical Fragment Assembly format</a>.</p>
+<p>We generate a sha256 hash out of the segment, a plus symbol and the offset to
+generate a value for <code>id</code>.</p>
+<p>For example, given a segment <em>&quot;ATCGATG&quot;</em> at offset <em>34</em> we can generate an ID
+like so:</p>
+<pre style="background-color:#002b36;color:#839496;"><code><span>generate-id(&lt;string&gt; segment, &lt;natural-number&gt; offset)
+</span><span>  // take note of the + sign in the concatenation
+</span><span>  string-and-offset  &lt;- concatenate(&quot;ATCGATG&quot;, &quot;+&quot;,&quot;34&quot;)
+</span><span>  hash-as-bytestring &lt;- sha256hash(string-and-offset)
+</span><span>  id                 &lt;- bytestring-to-hex-string(hash-as-bytestring)
+</span><span>  return id
+</span></code></pre>
+<p>I chose hashes over UUIDs because they are reproducible and will
+have constant time lookups in the occasion that we want to retrieve a node from
+the graph given its sequence and offset. This should come in handy in
+visualization especially on the web.</p>
+<p>I also considered the likelihood of collisions in the hashes. I  expect it to be
+low when dealing with 15,000 base pair size viruses.
+I shall expound on this in a later post.
+One thing to note is that <a href="https://github.com/vgteam/vg">vg</a> uses UUIDs and they work for
+human genome so I believe <a href="https://github.com/urbanslug/graphite">graphite</a>, the tool that I'm writing to implement
+this, can get away with sha256 hashes for more complex genomes.</p>
+<h2 id="variation">Variation</h2>
+<p>A variation is a <code>structure</code> containing the following fields:</p>
+<table><thead><tr><th align="center">Name</th><th align="center">Description</th></tr></thead><tbody>
+<tr><td align="center">segment</td><td align="center">a string of single of alphabet A, T, C, and G</td></tr>
+<tr><td align="center">offset</td><td align="center">offset from zero on the reference</td></tr>
+<tr><td align="center">ref</td><td align="center">an identifier of the reference it's derived from</td></tr>
+</tbody></table>
+<p>It is extracted from a <a href="https://en.wikipedia.org/wiki/Variant_Call_Format">Variant Call Format</a> file, the main file format for genomic
+variation data.</p>
+<h2 id="the-graph">The Graph</h2>
+<p>I had to implement a graph in graphite due to the lack of serialization (a
+required feature for progressive updates) in the <a href="https://github.com/stchang/graph">racket graph library</a>;
+I would have preferred to <a href="https://github.com/stchang/graph/issues/47">add serialization support to graph</a> but couldn't
+do that and still stay on track with graphite.</p>
+<p>The graph is built out of an adjacency map of <code>id</code>, key, to <code>node</code>, value.</p>
+<p>Using a <code>hash table</code> and not a <code>list</code> has the following pros:</p>
+<ul>
+<li>no duplicates</li>
+<li>constant-time lookups if we have a <code>segment</code> and its <code>offset</code></li>
+</ul>
+<p>and cons:</p>
+<ul>
+<li>lacks ordering despite linear offsets which would come in handy for updates</li>
+</ul>
+<h1 id="construction">Construction</h1>
+<p>The general idea is:</p>
+<ol>
+<li>Given a <code>list</code> of variation <code>structures</code> <strong>sorted</strong> by <code>offset</code> and a
+linear reference (<code>string</code>).</li>
+<li>Loop through each variation and insert an alternative segment into the
+reference at the position specified in the variation.</li>
+</ol>
+<p>In the case of graphite, we recursively split the reference into a <em>list</em> of
+<em>pairs</em> that imply directionality.
+For example, the pair <code>(a b)</code> would translate to an edge from <em>node a</em> to <em>node b</em>.</p>
+<p>We then have a function <code>gen-directed-graph</code> that takes this <code>list</code> of <code>pairs</code>
+and generates a directed graph from it using <code>foldl</code>. Graphite creates the graph
+in the 3 steps detailed below.</p>
+<h2 id="1-generate-a-node-list-of-pairs">1. Generate a Node List (of Pairs)</h2>
+<p><em>O(n)</em>; n being the size of the variation list</p>
+<pre style="background-color:#002b36;color:#839496;"><code><span>gen-node-list(reference, variations, prev-position = f, prev-nodes = &lt;empty-list&gt;)
+</span><span>  if empty-list? variations
+</span><span>    // the base case of gen node list
+</span><span>    cap(reference, previous-position, previous-nodes)
+</span><span>  else if (is-number previous-position) and (previous-position = current-offset)
+</span><span>    // we have more than one variation in this position
+</span><span>    handle-duplicate(reference, variations, previous-position, previous-nodes)
+</span><span>  else
+</span><span>    // we have just one variation in this position
+</span><span>    handle-unique(reference, variations, previous-position, previous-nodes)
+</span></code></pre>
+<ul>
+<li><strong>reference</strong>: the linear reference</li>
+<li><strong>variations</strong>: a list of variations</li>
+<li><strong>prev-position</strong>: the offset of the previous variation
+<ul>
+<li>the default value is false. (I wish I used an int here)</li>
+</ul>
+</li>
+<li><strong>prev-nodes</strong>: the previous node or nodes with relation to the current one
+<ul>
+<li>the default value is an empty list.</li>
+</ul>
+</li>
+</ul>
+<p>A mutually recursive function takes from the <code>tail</code> of variation list,
+<code>variations</code>, and returns a list of pair of nodes <code>(a, b)</code> where the direction
+of the nodes is <code>a -&gt; b</code> for example a list like <code>[(a b), (b c), (c d)]</code> should
+later  translate to <code>a -&gt; b -&gt; c -&gt; d</code>.</p>
+<h3 id="1-1-cap">1.1 Cap</h3>
+<p>Creates the initial variation i.e &quot;caps&quot; the directed graph.
+It creates a first node that points to the first variations.</p>
+<pre style="background-color:#002b36;color:#839496;"><code><span>cap(reference, previous-position, previous-nodes)
+</span><span>  map(
+</span><span>    lambda node: (substring(reference, 0, previous-position), node)
+</span><span>    previous-nodes
+</span><span>    )
+</span></code></pre>
+<h3 id="1-2-handle-unique">1.2 Handle Unique</h3>
+<p>Inserts a variation where there isn't an alternative.
+In a case where there's only 1 alternative path so we break the current sequence
+and insert our alternative path, for example,  <code>a -&gt; b</code> and <code>a -&gt; c</code>.</p>
+<pre style="background-color:#002b36;color:#839496;"><code><span>handle-unique(reference, variations, previous-position, previous-nodes)
+</span><span>  ...
+</span></code></pre>
+<h3 id="1-3-handle-duplicate">1.3 Handle Duplicate</h3>
+<p>Inserts extra alternative variations where they already exist.
+for example <code>a -&gt; b</code>, <code>a -&gt; c</code> and <code>a -&gt; d</code>.</p>
+<pre style="background-color:#002b36;color:#839496;"><code><span>handle-duplicate(reference, variations, previous-position, previous-nodes)
+</span><span>  ...
+</span></code></pre>
+<h2 id="2-generate-a-directed-graph-out-of-a-list-of-pairs">2. Generate a Directed Graph Out of a List of Pairs</h2>
+<p><em>O(n)</em>; with n being the size of the list of pairs</p>
+<pre style="background-color:#002b36;color:#839496;"><code><span>gen-directed-graph(g, list-of-pairs)
+</span><span>  foldl(
+</span><span>  // make sure that you&#39;re not overwriting the list of edges of a node as you
+</span><span>  // update it. This check makes `gen-directed-graph` slow approx 4n.
+</span><span>  lambda pair: add-adjacent-node(g, first(pair), second(pair))
+</span><span>  g
+</span><span>  list-of-pairs)
+</span></code></pre>
+<ul>
+<li><strong>g</strong>: a graph</li>
+<li><strong>list-of-pairs</strong>: a list of pairs</li>
+</ul>
+<p>The reason for the bad performance of <code>gen-directed-graph</code> is that it checks to
+avoid overwriting any existing nodes.
+This is to mean that if there's a relationship like:
+<code>a -&gt; b</code> and <code>a -&gt; c</code>
+we have to make sure not to lose the edge <code>a -&gt; b</code> when creating <code>a -&gt; c</code>.
+It, however, does suffice for virus data.</p>
+<h2 id="3-return-a-variation-graph">3. Return a Variation Graph</h2>
+<p>A composition of <code>gen-node-list</code> and <code>gen-directed-graph</code></p>
+<pre style="background-color:#002b36;color:#839496;"><code><span>gen-vg(reference, variations)
+</span><span>  node-list &lt;- gen-node-list(reference, variation)
+</span><span>  graph     &lt;- gen-directed-graph(node-list)
+</span><span>  return graph
+</span></code></pre>
+<h1 id="visualization-and-output">Visualization and Output</h1>
+<p>Graphite supports the generation of graphs in:
+<a href="https://github.com/GFA-spec/GFA-spec">GFA</a>, for interoperability with tools such as <a href="https://github.com/vgteam/vg">vg</a> and <a href="https://rrwick.github.io/Bandage/">bandage</a>;
+<a href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)">DOT</a>, for visualization; and a serialized form, .gra.</p>
+<h1 id="optimization-idea">Optimization Idea</h1>
+<p>Representing the alphabet in 4 bits, <a href="https://github.com/biod/BioD/blob/57c81f275faab5cdec4746bfc7af81e31bac0f69/bio/core/base.d#L64">as is done in BioD</a>, because:</p>
+<ul>
+<li>the extra bits accommodate ambiguous bases</li>
+<li>we could then perform fast and efficient complimenting though bit shifting</li>
+</ul>
+<p>The alphabet would be:</p>
+<ul>
+<li>A as 0001</li>
+<li>C as 0010</li>
+<li>T as 0100</li>
+<li>G as 1000</li>
+</ul>
+<p>However, most of the optimization would come from graph creation, graph
+update and search which is what I'm focused on for now.</p>
+
+        </div>
+    </div>  <!-- end post content -->
+
+</div> <!--  -->
+
+
+
+            </div>
+        </div>
+
+    </body>
+
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <p class="p-copyright">
+                        All work is under the <a href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License, Version 1.3</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</html>

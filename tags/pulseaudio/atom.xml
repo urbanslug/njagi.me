@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Pulseaudio</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/pulseaudio/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2014-12-02T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/pulseaudio/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Pulseaudio Mute on Boot</title>
+		<published>2014-12-02T00:00:00+00:00</published>
+		<updated>2014-12-02T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/pulseaudio-mute-on-boot/" type="text/html"/>
+		<id>https://njagi.me/posts/pulseaudio-mute-on-boot/</id>
+		<content type="html">&lt;p&gt;This might work for you or fail to. Doesn&#x27;t hurt to try.&lt;&#x2F;p&gt;
+&lt;p&gt;I got this info at &lt;a href=&quot;http:&#x2F;&#x2F;www.pclinuxos.com&#x2F;forum&#x2F;index.php?topic=112440.0&quot;&gt;Pulseaudio original post&lt;&#x2F;a&gt; and just refined it.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Open &#x2F;usr&#x2F;share&#x2F;pulseaudio&#x2F;alsa-mixer&#x2F;paths&#x2F;analog-output.conf&lt;&#x2F;p&gt;
+&lt;p&gt;Locate the following sections:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;[Element Speaker]
+&lt;&#x2F;span&gt;&lt;span&gt;switch = mute
+&lt;&#x2F;span&gt;&lt;span&gt;volume = off
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[Element Desktop Speaker]
+&lt;&#x2F;span&gt;&lt;span&gt;switch = mute
+&lt;&#x2F;span&gt;&lt;span&gt;volume = off
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Change the &amp;quot;volume&amp;quot; value so that it reads:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;[Element Speaker]
+&lt;&#x2F;span&gt;&lt;span&gt;switch = mute
+&lt;&#x2F;span&gt;&lt;span&gt;volume = merge
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[Element Desktop Speaker]
+&lt;&#x2F;span&gt;&lt;span&gt;switch = mute
+&lt;&#x2F;span&gt;&lt;span&gt;volume = merge
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I have noticed after installing rythmbox this issue has returned. I shall find a fix for it soon. Also music on rhythmbox is awesome. Gnome music looks good but it doesn&#x27;t work. Ever. I shall update with a fix for rhythmbox.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

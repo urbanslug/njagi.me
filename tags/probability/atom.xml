@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Probability</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/probability/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2019-07-21T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/probability/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Jusifying SHA256 in Graphite</title>
+		<published>2019-07-21T00:00:00+00:00</published>
+		<updated>2019-07-21T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/justifying-sha256-in-graphite/" type="text/html"/>
+		<id>https://njagi.me/posts/justifying-sha256-in-graphite/</id>
+		<content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;graphite&quot;&gt;Graphite&#x27;s&lt;&#x2F;a&gt; underlying graph implementation is an adjacency hash table, a
+complicated way of saying that graphite uses a &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Hash_table&quot;&gt;hash table&lt;&#x2F;a&gt; to implement the
+graph. The keys of the hash table are SHA256 hashes of the concatenation of: the
+&lt;em&gt;sequence&lt;&#x2F;em&gt;, a &lt;em&gt;plus symbol(+)&lt;&#x2F;em&gt;, and the &lt;em&gt;offset&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Hashes also grant us outgoing edge representations, constant time lookups for
+queries of known sequence and position, and eliminate duplicates.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;computational-cost-of-hashing&quot;&gt;Computational Cost of Hashing&lt;&#x2F;h1&gt;
+&lt;p&gt;We have to compute a hash to uniquely identify each variation and we have to
+store each hash twice: first, as a &lt;em&gt;key&lt;&#x2F;em&gt; in the adjacency hash table; and second,
+as  a field in the variation &lt;code&gt;structure&lt;&#x2F;code&gt; &lt;em&gt;value&lt;&#x2F;em&gt;.
+We must therefore examine the time and space costs of hashing.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;time&quot;&gt;Time&lt;&#x2F;h2&gt;
+&lt;p&gt;I couldn&#x27;t find any useful cost data on either the &lt;a href=&quot;https:&#x2F;&#x2F;docs.racket-lang.org&#x2F;sha&#x2F;index.html&quot;&gt;SHA-2 racket implementation&lt;&#x2F;a&gt;
+or &lt;a href=&quot;https:&#x2F;&#x2F;nvlpubs.nist.gov&#x2F;nistpubs&#x2F;FIPS&#x2F;NIST.FIPS.180-4.pdf&quot;&gt;SHA-2&lt;&#x2F;a&gt;, the algorithm itself, but being a string algorithm you can assume
+it works in O(n) time, n being the length of the string being hashed.&lt;&#x2F;p&gt;
+&lt;p&gt;This isn&#x27;t worrying because hashing is a one off cost which has proved
+inexpensive with the current variation data-set.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;space&quot;&gt;Space&lt;&#x2F;h2&gt;
+&lt;p&gt;This is more of a concern because we expect graphs to grow with time.&lt;&#x2F;p&gt;
+&lt;p&gt;A SHA 256 hash takes the same amount of space as a 32 characters string
+(8*32=256). Therefore, for variations with sequences fewer than 32 nucleotides,
+we store a hash that is larger than the variation we are hashing
+(ignoring the plus symbol and offset). This is exemplified in SNP data.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;graph-comparison&quot;&gt;Graph Comparison&lt;&#x2F;h2&gt;
+&lt;p&gt;A nice effect from hashing is that we can compare simple graphs derived from the
+same reference by comparing their hashes. It goes without saying that there are
+better or more general ways to perform graph comparison.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;probability-of-collision&quot;&gt;Probability of Collision&lt;&#x2F;h1&gt;
+&lt;p&gt;We can approximate the probability of a collision using the function
+P(n) = 1-e&lt;sup&gt;-n&lt;sup&gt;2&lt;&#x2F;sup&gt;&#x2F;(2d)&lt;&#x2F;sup&gt;. Where &lt;em&gt;n is the sample size&lt;&#x2F;em&gt; and &lt;em&gt;d
+is the total number of &amp;quot;buckets&amp;quot;&lt;&#x2F;em&gt;.
+For more about calculating this probability check out &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Birthday_problem#Approximations&quot;&gt;Birthday Problem Approximations&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;To avoid a collision we need to make sure that our variations are fewer than the
+square root of the bucket size—the point at which we get 0.5 chance of having
+two different strings sharing the same hash.
+Think of it as the halfway point in a &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Binomial_distribution&quot;&gt;binomial distribution&lt;&#x2F;a&gt; where past 0.5 we
+consider a collision to have occurred. In reality the halfway point occurs
+&lt;strong&gt;above&lt;&#x2F;strong&gt; the square root but it&#x27;s still an easy way of verifying that your
+sample size is within a safe range.&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s a Racket function derived from the one above that I used to approximate
+collision probability.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;(define (probability-of-collision  d n)
+&lt;&#x2F;span&gt;&lt;span&gt;  (- 1 (&#x2F; 1 (exp (&#x2F; (expt n 2) (* 2 d))))))
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;the-birthday-paradox&quot;&gt;The Birthday Paradox&lt;&#x2F;h2&gt;
+&lt;p&gt;Using the approximation function above, we estimate that for every group of 23
+randomly selected people (n=23, d=356), the probability that two of them share a
+birthday is 0.5; and in a sample of 357 people (n=357, d=356), the probability
+that two of them share a birthday is 1.
+&lt;img src=&quot;&#x2F;images&#x2F;Content&#x2F;Graphs&#x2F;birthday.png&quot; alt=&quot;birthday plot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;sha-256&quot;&gt;SHA 256&lt;&#x2F;h2&gt;
+&lt;p&gt;For SHA 256 the halfway probability of a hash collision occurs at a point above
+2&lt;sup&gt;128&lt;&#x2F;sup&gt;
+&lt;img src=&quot;&#x2F;images&#x2F;Content&#x2F;Graphs&#x2F;sha256.png&quot; alt=&quot;sha256 plot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;This may be hard to interpret because exponential functions grow very quickly.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s the Racket code I used to generate these plots:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;#lang racket
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(require plot)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(define (probability-of-collision  d x)
+&lt;&#x2F;span&gt;&lt;span&gt;  (- 1 (&#x2F; 1 (exp (&#x2F; (expt x 2) (* 2 d))))))
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(define (label-point-at x y)
+&lt;&#x2F;span&gt;&lt;span&gt;  (let* ([fn (lambda (v) (if (&amp;gt; v (expt 10 6)) &amp;#39;exponential &amp;#39;positional))]
+&lt;&#x2F;span&gt;&lt;span&gt;        [x* (~r #:precision 4 #:notation fn x)]
+&lt;&#x2F;span&gt;&lt;span&gt;        [y* (~r #:precision 4 y)])
+&lt;&#x2F;span&gt;&lt;span&gt;    (list (vrule x 0 y #:style &amp;#39;long-dash)
+&lt;&#x2F;span&gt;&lt;span&gt;          (hrule y 0 x #:style &amp;#39;long-dash)
+&lt;&#x2F;span&gt;&lt;span&gt;          (point-label (vector x y) (format &amp;quot;x = ~a    y = ~a&amp;quot; x* y*)))))
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(define (plot-probability-of-collison bucket-size label [halfway-probability #f])
+&lt;&#x2F;span&gt;&lt;span&gt;  (let ([g (if halfway-probability halfway-probability (sqrt bucket-size))]
+&lt;&#x2F;span&gt;&lt;span&gt;        [bucket-size-root (sqrt bucket-size)]
+&lt;&#x2F;span&gt;&lt;span&gt;        [fn               ((curry probability-of-collision) bucket-size)])
+&lt;&#x2F;span&gt;&lt;span&gt;    (parameterize ([plot-x-transform  log-transform]
+&lt;&#x2F;span&gt;&lt;span&gt;                   [plot-width 750])
+&lt;&#x2F;span&gt;&lt;span&gt;      (plot
+&lt;&#x2F;span&gt;&lt;span&gt;       (list
+&lt;&#x2F;span&gt;&lt;span&gt;        (function fn 1  bucket-size #:label label)
+&lt;&#x2F;span&gt;&lt;span&gt;        (label-point-at g (fn g)))
+&lt;&#x2F;span&gt;&lt;span&gt;       #:x-label &amp;quot;Sample size&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;       #:y-label &amp;quot;Probability of collision&amp;quot;))))
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(plot-probability-of-collison 365 &amp;quot;Birthday&amp;quot; 23)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(plot-probability-of-collison (expt 2 256) &amp;quot;SHA 256&amp;quot;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;the-birthday-attack&quot;&gt;The Birthday Attack&lt;&#x2F;h2&gt;
+&lt;p&gt;In the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Birthday_attack&quot;&gt;birthday attack&lt;&#x2F;a&gt;, an attacker when given a hash, guesses a string that
+will generate the same hash. If there no collisions the attacker would have to
+come up with the exact string that generated the hash. If there are collisions
+the attacker could get away with guessing a different string.&lt;&#x2F;p&gt;
+&lt;p&gt;This is out of the scope of this post but &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Birthday_attack&quot;&gt;birthday attack&lt;&#x2F;a&gt; and
+&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Birthday_problem&quot;&gt;birthday problem&lt;&#x2F;a&gt; wikipedia pages can provide further reading.
+There&#x27;s also this lecture on YouTube from the Coursera cryptography course
+&lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=5VY2KEh9WrE&quot;&gt;Cryptography generic birthday attack (collision resistance)&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;applied-to-variation&quot;&gt;Applied to Variation&lt;&#x2F;h1&gt;
+&lt;p&gt;For a 256 bit hash we have 2&lt;sup&gt;256&lt;&#x2F;sup&gt; as our bucket size.
+We then have the square root of that being
+2&lt;sup&gt;(256&#x2F;2)&lt;&#x2F;sup&gt; = 2&lt;sup&gt;128&lt;&#x2F;sup&gt; approximately 3.4*10&lt;sup&gt;38&lt;&#x2F;sup&gt; as
+the sample size below which we have 0.5 chance of collision.&lt;&#x2F;p&gt;
+&lt;p&gt;For context, the human genome is approximately 3*10&lt;sup&gt;6&lt;&#x2F;sup&gt; (billion)
+nucleotides long, which is much smaller than  3.4*10&lt;sup&gt;38&lt;&#x2F;sup&gt;.
+Viruses have even shorter genomes, ranging in kilo (thousand) nucleotides,
+for example, the RSV genome is approximately 15*10&lt;sup&gt;3&lt;&#x2F;sup&gt; nucleotides long
+which is even shorter than 3.4*10&lt;sup&gt;38&lt;&#x2F;sup&gt; when compared to the human genome.&lt;&#x2F;p&gt;
+&lt;p&gt;The number of variations we expect in these genomes is therefore much smaller
+than 2&lt;sup&gt;128&lt;&#x2F;sup&gt;. As a side note, SHA256 is
+&lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;bBC-nXj3Ng4?t=343&quot;&gt;used to uniquely identify bitcoin&lt;&#x2F;a&gt; which there are a lot of.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;how-much-variation-can-actually-occur&quot;&gt;How Much Variation Can Actually Occur?&lt;&#x2F;h1&gt;
+&lt;p&gt;The short answer is: we don&#x27;t know for sure but we can estimate its upper bound.&lt;&#x2F;p&gt;
+&lt;p&gt;Given we look at genomes that are in the same species or quasi species we expect
+99% similarity.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1% of the human genome would be approximately 3*10&lt;sup&gt;4&lt;&#x2F;sup&gt; (thirty thousand)
+nucleotides long.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;1% of RSV would be approximately 15*10&lt;sup&gt;3&lt;&#x2F;sup&gt; (a hundred and fifty)
+nucleotides long.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This is the space within which we expect the variation to occur.&lt;&#x2F;p&gt;
+&lt;p&gt;Granted, we still don&#x27;t know just how much variation could occur, which in
+reality would depend on the organism, we have reduced the problem space by
+orders of magnitude below 2&lt;sup&gt;128&lt;&#x2F;sup&gt; making SHA256 look really good.&lt;&#x2F;p&gt;
+&lt;p&gt;I expect the biggest problem with SHA256 to come from the space cost of
+hashing in terms of both disk and&#x2F;or memory.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

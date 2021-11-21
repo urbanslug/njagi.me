@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Haskell</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/haskell/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2015-08-22T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/haskell/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Imports and Exports as Documentation</title>
+		<published>2015-08-22T00:00:00+00:00</published>
+		<updated>2015-08-22T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/imports-and-exports-as-documentation/" type="text/html"/>
+		<id>https://njagi.me/posts/imports-and-exports-as-documentation/</id>
+		<content type="html">&lt;p&gt;Lately I&#x27;ve been reading huge haskell code bases quite a lot.
+One thing that I have noted to be helpful when documentated
+has been the imports section as well as the code having a list of the code it exports.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I don&#x27;t know whether this is just a non-experienced programmer issue or it cuts across the board.&lt;&#x2F;p&gt;
+&lt;p&gt;Documenting imports can happen:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;explicitly through:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;comments&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;implicity through:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;uniquely qualified imports.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre data-lang=&quot;haskell&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-haskell &quot;&gt;&lt;code class=&quot;language-haskell&quot; data-lang=&quot;haskell&quot;&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;A &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;qualified as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;X
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;B &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;qualified as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Y
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;over&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;haskell&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-haskell &quot;&gt;&lt;code class=&quot;language-haskell&quot; data-lang=&quot;haskell&quot;&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;A &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;qualified as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;X
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;B &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;qualified as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;X
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ul&gt;
+&lt;li&gt;importing of specific instances (i.e using brackets to specify what one wants to import)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Basically anything that saves the programmer effort or time in:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Understanding what you&#x27;re importing&lt;&#x2F;li&gt;
+&lt;li&gt;Why you&#x27;re importing it&lt;&#x2F;li&gt;
+&lt;li&gt;See the usage of a function and quickly know where it&#x27;s from&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I can&#x27;t quantify or explain exactly how this helps me understand the code but it really does.
+Especially when I can&#x27;t hoogle a function name
+(the internet connections aren&#x27;t too fast in these parts).
+It saves me the time of have to go through several modules trying to figure out where this import is from.&lt;&#x2F;p&gt;
+&lt;p&gt;Most of time we are in just too much of a hurry to do this I understand.
+I&#x27;m a victim of some terrible coding practices but I think it&#x27;s a good habit to adopt.&lt;&#x2F;p&gt;
+&lt;p&gt;Well, the user can use tools like the repl to query where these imports are from
+but again when you can save the user time and effort of querying for meta information please do so.
+I know it&#x27;s not possible to do it all the time and everywhere but please do it when and where you can.&lt;&#x2F;p&gt;
+&lt;p&gt;Let me illustrate this in some example code:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;haskell&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-haskell &quot;&gt;&lt;code class=&quot;language-haskell&quot; data-lang=&quot;haskell&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;{-|
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Module      : Devel.Build
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Description : Attempts to compile the WAI application.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Copyright   : (c)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;License     : GPL-3
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Maintainer  : njagi@urbanslug.com
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Stability   : experimental
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Portability : POSIX
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;compile compiles the app to give:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Either a list of source errors or an ide-backend session.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;{-# &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;LANGUAGE&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt; PackageImports, OverloadedStrings #-}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;module Devel.Compile &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;compile&lt;&#x2F;span&gt;&lt;span&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;where
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- Almost everything is dependent on ide-backend.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;IdeSession
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- From Cabal-ide-backend
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- for parsing the cabal file and extracting lang extensions used.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Distribution.PackageDescription
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Distribution.PackageDescription.Parse
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Distribution.PackageDescription.Configuration
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Language.Haskell.Extension
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- Used internally for showing errors.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Data.Text &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;unpack&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- Utility functions
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Data.Monoid &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;(&amp;lt;&amp;gt;)&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;System.Directory &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;createDirectoryIfMissing&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getCurrentDirectory&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- Local imports
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Devel.Paths
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Devel.Types
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Compare with this which I wrote in a hurry.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;haskell&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-haskell &quot;&gt;&lt;code class=&quot;language-haskell&quot; data-lang=&quot;haskell&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;{-|
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Module      : Devel.Paths
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Description : For filepath related matters.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Copyright   : (c)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;License     : GPL-3
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Maintainer  : njagi@urbanslug.com
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Stability   : experimental
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Portability : POSIX
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Uses the GHC package to parse .hi files.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Will hopefully be moved upstream to ide-backend.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;{-# &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;LANGUAGE&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt; OverloadedStrings #-}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;module Devel.Paths where
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;System.Directory &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getCurrentDirectory&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;doesDirectoryExist&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getDirectoryContents&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Control.Monad &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;forM&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Control.Concurrent &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;forkIO&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;System.FilePath.Glob
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;System.FilePath &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;(&amp;lt;&#x2F;&amp;gt;)&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Data.List
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;IdeSession
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Devel.Modules
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;System.FilePath.Posix &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;replaceExtension&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;dropExtension&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;takeExtensions&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import qualified &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Data.ByteString.Char&lt;&#x2F;span&gt;&lt;span&gt;8 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;C&lt;&#x2F;span&gt;&lt;span&gt;8
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;Control.Monad.IO.Class
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;System.FilePath &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;pathSeparator&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;System.Directory &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;removeFile&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see one can learn quite a bit just from looking at the imports and module documentation alone.&lt;&#x2F;p&gt;
+&lt;p&gt;The issue is that it sometimes takes a while for one to clean up their code like this
+so it&#x27;s okay if your imports aren&#x27;t legible before refactoring.&lt;&#x2F;p&gt;
+&lt;p&gt;Another thing, I don&#x27;t know if it&#x27;s just an emacs thing but I
+can just to my imports and jump between sections of imports with f12.
+This is both advantageous to both the one writing the code and the one reading it.&lt;br &#x2F;&gt;
+The point of all of this is that well structured and well documented imports and exports are
+a win for both the programmer and the one reading the code.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>wai-devel final submission</title>
+		<published>2015-08-21T19:14:34+00:00</published>
+		<updated>2015-08-21T19:14:34+00:00</updated>
+		<link href="https://njagi.me/posts/wai-devel-final-submission/" type="text/html"/>
+		<id>https://njagi.me/posts/wai-devel-final-submission/</id>
+		<content type="html">&lt;p&gt;This is the final day of code submissions to Google for Google Summer of Code.
+So it&#x27;s only fair that I give the community a report on the current state of affairs regarding wai-devel.&lt;br &#x2F;&gt;
+This is more of a very detailed changelog than a blog post about wai-devel.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;what-wai-devel-expects-from-your-application&quot;&gt;What wai-devel expects from your application.&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;NOTHING&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+Yes, wai-devel expects nothing from your application.
+However, your application shall receive a port number through the environment variable &lt;code&gt;PORT&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;UPDATE:&lt;&#x2F;em&gt;
+Due to it&#x27;s reliance on ide-backend you also have to set the environment variable &lt;code&gt;GHC_PACKAGE_PATH&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-port-is-used-for&quot;&gt;What PORT is used for:&lt;&#x2F;h3&gt;
+&lt;p&gt;Your application shall listen for connections on &lt;code&gt;localhost:&amp;lt;PORT&amp;gt;&lt;&#x2F;code&gt;
+wai-devel by default creates a reverse proxy from port number 3000 to your application which is listening in on PORT.&lt;br &#x2F;&gt;
+You can change the port from the default port 3000 by setting the environment variable PORT yourself.&lt;&#x2F;p&gt;
+&lt;p&gt;wai-devel takes PORT and then cycles through various port numbers adding 1 to PORT to find a port that is free, sets that as the destination port and changes the PORT environment variable to that destination port. Therefore we can reverse proxy from PORT to a random port.&lt;&#x2F;p&gt;
+&lt;p&gt;Reverse proxying is important for error reporting, future proofing and other ways of abstracting away the services wai-devel provides to your application.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;more-reliable-dirtiness-checking&quot;&gt;More reliable dirtiness checking.&lt;&#x2F;h2&gt;
+&lt;p&gt;wai-devel will use the the module you have chosen to find the files to watch for changes in.
+It watches the files it imports and their Template Haskell dependencies as well as the cabal file.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;compatibility-with-haskell-wai-applications&quot;&gt;Compatibility with Haskell wai-applications.&lt;&#x2F;h2&gt;
+&lt;p&gt;wai-devel works with your usual yesod scaffold from yesod-bin out of the box and should work with other haskell wai apps as long as they use the PORT environment variable.&lt;&#x2F;p&gt;
+&lt;p&gt;You can pass the filepath and function to run via command line arguments &lt;code&gt;--path&lt;&#x2F;code&gt; or &lt;code&gt;-p&lt;&#x2F;code&gt; and function &lt;code&gt;--function&lt;&#x2F;code&gt; or &lt;code&gt;-f&lt;&#x2F;code&gt;.
+When these aren&#x27;t passed it assumes Application.develMain (borrowed from yesod).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;yet-to-come&quot;&gt;Yet to come.&lt;&#x2F;h2&gt;
+&lt;p&gt;I will be actively developing wai-devel well after Google Summer of Code is over (that is today).&lt;&#x2F;p&gt;
+&lt;p&gt;The following are coming next:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Show build progress in the browser.&lt;&#x2F;li&gt;
+&lt;li&gt;Provide a dashboard page with compilation status, garbage collection statistics, and other useful meta-information.&lt;&#x2F;li&gt;
+&lt;li&gt;Port to Windows. (This depends on ide-backend getting ported to Windows.)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Progress with wai-devel</title>
+		<published>2015-08-13T00:00:00+00:00</published>
+		<updated>2015-08-13T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/progress-with-wai-devel/" type="text/html"/>
+		<id>https://njagi.me/posts/progress-with-wai-devel/</id>
+		<content type="html">&lt;p&gt;wai-devel is a  development server for wai compliant haskell web applications.&lt;&#x2F;p&gt;
+&lt;p&gt;Its name changed from yesod-devel (the haskell reddit community suggested this).
+You can find it at: &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;wai-devel&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;wai-devel&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;what-wai-devel-expects-from-your-application&quot;&gt;What wai-devel expects from your application&lt;&#x2F;h2&gt;
+&lt;p&gt;Since wai-devel is very loosely coupled to your application it expects mainly two things from your application:
+a &lt;strong&gt;host:port&lt;&#x2F;strong&gt; pair and a function, &lt;strong&gt;Application.develMain&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Due to it&#x27;s dependence on ide-backend it also expects you to set the environment variable &lt;code&gt;GHC_PACKAGE_PATH&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Mine for example is: &lt;code&gt;export GHC_PACKAGE_PATH=~&#x2F;.stack&#x2F;snapshots&#x2F;x86_64-linux&#x2F;lts-2.22&#x2F;7.8.4&#x2F;pkgdb:&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The host:port pair is expected to be passed in as two environment variables:
+wai_host and wai_port for example:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;export wai_host=127.0.0.1&lt;&#x2F;li&gt;
+&lt;li&gt;export wai_port=3001&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Better yet, the application itself should set the environment variables as in the example code below.&lt;&#x2F;p&gt;
+&lt;p&gt;wai-devel looks for a function Application.develMain
+I have a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;yesod&quot;&gt;fork of yesod&lt;&#x2F;a&gt;, that builds a yesod binary which
+generates a scaffold with this function implemented.
+I recommend using it to generate the scaffold with which to try out wai-devel with.&lt;&#x2F;p&gt;
+&lt;p&gt;The specifics of how to set the port and host within yesod applications will obviously change.
+The point of this fork is to generate a scaffold that works with wai-devel out of the box.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is a snippet develMain function from my yesod fork.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;haskell&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-haskell &quot;&gt;&lt;code class=&quot;language-haskell&quot; data-lang=&quot;haskell&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- | main function for use by yesod devel
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;develMain &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;IO &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;develMain &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; develMainHelper&amp;#39; getApplicationDev
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;develMainHelper&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;IO&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Settings&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Application&lt;&#x2F;span&gt;&lt;span&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;IO &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;develMainHelper&amp;#39; getSettingsApp &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;= do
+&lt;&#x2F;span&gt;&lt;span&gt;    (settings, app) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;-&lt;&#x2F;span&gt;&lt;span&gt; getSettingsApp
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    _ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;-&lt;&#x2F;span&gt;&lt;span&gt; unsetEnv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;wai_port&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; setEnv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;wai_port&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;3001&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;    _ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;-&lt;&#x2F;span&gt;&lt;span&gt; unsetEnv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;wai_host&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; setEnv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;wai_host&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;127.0.0.1&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; settings&amp;#39;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; setPort (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;3001 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;Port&lt;&#x2F;span&gt;&lt;span&gt;) settings
+&lt;&#x2F;span&gt;&lt;span&gt;        settings&amp;#39;&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; setHost ((read &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;127.0.0.1&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;HostPreference&lt;&#x2F;span&gt;&lt;span&gt;) settings&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;\&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    sock &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;-&lt;&#x2F;span&gt;&lt;span&gt; createSocket
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    runSettingsSocket settings&amp;#39;&amp;#39; sock app
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;where &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- | Create the socket that we will use to communicate with
+&lt;&#x2F;span&gt;&lt;span&gt;          &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- localhost:3001 here.
+&lt;&#x2F;span&gt;&lt;span&gt;          &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;createSocket &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;IO Socket
+&lt;&#x2F;span&gt;&lt;span&gt;          createSocket &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;= do
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;            sock &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;-&lt;&#x2F;span&gt;&lt;span&gt; socket &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;AF_INET Stream&lt;&#x2F;span&gt;&lt;span&gt; defaultProtocol
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- Tell the OS *not* to reserve the socket after your program exits.
+&lt;&#x2F;span&gt;&lt;span&gt;            setSocketOption sock &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;ReuseAddr &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;1
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- Bind the socket to localhost:3000 and listen.
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- I wonder why I can&amp;#39;t specify localhost instead of iNADDR_ANY
+&lt;&#x2F;span&gt;&lt;span&gt;            bindSocket sock (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;SockAddrInet &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;3001&lt;&#x2F;span&gt;&lt;span&gt; iNADDR_ANY)
+&lt;&#x2F;span&gt;&lt;span&gt;            listen sock &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;2
+&lt;&#x2F;span&gt;&lt;span&gt;            return sock
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;During socket creation I made sure that the socket option ReuseAddr has been set to 1.&lt;br &#x2F;&gt;
+This way the operating system doesn&#x27;t hold on to the socket after the program exits.
+This is important for when wai-devel takes note of file changes and the development server is restarted.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;ignoring-files-and-directories&quot;&gt;Ignoring files and directories&lt;&#x2F;h2&gt;
+&lt;p&gt;wai-devel expects that there will be a single &lt;code&gt;Main.main&lt;&#x2F;code&gt; function.
+In the case of having more than one, for example with yesod, we ignore all but one.
+Specifically, we ignore the file app&#x2F;DevelMain.hs.
+There is no need for app&#x2F;devel.hs so it has been removed in my fork.&lt;&#x2F;p&gt;
+&lt;p&gt;Moreover, wai-devel ignores files in your &lt;code&gt;test&#x2F;&lt;&#x2F;code&gt; directory.&lt;br &#x2F;&gt;
+This is because wai-devel depends on ide-backend which will attempt to build all files in the current working diretory,
+including your test directory. This leads to a world of hurt because the test&#x2F; directory also has a &lt;code&gt;Main.main&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Please report an issue if you would like any file ignored during builds.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;moved-to-stack&quot;&gt;Moved to stack&lt;&#x2F;h1&gt;
+&lt;p&gt;Since the Haskell community has moved in this direction, so has wai-devel.&lt;br &#x2F;&gt;
+wai-devel only depends on cabal in that stack and ide-backend depend on Cabal the library.
+Otherwise, the cabal binary is not used and hasn&#x27;t been tested to work with wai-devel.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;compatible-versions-of-ghc&quot;&gt;Compatible versions of GHC&lt;&#x2F;h2&gt;
+&lt;p&gt;Currently wai-devel is built and tested against:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;GHC-7.8&lt;&#x2F;li&gt;
+&lt;li&gt;GHC-7.10&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;regarding-file-watching&quot;&gt;Regarding file watching&lt;&#x2F;h2&gt;
+&lt;p&gt;wai-devel watches for file changes on files with the following extensions:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;hamlet&lt;&#x2F;li&gt;
+&lt;li&gt;shamlet&lt;&#x2F;li&gt;
+&lt;li&gt;julius&lt;&#x2F;li&gt;
+&lt;li&gt;lucius&lt;&#x2F;li&gt;
+&lt;li&gt;hs&lt;&#x2F;li&gt;
+&lt;li&gt;yaml&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;When a change takes place wai-devel will recompile and re-run your application
+on localhost:3001 or display an error if any on the browser at localhost:3000&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;If you would want another extension added to the list of file extensions to watch for please report it as an issue.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;command-line-arguments&quot;&gt;Command line arguments&lt;&#x2F;h2&gt;
+&lt;p&gt;Currently wai-devel takes only these two arguments and the two are optional.
+If you feel the need for more arguments please report it as an issue on github.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;-r &lt;em&gt;to turn off reverse proxying&lt;&#x2F;em&gt;
+If this is turned on you will access your application at an address that is specific to
+your web application or web framework.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;--show-iface [hi file] &lt;em&gt;passes this command to ghc&lt;&#x2F;em&gt;
+Same as ghc --show-iface&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>IdeSession</title>
+		<published>2015-04-27T00:00:00+00:00</published>
+		<updated>2015-04-27T00:00:00+00:00</updated>
+		<link href="https://njagi.me/notes/notes-on-idesession/" type="text/html"/>
+		<id>https://njagi.me/notes/notes-on-idesession/</id>
+		<content type="html">&lt;p&gt;These are literally notes I wrote down while reading on ide-backend and I chose to turn into a blog post.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h4 id=&quot;what-is-idesession&quot;&gt;What is IdeSession?&lt;&#x2F;h4&gt;
+&lt;p&gt;This a module from the package &lt;a href=&quot;http:&#x2F;&#x2F;hackage.haskell.org&#x2F;package&#x2F;ide-backend-0.9.0.7&quot;&gt;ide-backend&lt;&#x2F;a&gt; from &lt;a href=&quot;https:&#x2F;&#x2F;www.fpcomplete.com&#x2F;business&#x2F;about&#x2F;about-us&#x2F;&quot;&gt;FP Complete&lt;&#x2F;a&gt; that provides an interface to ide-backend.
+As far as I can tell it is the sole interface to ide-backend.&lt;br &#x2F;&gt;
+I choose think of it as the sole API to ide-backend.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;what-is-ide-backend&quot;&gt;What is ide-backend?&lt;&#x2F;h4&gt;
+&lt;p&gt;There&#x27;s a blog post from &lt;a href=&quot;https:&#x2F;&#x2F;www.fpcomplete.com&#x2F;business&#x2F;about&#x2F;about-us&#x2F;&quot;&gt;FP Complete&lt;&#x2F;a&gt; explaining what ide-backend is: &lt;a href=&quot;https:&#x2F;&#x2F;www.fpcomplete.com&#x2F;blog&#x2F;2015&#x2F;03&#x2F;announce-ide-backend&quot;&gt;ide-backend blog post&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ll summarize in my own words.&lt;br &#x2F;&gt;
+FP Complete have been creating an IDE for haskell and in this IDE they have code that they use for communication between the IDE and GHC (the most widely used haskell compiler).&lt;br &#x2F;&gt;
+Duncan Coutts, Edsko de Vries, and Mikolaj Konarski implemented a library that would act as a wrapper around the GHC API from this this code.&lt;br &#x2F;&gt;
+It&#x27;s this library (ide-backend) that is being used by people in the haskell community as general a wrapper around the GHC API.&lt;&#x2F;p&gt;
+&lt;p&gt;Copied and pasted from the &lt;a href=&quot;https:&#x2F;&#x2F;www.fpcomplete.com&#x2F;blog&#x2F;2015&#x2F;03&#x2F;announce-ide-backend&quot;&gt;ide-backend blog post&lt;&#x2F;a&gt;. The functions of ide-backend are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Compiling code&lt;&#x2F;li&gt;
+&lt;li&gt;Get compile error messages&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Submit&lt;&#x2F;strong&gt; updated code for recompilation&lt;&#x2F;li&gt;
+&lt;li&gt;Extract type information&lt;&#x2F;li&gt;
+&lt;li&gt;Find usage locations for identifiers &lt;em&gt;- works for both local and top level identifiers&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Run generated bytecode&lt;&#x2F;li&gt;
+&lt;li&gt;Produce optimized executables&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;idesession&quot;&gt;IdeSession&lt;&#x2F;h2&gt;
+&lt;p&gt;You may want to read &lt;a href=&quot;http:&#x2F;&#x2F;hackage.haskell.org&#x2F;package&#x2F;ide-backend-0.9.0.7&#x2F;docs&#x2F;IdeSession.html&quot;&gt;official IdeSession documentation&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;IdeSession is centered around:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;A single threaded IDE session.&lt;&#x2F;li&gt;
+&lt;li&gt;Operations for updating the session (changes in files, data, compiler parameters etc.)&lt;&#x2F;li&gt;
+&lt;li&gt;Running querries given the current state of the session.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that everything going on here is taking place in a single threaded environment.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h4 id=&quot;interaction-with-the-compiler&quot;&gt;Interaction with the compiler&lt;&#x2F;h4&gt;
+&lt;p&gt;This interface is rather sequential; in part because we are dealing with files and data which are mutable.&lt;br &#x2F;&gt;
+The general pattern of interation with the compiler is as follows:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Update phase (update source files, data et cetera).&lt;&#x2F;li&gt;
+&lt;li&gt;Compile phase&lt;&#x2F;li&gt;
+&lt;li&gt;Query phase (query the compiler on matters regarding the code).&lt;&#x2F;li&gt;
+&lt;li&gt;Run phase&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;strong&gt;Update phase&lt;&#x2F;strong&gt;: We don&#x27;t directly mutate the files since we don&#x27;t want to end up in a situation where ide-backend has a different state of files and data while our client has a different state of the files and data. However, we describle the changes we want to make to the files and let ide-backend effect them. That is, give ide-backend, via IdeSession, the new state of the files.&lt;br &#x2F;&gt;
+&lt;strong&gt;Compile phase&lt;&#x2F;strong&gt;: We apply the relevant updates and invoke the compiler. It incrementally compiles some modules. This may take a while therefore we want progress information.&lt;br &#x2F;&gt;
+&lt;strong&gt;Query phase&lt;&#x2F;strong&gt;: After compilation we collect info related to the compilation: source errors, list of successfully loaded modules et cetera.&lt;br &#x2F;&gt;
+&lt;strong&gt;Run phase&lt;&#x2F;strong&gt;: Regardless of compilation results; we may want to run code from a certain module, interact with the code, interrupt its execution.&lt;&#x2F;p&gt;
+&lt;p&gt;In haskell we follow types so naturally there are types associated with each of these phases.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;IdeSession: &lt;em&gt;Query phase&lt;&#x2F;em&gt; - This is the default mode (we start here because at the start the files are in some state).&lt;&#x2F;li&gt;
+&lt;li&gt;IdeSessionUpdate: &lt;em&gt;Update phase&lt;&#x2F;em&gt; - Accumulate updates.&lt;&#x2F;li&gt;
+&lt;li&gt;Progress: &lt;em&gt;Compile phase&lt;&#x2F;em&gt; - Progress info.&lt;&#x2F;li&gt;
+&lt;li&gt;RunActions: &lt;em&gt;Run phase&lt;&#x2F;em&gt; - For handles on the running code, through which one can interact with the code.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;additional-notes&quot;&gt;Additional notes.&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;Managing and mutating files in the source directory.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Trust the session. Trust IdeSession.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;In this environment we should coordinate updating and changing source files through IdeSession.&lt;br &#x2F;&gt;
+Ide session manages files in the source directory. This is important because we don&#x27;t want the client and ide-backend have different versions of the files.&lt;br &#x2F;&gt;
+All file changes and file reading must be done via the session (sequenced relative to other session state changes).&lt;br &#x2F;&gt;
+The session will manage the files carefully including the case of exceptions and things going awry.
+The caller needn&#x27;t duplicate file state.&lt;&#x2F;p&gt;
+&lt;p&gt;The caller should be able to:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Put files into the session&lt;&#x2F;li&gt;
+&lt;li&gt;Apply updates to files via the session&lt;&#x2F;li&gt;
+&lt;li&gt;Extract files at any time before the session is closed.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;Morally pure querries.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Purity:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The property of a function to always gives the same output given the same input.&lt;&#x2F;li&gt;
+&lt;li&gt;The property of a function not to have side effects.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;In this case we want to regard the compiler as a pure function disregarding the side effects part of purity because we have a lot of IO going on here.&lt;br &#x2F;&gt;
+It should always be the case that we can throw away all the compilation results and recover them just from the file state and user parameters.&lt;br &#x2F;&gt;
+&lt;em&gt;In case of warnings:&lt;&#x2F;em&gt; Traditionally compilers show warnings for the modules they compile skipping warning for modules they didn&#x27;t have to recompile. This however doesn&#x27;t match the pure function principle of same results for the same parameters. So IdeSession provides purity in cases such as these.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So we try to maintain the compiler as:&lt;br &#x2F;&gt;
+compiler (modules, args, env) -&amp;gt; (object code, compiler warnings, errors....)&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Persistent and transitory state.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The persistent state regards:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The source files&lt;&#x2F;li&gt;
+&lt;li&gt;Data files&lt;&#x2F;li&gt;
+&lt;li&gt;User supplied arguments for compilation.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Internally there is a lot of cached and transitory state. In memory or on disk; none of these persist in the case of a fatal error; for example, they are wiped before shutdown and only the source and data files persit in case of a power failure.&lt;&#x2F;p&gt;
+&lt;p&gt;It should be possible to drop all transitory state and recover (somewhat) as long as the original session value is available. The &lt;a href=&quot;http:&#x2F;&#x2F;hackage.haskell.org&#x2F;package&#x2F;ide-backend-0.9.0.7&#x2F;docs&#x2F;IdeSession.html#v:restartSession&quot;&gt;&lt;code&gt;restartSession&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; function serves this purpose.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Emacs Setup for Haskell</title>
+		<published>2015-04-13T00:00:00+00:00</published>
+		<updated>2015-04-13T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/emacs-setup-for-haskell/" type="text/html"/>
+		<id>https://njagi.me/posts/emacs-setup-for-haskell/</id>
+		<content type="html">&lt;p&gt;This post assumes that you have a little experience with emacs and maybe some experience writing haskell.&lt;br &#x2F;&gt;
+I assume that you&#x27;re using emacs and not xemacs or something else and therefore your init file is ~&#x2F;.emacs. You can also find your init file via &lt;code&gt;M-: RET (find-file user-init-file) RET&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;To set up emacs so that you can install packages add the following to your ~&#x2F;.emacs:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;package)
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;to&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;list&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;package&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;archives
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;melpa&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; . &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;http:&#x2F;&#x2F;melpa.milkbox.net&#x2F;packages&#x2F;&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;t&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;(package&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;initialize)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I personally believe that melpa alone is enough.&lt;&#x2F;p&gt;
+&lt;p&gt;Then to install packages:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;M-x RET package-install RET &amp;lt;package-name&amp;gt; RET RET
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Every time you make a save your ~&#x2F;.emacs file instead of restarting emacs to make sure everything is still okay, run&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;M-x eval-buffer RET
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To install haskell packages (I assume you already have cabal) use:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;$ cabal install &amp;lt;package-name&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s get started. Here&#x27;s a list of all the things that we&#x27;ll need.&lt;br &#x2F;&gt;
+You can chose to install them all now or install them as we go on and as you see the need for them.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;haskell-packages-to-install&quot;&gt;Haskell packages to install&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;chrisdone&#x2F;structured-haskell-mode&quot;&gt;structured-haskell-mode&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;hackage.haskell.org&#x2F;package&#x2F;hasktags&quot;&gt;hasktags&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;emacs-packages-to-install&quot;&gt;Emacs packages to install&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.flycheck.org&#x2F;&quot;&gt;flycheck&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;chrisdone&#x2F;haskell-flycheck&quot;&gt;flycheck-haskell&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;haskell&#x2F;haskell-mode&#x2F;wiki&quot;&gt;haskell-mode&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;www.emacswiki.org&#x2F;emacs&#x2F;RainbowDelimiters&quot;&gt;rainbow-delimiters&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;shm (the emacs package isn&#x27;t called structured-haskell-mode but shm)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.emacswiki.org&#x2F;emacs&#x2F;AceJump&quot;&gt;ace-jump-mode&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.emacswiki.org&#x2F;emacs&#x2F;AutoComplete&quot;&gt;auto-complete-mode&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;setting-up-the-path-for-emacs&quot;&gt;Setting up the PATH for emacs.&lt;&#x2F;h2&gt;
+&lt;p&gt;To have emacs point to where your haskell packages are installed add this to your ~&#x2F;.emacs:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span&gt;((my&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;path (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;expand&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;name &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;~&#x2F;.cabal&#x2F;bin&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)))
+&lt;&#x2F;span&gt;&lt;span&gt;  (setenv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;PATH&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; (concat my&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;path &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; (getenv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;PATH&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)))
+&lt;&#x2F;span&gt;&lt;span&gt;  (add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;to&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;list&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;exec&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;path my&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;path))
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You can replace &lt;code&gt;&amp;quot;~&#x2F;.cabal&#x2F;bin&amp;quot;&lt;&#x2F;code&gt; with a sandbox but I had issues with this when the sandbox cabal version didn&#x27;t keep up with the universal packages. So I would recommend you use the user-wide one ~&#x2F;.cabal&#x2F;bin.&lt;br &#x2F;&gt;
+&lt;em&gt;Mind you, you can can use this to add anything to your emacs specific PATH.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;haskell-mode&quot;&gt;Haskell mode&lt;&#x2F;h2&gt;
+&lt;p&gt;I hope you are already using haskell mode but if you aren&#x27;t it&#x27;s okay. This post is for you. This is going to be the major mode that you will be using. It would be wise to read the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;haskell&#x2F;haskell-mode&#x2F;wiki&quot;&gt;haskell mode wiki&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Install haskell-mode from within emacs.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;M-x RET package-install RET haskell-mode RET RET
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To enable the minor mode which activates keybindings associated with interactive mode, add:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process)
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;em&gt;Make sure to use haskell-interactive-mode as done above and not inferor haskell mode which has been deprecated.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;To jump to the import list add this. &lt;em&gt;I prefer to bind this to f12.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map&lt;&#x2F;span&gt;&lt;span&gt; [f12] &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;navigate&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;imports)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To get import suggestions. For adding, removing or commenting out of imports and a process log use:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(custom&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;set&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;variables
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;suggest&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;remove&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;import&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;lines &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;t&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;auto&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;import&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;loaded&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;modules &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;t&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;log &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;t&lt;&#x2F;span&gt;&lt;span&gt;))
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;General emacs haskell-mode bindings from the haskell-mode wiki:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-l&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;load&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;or&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;reload)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-`&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;bring)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-t&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;do&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;type)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-i&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;do&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;info)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;build)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-k&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;clear)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;SPC&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;contextual&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;space)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;em&gt;It will always prompt to begin a new project. Don&#x27;t fight it, just go with it. It won&#x27;t create any files.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Same as the ones above but are good to have in cabal-mode i.e when one is in the repl.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-`&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;bring)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-k&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;clear)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;build)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Which GHCi process will we use in our repl? I prefer using cabal-repl instead of ghci because it loads one entire project automatically.
+If you&#x27;re using a modern version of cabal I would go with cabal repl.&lt;br &#x2F;&gt;
+To use cabal-repl as your GHCi process add the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(custom&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;set&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;variables
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;type &amp;#39;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;repl))
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h5 id=&quot;tags&quot;&gt;Tags&lt;&#x2F;h5&gt;
+&lt;p&gt;You sometimes need to jump to the definition of a function that you are using in the same file. For this we have tags within haskell-mode. It however requires the haskell package hasktags so:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;$ cabal install hasktags
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To enable generation of tags when you save a file use:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(custom&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;set&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;variables
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;tags&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;on&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;save &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;t&lt;&#x2F;span&gt;&lt;span&gt;))
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To use both ghci and tags for jumping to a definition you can use the following. This way when GHCi fails because the code can&#x27;t compile it will fall back to tags.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;M-.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;jump&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;to&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;def&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;or&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;tag)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;em&gt;This will be generating a file with the name TAGS within your projects. It&#x27;s a good idea to put this file in your .gitignore&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;To have what we see in our repl look good we could use, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;haskell&#x2F;haskell-mode&#x2F;wiki&#x2F;Haskell-Interactive-Mode-REPL#printing-mode&quot;&gt;printing in the repl&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;setq&lt;&#x2F;span&gt;&lt;span&gt; haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;eval&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h5 id=&quot;debugging&quot;&gt;Debugging&lt;&#x2F;h5&gt;
+&lt;p&gt;Check out how to use the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;haskell&#x2F;haskell-mode&#x2F;wiki&#x2F;Haskell-Interactive-Mode-Debugger&quot;&gt;debugger in haskell mode&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h5 id=&quot;autocompletion&quot;&gt;Autocompletion.&lt;&#x2F;h5&gt;
+&lt;p&gt;Since ghc version 7.8 you can use the &lt;code&gt;TAB&lt;&#x2F;code&gt; key to auto complete suggestions.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;flycheck-and-haskell-flycheck&quot;&gt;Flycheck and haskell-flycheck.&lt;&#x2F;h2&gt;
+&lt;p&gt;These are gems my friend. GEMS I TELL YA!!&lt;&#x2F;p&gt;
+&lt;p&gt;They compliment each other to compile your code in the background each time you save the file you are working on. If there is an error in your code the line with an error is underlined in red and in case of a warning it&#x27;s underlined in yellow. You get a pop up when you hover over the error with the mouse, the minibuffer also shows the error when the cursor is over the line in question. This means you don&#x27;t have to wait for compilation to fix those tiny errors.&lt;&#x2F;p&gt;
+&lt;p&gt;Much to my surprise &lt;a href=&quot;http:&#x2F;&#x2F;www.flycheck.org&#x2F;&quot;&gt;flycheck&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;chrisdone&#x2F;haskell-flycheck&quot;&gt;haskell-flycheck&lt;&#x2F;a&gt; also give style suggestions as I assume HLint would top of error and warning checking.&lt;&#x2F;p&gt;
+&lt;p&gt;I previously used ghc-mod for the purposes for which I am using flycheck now. I prefer flycheck because it does this for many more langauges.&lt;&#x2F;p&gt;
+&lt;p&gt;To install
+Install flycheck and haskell-flycheck from within emacs.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;M-x RET package-install RET flycheck flycheck-haskell RET RET
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To use flycheck add this to your .emacs&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;after&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;init&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#&amp;#39;global-flycheck-mode&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;eval&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;after&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;load&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;flycheck
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;flycheck&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#&amp;#39;flycheck-haskell-setup&lt;&#x2F;span&gt;&lt;span&gt;))
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;structured-haskell-mode-and-shm&quot;&gt;Structured Haskell Mode and shm&lt;&#x2F;h2&gt;
+&lt;p&gt;The emacs package &lt;code&gt;shm&lt;&#x2F;code&gt; depends on the haskell package &lt;code&gt;structured-haskell-mode&lt;&#x2F;code&gt; so you have to install both.
+{% highlight bash%}
+$ cabal install structured-haskell-mode&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;```lisp
+&lt;&#x2F;span&gt;&lt;span&gt;M-x RET package-install RET shm RET RET
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It&#x27;s the most impressive haskell in emacs &amp;quot;feature&amp;quot; for me. You should definitely read the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;chrisdone&#x2F;structured-haskell-mode#structured-haskell-mode&quot;&gt;structured haskell mode README&lt;&#x2F;a&gt; if you want to know how to use it well.&lt;&#x2F;p&gt;
+&lt;p&gt;It helps you write in a clear and consistent style all through. It also helps with those little things that IDEs do and text editors don&#x27;t plus much more. You&#x27;ll understand what I mean after you use it.&lt;&#x2F;p&gt;
+&lt;p&gt;To enable this I you should add the following to your init file:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;structured&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key shm&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-s&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;shm&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;case&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;split&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you try structured haskell mode and you don&#x27;t like it replace the above with:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;turn&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;on&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;indentation)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;rainbow-delimiters&quot;&gt;Rainbow delimiters.&lt;&#x2F;h2&gt;
+&lt;p&gt;I haven&#x27;t yet actually felt the value addition of this yet but it&#x27;s purpose it to show you brackets in different colours so that it&#x27;s simple to identify when you have an open bracket or something.&lt;&#x2F;p&gt;
+&lt;p&gt;You can check it out in the &lt;a href=&quot;http:&#x2F;&#x2F;www.emacswiki.org&#x2F;emacs&#x2F;RainbowDelimiters&quot;&gt;rainbow delimiters wiki page&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s not very useful when I have structured haskell mode which automatically closes brackets. I&#x27;ll probably unistall it. You can however try it if you want.&lt;&#x2F;p&gt;
+&lt;p&gt;Installing rainbow delimiters mode:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;M-x RET package-install RET rainbow-delimiters RET RET
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For usage:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;rainbow&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;delimiters)
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;prog&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;rainbow&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;delimiters&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;auto-compelete-mode&quot;&gt;Auto-compelete mode&lt;&#x2F;h2&gt;
+&lt;p&gt;This does just that. I&#x27;m not sure if there&#x27;s need for it or haskell-mode already does auto complete but I love it because I get autocomplete in other modes not just haskell mode.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(package&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;initialize) (global&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;auto&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;complete&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;prog&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;auto&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;complete&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; Added for all programming modes.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;ace-jump-mode&quot;&gt;Ace jump mode.&lt;&#x2F;h2&gt;
+&lt;p&gt;This also has nothing to do with haskell it&#x27;s just really handy and you can use it anywhere.
+Use it to jump to a letter that is at the start of a word. It eliminates a whole lot of scrolling about.&lt;&#x2F;p&gt;
+&lt;p&gt;Installing ace jump mode:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;M-x RET package-install RET ace-jump-mode RET RET
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To use it, add the following to your init file:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;to&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;list&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;load&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;path &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;which-folder-ace-jump-mode-file-in&#x2F;&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;ace&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;jump&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key global&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c SPC&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;ace&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;jump&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;setq&lt;&#x2F;span&gt;&lt;span&gt; ace&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;jump&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;gray&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;background) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; This line makes it work in black background coloured terminals.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;em&gt;You can use ace-jump mode with other backgrounds not just grey, I use grey because it just worked great for me.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;stuff-that-i-think-would-be-fun-to-try-out&quot;&gt;Stuff that I think would be fun to try out:&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;present &lt;em&gt;(this failed to install due to ghc 7.10 dependency issues so I will update this post regarding it after I have used it.)&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;handy-keybindings-to-remember&quot;&gt;Handy keybindings to remember:&lt;&#x2F;h2&gt;
+&lt;p&gt;There are many more of course but I really love these:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th align=&quot;center&quot;&gt;Key binding&lt;&#x2F;th&gt;&lt;th align=&quot;center&quot;&gt;Purpose&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-j&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Newline indent, also automatically adds a newline and comma when creating a list.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;M-^&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Delete indentation relative to parent. Opposite of C-j.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;M-a&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Jump to start of a parent&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;)&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Jump to end of a parent&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;M-r&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Raise the current node to replace its parent&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-c C-s&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Case split.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;M-;&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Wrap in multiline comment i.e   &lt;code&gt;{- &amp;lt;code&amp;gt;  -}&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-c C-q&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Works with C-j to add imports, this qualifies&#x2F;unqualifies them.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;M-k&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Kill&#x2F;paste node taking indentation to account.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-k&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Kill&#x2F;paste line taking indentation to account.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-y&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Yank&#x2F;copy take indentation into account&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C- `&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Start the REPL buffer. The project not loaded in it.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-c C-l&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Compile and load a Haskell module into your REPL.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-c C-c&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Compile the whole Cabal project.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-x `&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Jump to the next error, or you can move your cursor to an error in the REPL and hit &lt;code&gt;RET&lt;&#x2F;code&gt; to jump to it.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-c C-k&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Clear screen in REPL.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;F12&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Jump to import list.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-u C-c c&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;To run an arbitrary Cabal command.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-c c&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;To run some common Cabal commands.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-u C-c C-t&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;To print the type of the top-level identifier at point.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-c C-t&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;To print the type of the top-level identifier at point in the REPL and in the message buffer.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-c C-i&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;To print the info of the identifier at point in a buffer. Hit q to close.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;M-.&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Jump to definition or tag.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;C-c SPC&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;Use ace jump mode.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h2 id=&quot;finally&quot;&gt;Finally&lt;&#x2F;h2&gt;
+&lt;p&gt;All that init file code in one file that you can conveniently paste in your init file.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lisp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-lisp &quot;&gt;&lt;code class=&quot;language-lisp&quot; data-lang=&quot;lisp&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; --------- Package lists
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;package)
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;to&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;list&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;package&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;archives
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;melpa&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; . &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;http:&#x2F;&#x2F;melpa.milkbox.net&#x2F;packages&#x2F;&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;t&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;(package&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;initialize)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; --------- &amp;lt;&#x2F; Package lists
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; ---------------- Haskell-mode
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span&gt;((my&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;path (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;expand&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;name &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;~&#x2F;.cabal&#x2F;bin&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)))
+&lt;&#x2F;span&gt;&lt;span&gt;  (setenv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;PATH&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; (concat my&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;path &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; (getenv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;PATH&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)))
+&lt;&#x2F;span&gt;&lt;span&gt;  (add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;to&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;list&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;exec&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;path my&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;path))
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process)
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;  
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;; Makes editor focus on imports block in source file
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; (eval-after-load &amp;#39;haskell-mode
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;;          &amp;#39;(define-key haskell-mode-map [f12] &amp;#39;haskell-navigate-imports))
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map&lt;&#x2F;span&gt;&lt;span&gt; [f12] &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;navigate&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;imports)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;;; For module import suggestions.
+&lt;&#x2F;span&gt;&lt;span&gt;(custom&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;set&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;variables
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;suggest&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;remove&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;import&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;lines &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;t&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;auto&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;import&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;loaded&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;modules &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;t&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;log &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;t&lt;&#x2F;span&gt;&lt;span&gt;))
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; Key bindings from the wiki
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-l&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;load&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;or&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;reload)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-`&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;bring)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-t&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;do&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;type)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-i&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;do&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;info)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;build)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-k&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;clear)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;SPC&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;contextual&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;space)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;; The below commands pretty much match the ones above, but are handy to have in cabal-mode, too:
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-`&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;bring)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-k&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;clear)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;build)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;cabal)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;; ghci process within emacs
+&lt;&#x2F;span&gt;&lt;span&gt;(custom&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;set&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;variables
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;process&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;type &amp;#39;cabal&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;repl))
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;; Hasktags
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;; customization variable to enable tags generation on save
+&lt;&#x2F;span&gt;&lt;span&gt;(custom&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;set&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;variables
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;tags&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;on&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;save &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;t&lt;&#x2F;span&gt;&lt;span&gt;))
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;M-.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;jump&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;to&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;def&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;or&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;tag)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;printing mode
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;setq&lt;&#x2F;span&gt;&lt;span&gt; haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;interactive&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;eval&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; ---------------- &amp;lt;&#x2F; Haskell-mode
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; --------------- flycheck
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;after&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;init&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#&amp;#39;global-flycheck-mode&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;eval&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;after&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;load&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;flycheck
+&lt;&#x2F;span&gt;&lt;span&gt;  &amp;#39;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;flycheck&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#&amp;#39;flycheck-haskell-setup&lt;&#x2F;span&gt;&lt;span&gt;))
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; --------------- &amp;lt;&#x2F; flycheck
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; -------------- structured haskell mode
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;shm)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; use indentation from structured haskell mode
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;structured&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;haskell&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key shm&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c C-s&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;shm&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;case&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;split&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; -------------- structured haskell mode
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; ------------------- Auto complete mode
+&lt;&#x2F;span&gt;&lt;span&gt;(package&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;initialize) (global&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;auto&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;complete&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;prog&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;auto&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;complete&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; Added for all programming modes.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; -------------------- &amp;lt;&#x2F; Auto complete mode
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; -------------------- Ace jump
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;to&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;list&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;load&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;path &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;which-folder-ace-jump-mode-file-in&#x2F;&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;ace&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;jump&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;(define&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;key global&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;map &lt;&#x2F;span&gt;&lt;span&gt;(kbd &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;C-c SPC&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &amp;#39;ace&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;jump&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;setq&lt;&#x2F;span&gt;&lt;span&gt; ace&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;jump&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;gray&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;background) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; Otherwise it will set background to same as emacs backgorund in terminal.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; ---------------------- &amp;lt;&#x2F; ace jump
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;; --------- Rainbow delimiters
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;; show each level of parenthesis or braces in a different color.
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;rainbow&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;delimiters)
+&lt;&#x2F;span&gt;&lt;span&gt;(add&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;prog&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;hook &amp;#39;rainbow&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;delimiters&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span&gt;mode)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;;;--------- &amp;lt;&#x2F; Rainbow delimiters
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>ThreadScope Patch</title>
+		<published>2014-03-05T00:00:00+00:00</published>
+		<updated>2014-03-05T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/threadscope-patch/" type="text/html"/>
+		<id>https://njagi.me/posts/threadscope-patch/</id>
+		<content type="html">&lt;p&gt;So I had some issues installing threadscope earlier.&lt;&#x2F;p&gt;
+&lt;p&gt;After having installed the dependencies I had problems with building ThreadScope due to changes in ghc. The errors are right here: &lt;a href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;urbanslug&#x2F;9365829&quot;&gt;gist to threadscope errors&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;A few tips on haskell on archlinux: &lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;text&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-text &quot;&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&lt;span&gt;     Don&amp;#39;t use Pacman, AUR or another package manager to install anything other than:
+&lt;&#x2F;span&gt;&lt;span&gt;     ghc and cabal.
+&lt;&#x2F;span&gt;&lt;span&gt;     For everything else use cabal install i.e `cabal install package_name`
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Anyhoo the real matter here is that there was a problem with the source in ThreadScope.&lt;&#x2F;p&gt;
+&lt;p&gt;The assumption is that you have all the dependencies met.
+Get ThreadScope source files from: &lt;a href=&quot;http:&#x2F;&#x2F;hackage.haskell.org&#x2F;package&#x2F;threadscope&quot;&gt;ThreadScope source&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Here is the patch: {% gist 9367418 threadscope.diff %}&lt;&#x2F;p&gt;
+&lt;p&gt;If you have issues applying the patch read on it here: [How to apply a patch quickly.]({% post_url 2014-03-05-How-to-apply-a-patch-quickly %})&lt;&#x2F;p&gt;
+&lt;p&gt;99% of it is really thanks to &lt;a href=&quot;http:&#x2F;&#x2F;trac.haskell.org&#x2F;ThreadScope&#x2F;ticket&#x2F;32&quot;&gt;source of diff&lt;&#x2F;a&gt; where you can see the patch was submitted by Bob Ippolito as an attachment.&lt;&#x2F;p&gt;
+&lt;p&gt;The issue with the patch there is that it misses the tiny change GUI&#x2F;Main.hs &lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

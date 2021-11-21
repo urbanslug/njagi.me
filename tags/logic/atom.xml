@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Logic</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/logic/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2018-04-17T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/logic/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Logicomix</title>
+		<published>2018-04-17T00:00:00+00:00</published>
+		<updated>2018-04-17T00:00:00+00:00</updated>
+		<link href="https://njagi.me/notes/logicomix/" type="text/html"/>
+		<id>https://njagi.me/notes/logicomix/</id>
+		<content type="html">&lt;p&gt;Graphic novel on the history of and a gentle intro to some of the biggest ideas in logic, math and modern philosophy.
+It&#x27;s really not a comic and it&#x27;s a great read.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;It&#x27;s a lot of things in one:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;A story about the conflict between ideal rationality and the unchanging flawed fabric of reality.&lt;&#x2F;li&gt;
+&lt;li&gt;A tragedy with logicians as heroes&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;authors&quot;&gt;Authors&lt;&#x2F;h1&gt;
+&lt;p&gt;Haven&#x27;t looked much into:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;author&#x2F;show&#x2F;32716.Apostolos_Doxiadis&quot;&gt;Apostolos Doxiadis&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;author&#x2F;show&#x2F;80147.Christos_H_Papadimitriou&quot;&gt;Christos H. Papadimitriou&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;plot&quot;&gt;Plot&lt;&#x2F;h1&gt;
+&lt;p&gt;Autobiography of &lt;strong&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Bertrand_Russell&quot;&gt;Bertrand Russell&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; as a comic book.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s not entirely factual because it is meant to both captivate the reader
+but also show the kind of thought process and lives
+the founders of logic had because the writers feel this is vital to
+understanding their ideas (I feel the same way).&lt;&#x2F;p&gt;
+&lt;p&gt;Starts Sept 1939 when Germany invaded Poland, (&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Blitzkrieg&quot;&gt;Blitzkrieg&lt;&#x2F;a&gt;).
+Countdown to another world war beings UK had signed a pact of non aggression with Hitler&lt;&#x2F;p&gt;
+&lt;p&gt;Sept 4 1939 Bertand Russel was meant to give a lecture on &lt;strong&gt;the role of logic in human affairs&lt;&#x2F;strong&gt; at an American uni.&lt;&#x2F;p&gt;
+&lt;p&gt;Sept 4 1939 UK declared war on Germany&lt;&#x2F;p&gt;
+&lt;p&gt;USA had &lt;em&gt;isolationists&lt;&#x2F;em&gt; who wanted the USA not to join the war&lt;&#x2F;p&gt;
+&lt;p&gt;Russel had an elder brother who went to bording school but was cut from the comic.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;1-pembroke-lodge&quot;&gt;1. Pembroke Lodge&lt;&#x2F;h2&gt;
+&lt;p&gt;His uncle was the source of the howls. 
+He was mad and madness was Bertand&#x27;s greatest fear because it meant being the furthest from logic as a person can be.
+He would&#x27;ve ended his life then had it not been for the hope of &lt;strong&gt;reason&lt;&#x2F;strong&gt;.
+Were it not for math. He says so in greek exercises (a diary he kept to keep his grandmother from snooping).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;2-sorcerer-s-apprentice&quot;&gt;2. Sorcerer&#x27;s apprentice&lt;&#x2F;h2&gt;
+&lt;p&gt;Met the girl who was to be his wife
+got first class hons at Cambridge&lt;&#x2F;p&gt;
+&lt;p&gt;The atoms of logic are propositions which we combine thorugh certain laws&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Calculus_ratiocinator&quot;&gt;calculus ratiocinator&lt;&#x2F;a&gt; by &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Gottfried_Wilhelm_Leibniz&quot;&gt;Gottfried Wilhelm Leibniz&lt;&#x2F;a&gt; was a framework of logic
+Leibniz used this formal symbolic language to say such things as: a tautology added to itself is a tautology&lt;&#x2F;p&gt;
+&lt;p&gt;Leibniz taught Moore about logic.
+Logic is using combinations of the known to reach the unknown&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;3-wanderjahre&quot;&gt;3. Wanderjahre&lt;&#x2F;h2&gt;
+&lt;p&gt;Bertrand went to Paris because he learned that since math rests on arithmetic they must first make arithmetic solid&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;4-paradoxes&quot;&gt;4. Paradoxes&lt;&#x2F;h2&gt;
+&lt;p&gt;After returning from Paris Bertrand wanted to write a book that would solve all
+foundational problems this was &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;The_Principles_of_Mathematics&quot;&gt;The Principles of Mathematics&lt;&#x2F;a&gt; published 1903.
+He was to use a notation invented by &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Giuseppe_Peano&quot;&gt;Giuseppe Peano&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;We then run into &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Russell&amp;#x27;s_paradox&quot;&gt;Russell&#x27;s paradox&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;When something refers to itself a paradox is nearby.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;A set can contain other sets or even itself. A set of all ideas is an idea. Therefore it contains itself as an element.
+Does the set of all sets which do not contain themselves contain itself?
+This subverts the notion of set as a collection defined by a common property&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This failure in &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Set_theory&quot;&gt;set theory&lt;&#x2F;a&gt; led to &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Type_theory&quot;&gt;type theory&lt;&#x2F;a&gt;.
+The foundations of math were like a mythical turtle supporting the cosmos yet all they did trying to create a solid ground for it was create a tower of turtles all the way down.&lt;&#x2F;p&gt;
+&lt;p&gt;Set theory then felt like a foundation of systems without a foundation.
+See also this section on Wikipedia entry: &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Set_theory#Objections_to_set_theory_as_a_foundation_for_mathematics&quot;&gt;Objections to set theory as a foundation for mathematics&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;5-entracte&quot;&gt;5. Entracte&lt;&#x2F;h2&gt;
+&lt;p&gt;Map makers, insanity and logic.&lt;&#x2F;p&gt;
+&lt;p&gt;Logic is a map trying to map out reality.
+In the end they (logicians) ended up confusing reality with their maps&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;6-logico-philosophical-wars&quot;&gt;6. Logico-philosophical wars&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Gottlob_Frege&quot;&gt;Gottlob Frege&lt;&#x2F;a&gt; sends &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Ludwig_Wittgenstein&quot;&gt;Ludwig Wittgenstein&lt;&#x2F;a&gt; to Russel.
+They really get into types&lt;&#x2F;p&gt;
+&lt;p&gt;According to Wittgenstein, Language is a model of reality.&lt;&#x2F;p&gt;
+&lt;p&gt;Bertrand Russel wrote philosophy of math in prison for protesting USA&#x27;s
+involvement in the war for which he got 6 months in prison.
+His appetite for moral duty had been satisfied.
+Wittgenstein wrote his total solution to problems of philosophy on the eastern front 
+this was the &lt;a href=&quot;http:&#x2F;&#x2F;www.tractatuslogico-philosophicus.com&#x2F;&quot;&gt;Tractatus Logico-Philosophicus&lt;&#x2F;a&gt; (TLP) published in 1922.
+&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;G._E._Moore&quot;&gt;G. E. Moore&lt;&#x2F;a&gt; really liked it. Bertrand Russel didn&#x27;t. I haven&#x27;t yet read it to give an opinion on it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;6-incompleteness&quot;&gt;6. Incompleteness&lt;&#x2F;h2&gt;
+&lt;p&gt;Some proofs can&#x27;t be proven according to &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Kurt_G%C3%B6del&quot;&gt;Kurt Gödel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;7-finale&quot;&gt;7. Finale&lt;&#x2F;h2&gt;
+&lt;p&gt;I don&#x27;t have much to say here.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;ideas&quot;&gt;Ideas&lt;&#x2F;h1&gt;
+&lt;p&gt;Reason is in its highest form, logic.&lt;&#x2F;p&gt;
+&lt;p&gt;High rate of psychosis amongst founders of logic.&lt;&#x2F;p&gt;
+&lt;p&gt;Bertrand Russel&#x27;s grandfather was former prime minister of great Britain but not of Pembroke lodge.&lt;&#x2F;p&gt;
+&lt;p&gt;Logic is all about rules. Begins with definitions and continues with rules.&lt;&#x2F;p&gt;
+&lt;p&gt;euclid&#x27;s proposition&lt;&#x2F;p&gt;
+&lt;p&gt;Plato&#x27;s symposium is where he wrote about &lt;em&gt;finding your other half&lt;&#x2F;em&gt; interesting stuff btw&lt;&#x2F;p&gt;
+&lt;p&gt;euclid&lt;&#x2F;p&gt;
+&lt;p&gt;What is a number but the set of all sets with that number elements in it? e.g what is 3 but the set of all sets with 3 elements?&lt;&#x2F;p&gt;
+&lt;p&gt;A set can contain other sets or even itself. A set of all ideas is an idea. Therefore it contains itself as an element.&lt;&#x2F;p&gt;
+&lt;p&gt;The set of all birds is not a set.&lt;&#x2F;p&gt;
+&lt;p&gt;Independent existence of a mathematical reality. We don&#x27;t make it up but it exists.
+Is there an objective reality?&lt;&#x2F;p&gt;
+&lt;p&gt;Wittgenstein ideas:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The sleep of reason produces monsters. &lt;&#x2F;li&gt;
+&lt;li&gt;Language is a corruption of pure thought. &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Vienna circle&#x27;s rationalistic world view has desecrated hallowed Germanic values and for that Schlick was killed by Hitler.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;vocabulary&quot;&gt;Vocabulary&lt;&#x2F;h1&gt;
+&lt;p&gt;stukas&lt;br &#x2F;&gt;
+panzers tank&lt;br &#x2F;&gt;
+acropolis&lt;br &#x2F;&gt;
+uncanny&lt;br &#x2F;&gt;
+wafter&lt;br &#x2F;&gt;
+cerberus&lt;br &#x2F;&gt;
+folly&lt;br &#x2F;&gt;
+diptheria&lt;br &#x2F;&gt;
+edifice&lt;br &#x2F;&gt;
+calculus rattiocinator&lt;br &#x2F;&gt;
+kindered spirit&lt;br &#x2F;&gt;
+syllogisms&lt;br &#x2F;&gt;
+occam&#x27;s razor&lt;br &#x2F;&gt;
+centaurs&lt;br &#x2F;&gt;
+Syllogism&lt;br &#x2F;&gt;
+reductio ad absurdum&lt;br &#x2F;&gt;
+austere&lt;br &#x2F;&gt;
+momento mori&lt;br &#x2F;&gt;
+pertubed&lt;br &#x2F;&gt;
+beligerence&lt;br &#x2F;&gt;
+sang froid&lt;br &#x2F;&gt;
+opus magnus&lt;br &#x2F;&gt;
+ignoramibus -  we shall not know&lt;br &#x2F;&gt;
+melancholia&lt;br &#x2F;&gt;
+extant&lt;br &#x2F;&gt;
+anschluss&lt;br &#x2F;&gt;
+abberation&lt;br &#x2F;&gt;
+diatribe&lt;br &#x2F;&gt;
+tragedian&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;definitions&quot;&gt;Definitions&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;tautology:&lt;&#x2F;strong&gt; a statement that is true by virtue of its logical form e.g all red ants are red.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;logic:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;to Aristotle: logic is new and necessary reasoning. &lt;&#x2F;li&gt;
+&lt;li&gt;new because you learn what you don&#x27;t know.&lt;&#x2F;li&gt;
+&lt;li&gt;necessary because conclusions are inescapble&lt;&#x2F;li&gt;
+&lt;li&gt;e.g all men are mortal. socrates is a man therefore socrates is mortal. new and necessary&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Leibniz turned this into a symbolic system … and Boole&lt;&#x2F;p&gt;
+&lt;p&gt;The international congress the world&#x27;s greatest rendezvous of mathematicians&lt;&#x2F;p&gt;
+&lt;p&gt;Types save us from paradox they are essential to logic&lt;&#x2F;p&gt;
+&lt;p&gt;propositional calculus invented by Leibniz is borrowed a lot from Boole&#x27;s work&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Anscluss:&lt;&#x2F;strong&gt; Annexation of Austria by nazi Germany&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Incompleteness theorem:&lt;&#x2F;strong&gt; The completeness of a logical system is the property that every well formed proposition in it can be proved or disproved from the system&#x27;s axioms&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;charachters&quot;&gt;Charachters&lt;&#x2F;h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Apostolos:&lt;&#x2F;strong&gt; Narrator&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Christos:&lt;&#x2F;strong&gt; Theoretical computer scientist and expert in mathematical logic&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bertand Russel:&lt;&#x2F;strong&gt; Main charachter&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;John Russel:&lt;&#x2F;strong&gt; Bertand Russel&#x27;s paternal grandfather. Former prime minister of Great Braitain&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lady John:&lt;&#x2F;strong&gt; Bertand Russel&#x27;s paternal grandmother&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Alys Pearsail Smith:&lt;&#x2F;strong&gt; John Rusell&#x27;s wife later Alys Russell&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;George Boole:&lt;&#x2F;strong&gt; came up with the laws of True and False. He wrote a book called Laws of Thought.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Alfred Whitehead:&lt;&#x2F;strong&gt; Told Bertand about people on the continent who were doing logic&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Leibniz:&lt;&#x2F;strong&gt; Had the vision of a fully logical language&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Gottlob Frege:&lt;&#x2F;strong&gt; &lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Frau Frege:&lt;&#x2F;strong&gt; Wife to Gottlob Frege&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Gerog Cantor:&lt;&#x2F;strong&gt; Dealt with infinity&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Gauss:&lt;&#x2F;strong&gt; warned people not to tackle infinity. It exposes the frailty of math.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mittag Leffler:&lt;&#x2F;strong&gt; &lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Felix Klein:&lt;&#x2F;strong&gt; &lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Henri Poincare:&lt;&#x2F;strong&gt; French believer in importance of intuition&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;David Hilbert:&lt;&#x2F;strong&gt; apostle of rigourous exactness of logical proof&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bernhard Bolzano:&lt;&#x2F;strong&gt; Czech progenitor of sets. Catholic priest&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Peano:&lt;&#x2F;strong&gt; &lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kurt Godel:&lt;&#x2F;strong&gt; read all of the principia&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ludwig Wittgenstein:&lt;&#x2F;strong&gt; &lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Schopenhauer:&lt;&#x2F;strong&gt; &lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Von Neumann:&lt;&#x2F;strong&gt; &lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Schlick:&lt;&#x2F;strong&gt; Killed by hitler&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Adolf Hitler:&lt;&#x2F;strong&gt; &lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;hitler&quot;&gt;Hitler&lt;&#x2F;h4&gt;
+&lt;p&gt;Already well known&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;schlick&quot;&gt;Schlick&lt;&#x2F;h4&gt;
+&lt;p&gt;Killed by hitler&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;bertand-russel&quot;&gt;Bertand Russel&lt;&#x2F;h4&gt;
+&lt;p&gt;Pacifist activist
+Wrote a diary in Greek called, &lt;strong&gt;greek execises&lt;&#x2F;strong&gt;.
+Dreamt of a logical calculus
+Russel&#x27;s son got schizo
+granddaughter committed suicide&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;george-boole&quot;&gt;George Boole&lt;&#x2F;h4&gt;
+&lt;p&gt;Wrote &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;The_Laws_of_Thought&quot;&gt;The Laws of Thought&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Developed the idea that logical propositions can be expressed in purely symbolic lang which allows them to be manipulated by operations similar to arithmetic
+Worked wholly with aristotle&#x27;s method.
+Only had or and and not this meant it couldn&#x27;t express semantic connections between propositions. It was remedied by &lt;strong&gt;predicate calculus&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;gottlob-frege&quot;&gt;Gottlob Frege&lt;&#x2F;h4&gt;
+&lt;p&gt;Wrote the &lt;strong&gt;concept script&lt;&#x2F;strong&gt;
+The point of logic is not calculation but to &lt;strong&gt;model&lt;&#x2F;strong&gt; reality.
+Ordinary language is not suited to science. A language that is completely logical, only such a language can deal with the foundations of mathematics.
+Wanted to prove mathematically that jews were inferior
+father of modern logic
+invented quantifiers: universal ∀ and existential ∃&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;leibniz&quot;&gt;Leibniz&lt;&#x2F;h4&gt;
+&lt;p&gt;Dreamt of the calculus ratiocinator&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;gerog-cantor&quot;&gt;Gerog Cantor&lt;&#x2F;h4&gt;
+&lt;p&gt;The magus of the infinite
+Creator of set theory
+He had gone crazy&lt;&#x2F;p&gt;
+&lt;p&gt;Used set theory to show different kinds of infinity
+TODO: reread his section in the notebook section of Logicomix&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;david-hilbert&quot;&gt;David Hilbert&lt;&#x2F;h4&gt;
+&lt;p&gt;Had a talk, the problems of mathematics
+If a question can be rigourously stated it can be logically answered
+His son also was a paranoid schizo&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;kurt-godel&quot;&gt;Kurt Godel&lt;&#x2F;h4&gt;
+&lt;p&gt;The truth or falsity of every logical proposition can in theory be proven
+Hilbert&#x27;s second problem: the consistency and completeness of arithmetic&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;ludwig-wittgenstein&quot;&gt;Ludwig Wittgenstein&lt;&#x2F;h4&gt;
+&lt;p&gt;shitty teacher got expelled by the village council
+What we cannot speak of we must pass over in silence. Where speak means speak logically.
+Wrote &lt;a href=&quot;http:&#x2F;&#x2F;www.tractatuslogico-philosophicus.com&#x2F;#collapsed&quot;&gt;tractatus logico philosophicus&lt;&#x2F;a&gt;
+Started becoming a mystic and wrote &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Philosophical_Investigations&quot;&gt;Philosophical Investigations&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;aeshylus&quot;&gt;Aeshylus&lt;&#x2F;h4&gt;
+&lt;p&gt;One of the great Greek tragedians
+Creator of tragedy as we know it.
+invented dramatic dialogue&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;euclid&quot;&gt;Euclid&lt;&#x2F;h4&gt;
+&lt;p&gt;Greek mathematician&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;random-ideas&quot;&gt;Random ideas&lt;&#x2F;h1&gt;
+&lt;p&gt;Wittegnstein&#x27;s Picture theory and emojis&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;notebook&quot;&gt;Notebook&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;foundations-of-mathematics&quot;&gt;Foundations of mathematics&lt;&#x2F;h2&gt;
+&lt;p&gt;The program as proclaimed by David Hilbert. 
+Creation of a formal system for math, also containing a proof that this axiomatization is:
+consistent - can lead to know contradiction
+complete - leaves no unprovable truths
+decidable - one is able to decide in every occassion whether a formula follows from the axioms or not thought the application of a set of algorithms&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;footnotes&quot;&gt;Footnotes&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;other-reviews&quot;&gt;Other reviews&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.nytimes.com&#x2F;2009&#x2F;09&#x2F;27&#x2F;books&#x2F;review&#x2F;Holt-t.html&quot;&gt;Algorithm and Blues&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;other-cool-places-to-learn-about-these-guys&quot;&gt;Other cool places to learn about these guys&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;plato.stanford.edu&#x2F;entries&#x2F;russell&#x2F;&quot;&gt;Stanford Encyclopedia of Philosophy&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;irc&quot;&gt;IRC&lt;&#x2F;h2&gt;
+&lt;p&gt;A rough and English interpretation of what was going on in the Vienna Circle, which was HUGELY influenced&#x2F;inspired by the early Wittgenstein.&lt;&#x2F;p&gt;
+&lt;script src=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;urbanslug&#x2F;ece1bb042501dc870deb3e6926ed19a6.js&quot;&gt;&lt;&#x2F;script&gt;
+</content>
+	</entry>
+</feed>

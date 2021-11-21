@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - GSoC</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/gsoc/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2019-08-20T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/gsoc/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Google Summer of Code 2019—Final Submission</title>
+		<published>2019-08-20T00:00:00+00:00</published>
+		<updated>2019-08-20T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/google-summer-of-code-2019-final-submission/" type="text/html"/>
+		<id>https://njagi.me/posts/google-summer-of-code-2019-final-submission/</id>
+		<content type="html">&lt;p&gt;The Google Summer of Code for 2019 is coming to a close. I&#x27;ve been working on
+the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;graphite&quot;&gt;Graphite&lt;&#x2F;a&gt; project aimed at creating a variation graph tool under the
+&lt;a href=&quot;https:&#x2F;&#x2F;www.open-bio.org&quot;&gt;Open Bioinformatics Foundation&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h1 id=&quot;genome-graphs&quot;&gt;Genome Graphs&lt;&#x2F;h1&gt;
+&lt;p&gt;I shall give an overview of genome graphs; for a more thorough introduction, I
+advise reading  &lt;a href=&quot;https:&#x2F;&#x2F;lh3.github.io&#x2F;2019&#x2F;07&#x2F;08&#x2F;on-a-reference-pan-genome-model&quot;&gt;On a reference pan-genome model&lt;&#x2F;a&gt; or my very own
+&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;posts&#x2F;google-summer-of-code-2019-final-submission&#x2F;2019-06-22-Introduction-to-Variation-Graphs.html&quot;&gt;An Introduction to Variation Graphs&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;ekg.github.io&#x2F;2019&#x2F;07&#x2F;09&#x2F;Untangling-graphical-pangenomics&quot;&gt;Variation graphs&lt;&#x2F;a&gt; are a class of &lt;a href=&quot;https:&#x2F;&#x2F;www.biorxiv.org&#x2F;content&#x2F;10.1101&#x2F;101378v1&quot;&gt;genome graphs&lt;&#x2F;a&gt; that, among other things,
+maintain:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;path information—a full walk within the graph along the edges&lt;&#x2F;li&gt;
+&lt;li&gt;a strong mapping between nodes on the graph and their positions on the
+reference&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;All this with the main aim of representing genomic variation.&lt;&#x2F;p&gt;
+&lt;p&gt;Currently genomes are represented as a consensus; for example, here&#x27;s part of
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vgteam&#x2F;vg&#x2F;blob&#x2F;master&#x2F;test&#x2F;1mb1kgp&#x2F;z.fa&quot;&gt;chromosome 20 of the human genome&lt;&#x2F;a&gt;:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;TGGGAGAGAACTGGAACAAGAACCCAGTGCTCTTTCTGCTCTACCCACTGACCCATCCTCTCACGCATCATACACCCATA
+&lt;&#x2F;span&gt;&lt;span&gt;CTCCCATCCACCCACCTTCCCATTCATGCATTCACCCATTCACCCACCTTCCATCCATCTACCATCCACCACGTACCTAC
+&lt;&#x2F;span&gt;&lt;span&gt;ACTCCCATCTACCATCCAACCACATTTCCATTCACCCATCCTCCCATCCATCAACCCTCCAATCCACCACCCACAGACCT
+&lt;&#x2F;span&gt;&lt;span&gt;TCCCATCCATTCATTTACCCATCCACATATTCACCCACCCTCCCATCCATCCATCTACTGTCTATCACCTACTCATTTTC
+&lt;&#x2F;span&gt;&lt;span&gt;...
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;However, variation &lt;strong&gt;does&lt;&#x2F;strong&gt; exist on this chromosome between individuals.
+To demonstrate, when &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vgteam&#x2F;vg&#x2F;blob&#x2F;master&#x2F;test&#x2F;1mb1kgp&#x2F;z.vcf.gz&quot;&gt;a single file of variation data&lt;&#x2F;a&gt; is &amp;quot;applied&amp;quot; to it we end
+up with a graph that can be represented as in the  below zoomed in section of
+chromosome 20.
+&lt;img src=&quot;&#x2F;images&#x2F;Content&#x2F;Graphs&#x2F;chr20.png&quot; alt=&quot;chr20&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Not all graphs are linear like the one above; in fact, the kind of graphs we&#x27;re
+hoping to generate soon will have many breaks and will look pretty jumbled up.
+The amount of variation within and between genomes depends on a lot of factors
+including but not limited to the organism(s) whose genomes are studying and how
+evolutionarily distant the genomes we are comparing are (pan-genomes).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;reference-bias&quot;&gt;Reference Bias&lt;&#x2F;h2&gt;
+&lt;p&gt;The reference being a consensus introduces a problem known as &lt;a href=&quot;https:&#x2F;&#x2F;www.sevenbridges.com&#x2F;reference-bias-challenges-and-solutions&#x2F;&quot;&gt;reference bias&lt;&#x2F;a&gt;;
+which is analogous to a false negative during read mapping, that is, claiming
+that a variation does not exist where it actually exists.
+&lt;a href=&quot;https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;nbt.4227&quot;&gt;Research&lt;&#x2F;a&gt; has shown an improvement in read mapping of short read data when
+short reads are mapped to a reference graph instead of a reference consensus.&lt;&#x2F;p&gt;
+&lt;p&gt;Currently, graphite shows that we can generate a graph from a reference and
+variation data and progressively update it; not far from what Heng Li theorizes
+in: &lt;a href=&quot;https:&#x2F;&#x2F;lh3.github.io&#x2F;2019&#x2F;07&#x2F;08&#x2F;on-a-reference-pan-genome-model&quot;&gt;On a reference pan-genome model&lt;&#x2F;a&gt;.
+We plan on supporting the generation of graphs from short and long-read data on
+its own (de novo), you can track its progress under
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;graphite&#x2F;projects&#x2F;1&quot;&gt;the alignment project board&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;why-racket&quot;&gt;Why Racket?&lt;&#x2F;h1&gt;
+&lt;p&gt;You may wonder why Graphite is written in Racket yet the project name is
+&lt;a href=&quot;https:&#x2F;&#x2F;summerofcode.withgoogle.com&#x2F;projects&#x2F;#4733198808907776&quot;&gt;Add Variant Graph (VG) support to BioD&lt;&#x2F;a&gt;.
+Genome graphs have been theorized and written about for a while now but there
+are only a few tools that implement them and there has been even much less use
+by bioinformaticians.&lt;&#x2F;p&gt;
+&lt;p&gt;We decided to build something people can use over just adding variation graph
+support to &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;biod&#x2F;biod&quot;&gt;BioD&lt;&#x2F;a&gt; believing that it would&#x27;ve taken me longer to write something
+people could use in D.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-racket-not-another-language-or-lisp&quot;&gt;Why Racket Not Another Language or Lisp?&lt;&#x2F;h2&gt;
+&lt;p&gt;I have experience in functional programming and particularly
+professional experience with LISPs, I could, therefore, move much faster in it.
+Racket is a good LISP to use when working in an unfamiliar domain because it has
+a &lt;strong&gt;straightforward build system&lt;&#x2F;strong&gt; compared to the overhead of the JVM and
+leiningen in the most popular LISP, Clojure does and has an
+&lt;strong&gt;easy to use C&#x2F;C++ FFI&lt;&#x2F;strong&gt;, languages used in a lot of Bioinformatics
+applications and libraries. Being &lt;strong&gt;untyped&lt;&#x2F;strong&gt; and programming in LISP being
+&lt;strong&gt;REPL driven&lt;&#x2F;strong&gt; also helps to venture into unfamiliar territory.
+Racket has &lt;strong&gt;immutability&lt;&#x2F;strong&gt; in a lot, if not all, of its data structures which
+also helps with all the data manipulation we would have to do. Finally, Racket
+also &lt;strong&gt;implements core programming concepts elegantly&lt;&#x2F;strong&gt; compared to many other
+languages for example with its hygienic macros.&lt;&#x2F;p&gt;
+&lt;p&gt;This shouldn&#x27;t make the D community feel betrayed because given what
+we know now, we can always go back and reimplement either all or part of
+Graphite in D, especially for the possible performance improvements.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;done&quot;&gt;Done&lt;&#x2F;h1&gt;
+&lt;p&gt;For the fine detail install and set up Graphite as instructed in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;graphite#graphite&quot;&gt;README&lt;&#x2F;a&gt;
+and run &lt;code&gt;graphite --help&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;underlying-graph-representation&quot;&gt;Underlying Graph Representation&lt;&#x2F;h2&gt;
+&lt;p&gt;We implemented the graph as an association hash table. I went into more detail
+on how it&#x27;s built and the rationale behind certain choices in
+&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;posts&#x2F;google-summer-of-code-2019-final-submission&#x2F;2019-07-15-Creating-the-Initial-Variation-Graph.html&quot;&gt;Creating the Initial Variation Graph&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;posts&#x2F;google-summer-of-code-2019-final-submission&#x2F;2019-07-21-Justifying-SHA256-in-Graphite.html&quot;&gt;Justifying SHA256 in Graphite&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;construct&quot;&gt;Construct&lt;&#x2F;h2&gt;
+&lt;p&gt;Graphite allows you to build an initial graph out of a reference in
+&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;FASTA_format&quot;&gt;FASTA format&lt;&#x2F;a&gt; and a &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Variant_Call_Format&quot;&gt;VCF&lt;&#x2F;a&gt; file.
+In the example below I output a serialized graph but you can output &lt;code&gt;.dot&lt;&#x2F;code&gt; or
+&lt;code&gt;.gfa&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;.&#x2F;bin&#x2F;graphite construct \
+&lt;&#x2F;span&gt;&lt;span&gt; -o rsv1.gra \
+&lt;&#x2F;span&gt;&lt;span&gt; -f gra \
+&lt;&#x2F;span&gt;&lt;span&gt; data&#x2F;RSV&#x2F;refererence_and_vcf_file&#x2F;9465113.fa data&#x2F;RSV&#x2F;refererence_and_vcf_file&#x2F;H_3801_22_04.freebayes.vcf
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;update&quot;&gt;Update&lt;&#x2F;h2&gt;
+&lt;p&gt;Formally, &lt;em&gt;progressive construction&lt;&#x2F;em&gt;. Graphite lets the user update a serialized
+graph generated via &lt;code&gt;construct&lt;&#x2F;code&gt;.
+In the update, it takes serialized graph &lt;code&gt;.gra&lt;&#x2F;code&gt; and variation data in VCF.
+Example:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;.&#x2F;bin&#x2F;graphite update \
+&lt;&#x2F;span&gt;&lt;span&gt; -o rsv2.dot \
+&lt;&#x2F;span&gt;&lt;span&gt; -f dot \
+&lt;&#x2F;span&gt;&lt;span&gt; rsv1.gra data&#x2F;RSV&#x2F;refererence_and_vcf_file&#x2F;fake_H_3801_22_04.freebayes.vcf
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;view&quot;&gt;View&lt;&#x2F;h2&gt;
+&lt;p&gt;Graphite allows you to generate graphs in&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;dot&lt;&#x2F;strong&gt; for visualization via &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Graphviz&quot;&gt;GraphViz&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;gfa&lt;&#x2F;strong&gt; for visualization with tools like &lt;a href=&quot;https:&#x2F;&#x2F;rrwick.github.io&#x2F;Bandage&#x2F;&quot;&gt;bandage&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;gra&lt;&#x2F;strong&gt; a serialized graph, it can&#x27;t be visualized.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Using &lt;code&gt;update&lt;&#x2F;code&gt; and &lt;code&gt;view&lt;&#x2F;code&gt;, one can visualize changes introduced by different VCF
+files as of writing this.
+The view command takes a serialized graph &lt;code&gt;.gra&lt;&#x2F;code&gt;, an output format, and an output
+file as arguments.
+Example:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;.&#x2F;bin&#x2F;graphite view \
+&lt;&#x2F;span&gt;&lt;span&gt; -o rsv1.dot \
+&lt;&#x2F;span&gt;&lt;span&gt; -f dot \
+&lt;&#x2F;span&gt;&lt;span&gt; rsv1.gra
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;to-do&quot;&gt;To Do&lt;&#x2F;h1&gt;
+&lt;p&gt;Look at the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;graphite&#x2F;projects&quot;&gt;Graphite project boards&lt;&#x2F;a&gt; for further detail.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;partial-order-alignment&quot;&gt;Partial Order Alignment&lt;&#x2F;h2&gt;
+&lt;p&gt;This would allow for aligning reads to a graph or against each other bypassing
+the consensus reference.&lt;&#x2F;p&gt;
+&lt;p&gt;For now, graphite can only align against strings (however this functionality
+isn&#x27;t exposed because it&#x27;s not ready yet) mainly because it only
+stores forward edges which makes it hard to implement
+Partial Order Alignment (POA) which strictly depends on backward edges.
+The short term options are adding a pre-processing
+step to generate backward edges or using Racket&#x27;s FFI to call &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rvaser&#x2F;spoa&quot;&gt;spoa&lt;&#x2F;a&gt; or &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vgteam&#x2F;gssw&quot;&gt;gssw&lt;&#x2F;a&gt;.
+In the medium to long term Graphite&#x27;s nodes should support backward edges which
+would, on top of assisting with POA, allow for encoding more complex mutations
+such as inversions.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;search&quot;&gt;Search&lt;&#x2F;h2&gt;
+&lt;p&gt;This involves having a kmer, the substring of a genome, and searching for its
+most likely position in the graph.
+I have multiple problems with this as of now such as completely not finding
+kmers at all or having them point to the wrong location.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;complementarity&quot;&gt;Complementarity&lt;&#x2F;h3&gt;
+&lt;p&gt;Graphite doesn&#x27;t support complementarity (only supports the positive strands)
+therefore searching for a kmer in the negative strand wouldn&#x27;t even work.
+I am evaluating different ways of implementing complementarity.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;a-graph-extension-of-the-burrows-wheeler-transform&quot;&gt;A Graph Extension of the Burrows-Wheeler Transform&lt;&#x2F;h3&gt;
+&lt;p&gt;Search doesn&#x27;t work for some strings and even worse the method I am using to
+build the index is not ideal. Currently, I am building the FM index via a
+Burrows-Wheeler Transform (BWT) which is in turn built from rotating the given
+string, this is far from ideal.
+A better strategy I am considering is:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;generate a suffix tree via &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Ukkonen%27s_algorithm&quot;&gt;Ukkonen&#x27;s algorithm&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;traverse the suffix tree via a depth-first search to build a suffix array&lt;&#x2F;li&gt;
+&lt;li&gt;use the suffix array to generate a BWT&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;I could then complement the BWT and then generate the FM index and therefore
+get fast queries onto the graph.
+I believe this to be the basic idea behind
+&lt;a href=&quot;https:&#x2F;&#x2F;www.biorxiv.org&#x2F;content&#x2F;10.1101&#x2F;051409v1&quot;&gt;A Graph Extension of the Positional Burrows-Wheeler Transform and its Applications&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;adding-a-metadata-field&quot;&gt;Adding a Metadata Field&lt;&#x2F;h2&gt;
+&lt;p&gt;We could add a metadata field to the nodes which will allow for something
+like inbuilt annotation support.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;miscellaneous&quot;&gt;Miscellaneous&lt;&#x2F;h2&gt;
+&lt;p&gt;Another feature not related to Bioinformatics but is surprisingly lacking in Racket
+is to extend &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;racket&#x2F;racket&#x2F;blob&#x2F;master&#x2F;racket&#x2F;collects&#x2F;racket&#x2F;cmdline.rkt&quot;&gt;cmdline&lt;&#x2F;a&gt; to have command-line options as is described in
+&lt;a href=&quot;https:&#x2F;&#x2F;pavpanchekha.com&#x2F;blog&#x2F;multi-command-line.html&quot;&gt;Multi-command-line in Racket&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;To reiterate, you can look at these 3 other posts regarding Graphite:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;posts&#x2F;google-summer-of-code-2019-final-submission&#x2F;2019-06-22-Introduction-to-Variation-Graphs.html&quot;&gt;An Introduction to Variation Graphs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;posts&#x2F;google-summer-of-code-2019-final-submission&#x2F;2019-07-15-Creating-the-Initial-Variation-Graph.html&quot;&gt;Creating the Initial Variation Graph&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;posts&#x2F;google-summer-of-code-2019-final-submission&#x2F;2019-07-21-Justifying-SHA256-in-Graphite.html&quot;&gt;Justifying SHA256 in Graphite&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;acknowledgements&quot;&gt;Acknowledgements&lt;&#x2F;h1&gt;
+&lt;p&gt;I&#x27;d like to acknowledge the contribution of the following organizations and people.&lt;&#x2F;p&gt;
+&lt;p&gt;Sponsors:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;summerofcode.withgoogle.com&quot;&gt;Google Summer of Code&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.open-bio.org&quot;&gt;Open Bioinformatics Foundation&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;my mentors:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;george-githinji&quot;&gt;George Githinji&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pjotrp&quot;&gt;Pjotr Prins&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;and those who weren&#x27;t my mentors but helped along the way by offering
+technical advice, testing graphite, reading the code or reviewing the blog posts:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;alanorth&quot;&gt;Alan Orth&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ekg&quot;&gt;Erik Garrison&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jasonrogena&quot;&gt;Jason Rogena&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;hipstermojo&quot;&gt;Kenneth Gitere&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;kevthanewversi&quot;&gt;Kevin Murimi&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>wai-devel final submission</title>
+		<published>2015-08-21T19:14:34+00:00</published>
+		<updated>2015-08-21T19:14:34+00:00</updated>
+		<link href="https://njagi.me/posts/wai-devel-final-submission/" type="text/html"/>
+		<id>https://njagi.me/posts/wai-devel-final-submission/</id>
+		<content type="html">&lt;p&gt;This is the final day of code submissions to Google for Google Summer of Code.
+So it&#x27;s only fair that I give the community a report on the current state of affairs regarding wai-devel.&lt;br &#x2F;&gt;
+This is more of a very detailed changelog than a blog post about wai-devel.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;what-wai-devel-expects-from-your-application&quot;&gt;What wai-devel expects from your application.&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;NOTHING&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+Yes, wai-devel expects nothing from your application.
+However, your application shall receive a port number through the environment variable &lt;code&gt;PORT&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;UPDATE:&lt;&#x2F;em&gt;
+Due to it&#x27;s reliance on ide-backend you also have to set the environment variable &lt;code&gt;GHC_PACKAGE_PATH&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-port-is-used-for&quot;&gt;What PORT is used for:&lt;&#x2F;h3&gt;
+&lt;p&gt;Your application shall listen for connections on &lt;code&gt;localhost:&amp;lt;PORT&amp;gt;&lt;&#x2F;code&gt;
+wai-devel by default creates a reverse proxy from port number 3000 to your application which is listening in on PORT.&lt;br &#x2F;&gt;
+You can change the port from the default port 3000 by setting the environment variable PORT yourself.&lt;&#x2F;p&gt;
+&lt;p&gt;wai-devel takes PORT and then cycles through various port numbers adding 1 to PORT to find a port that is free, sets that as the destination port and changes the PORT environment variable to that destination port. Therefore we can reverse proxy from PORT to a random port.&lt;&#x2F;p&gt;
+&lt;p&gt;Reverse proxying is important for error reporting, future proofing and other ways of abstracting away the services wai-devel provides to your application.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;more-reliable-dirtiness-checking&quot;&gt;More reliable dirtiness checking.&lt;&#x2F;h2&gt;
+&lt;p&gt;wai-devel will use the the module you have chosen to find the files to watch for changes in.
+It watches the files it imports and their Template Haskell dependencies as well as the cabal file.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;compatibility-with-haskell-wai-applications&quot;&gt;Compatibility with Haskell wai-applications.&lt;&#x2F;h2&gt;
+&lt;p&gt;wai-devel works with your usual yesod scaffold from yesod-bin out of the box and should work with other haskell wai apps as long as they use the PORT environment variable.&lt;&#x2F;p&gt;
+&lt;p&gt;You can pass the filepath and function to run via command line arguments &lt;code&gt;--path&lt;&#x2F;code&gt; or &lt;code&gt;-p&lt;&#x2F;code&gt; and function &lt;code&gt;--function&lt;&#x2F;code&gt; or &lt;code&gt;-f&lt;&#x2F;code&gt;.
+When these aren&#x27;t passed it assumes Application.develMain (borrowed from yesod).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;yet-to-come&quot;&gt;Yet to come.&lt;&#x2F;h2&gt;
+&lt;p&gt;I will be actively developing wai-devel well after Google Summer of Code is over (that is today).&lt;&#x2F;p&gt;
+&lt;p&gt;The following are coming next:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Show build progress in the browser.&lt;&#x2F;li&gt;
+&lt;li&gt;Provide a dashboard page with compilation status, garbage collection statistics, and other useful meta-information.&lt;&#x2F;li&gt;
+&lt;li&gt;Port to Windows. (This depends on ide-backend getting ported to Windows.)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+</feed>

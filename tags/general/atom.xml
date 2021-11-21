@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - General</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/general/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2014-03-05T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/general/atom.xml</id>
+	<entry xml:lang="en">
+		<title>How to Apply a Patch</title>
+		<published>2014-03-05T00:00:00+00:00</published>
+		<updated>2014-03-05T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/how-to-apply-a-patch-quickly/" type="text/html"/>
+		<id>https://njagi.me/posts/how-to-apply-a-patch-quickly/</id>
+		<content type="html">&lt;p&gt;So you really should read more on this but of you are in a hurry.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;You should get your source then copy the .patch or .diff into the root of the source file. Then run &lt;code&gt;git apply patch_name&lt;&#x2F;code&gt;. If you don&#x27;t have git installed you can use the patch command. How to use it is in the first link below.&lt;&#x2F;p&gt;
+&lt;p&gt;Other places you can read on the same including how to make one include:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;jungels.net&#x2F;articles&#x2F;diff-patch-ten-minutes.html&quot;&gt;The Ten Minute Guide to diff and patch&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;git-scm.com&#x2F;docs&#x2F;git-apply&quot;&gt;git apply&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;blog.linuxacademy.com&#x2F;linux&#x2F;introduction-using-diff-and-patch&#x2F;&quot;&gt;Introduction: Using diff and patch&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

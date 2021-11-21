@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - OSX</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/osx/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2016-05-09T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/osx/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Apple Deprecates the Use of OpenSSL</title>
+		<published>2016-05-09T00:00:00+00:00</published>
+		<updated>2016-05-09T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/apple-deprecates-the-use-of-openssl/" type="text/html"/>
+		<id>https://njagi.me/posts/apple-deprecates-the-use-of-openssl/</id>
+		<content type="html">&lt;p&gt;During a brew upgrade I noticed that apple has deprecated the use of OpenSSL.&lt;&#x2F;p&gt;
+&lt;p&gt;Apple has deprecated use of OpenSSL in favour of its own TLS and crypto libraries&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;==&amp;gt; Downloading https:&#x2F;&#x2F;homebrew.bintray.com&#x2F;bottles&#x2F;openssl-1.0.2h.el_capitan.bottle.tar.gz
+&lt;&#x2F;span&gt;&lt;span&gt;######################################################################## 100.0%
+&lt;&#x2F;span&gt;&lt;span&gt;==&amp;gt; Pouring openssl-1.0.2h.el_capitan.bottle.tar.gz
+&lt;&#x2F;span&gt;&lt;span&gt;==&amp;gt; Caveats
+&lt;&#x2F;span&gt;&lt;span&gt;A CA file has been bootstrapped using certificates from the system
+&lt;&#x2F;span&gt;&lt;span&gt;keychain. To add additional certificates, place .pem files in
+&lt;&#x2F;span&gt;&lt;span&gt;  &#x2F;usr&#x2F;local&#x2F;etc&#x2F;openssl&#x2F;certs
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;and run
+&lt;&#x2F;span&gt;&lt;span&gt;  &#x2F;usr&#x2F;local&#x2F;opt&#x2F;openssl&#x2F;bin&#x2F;c_rehash
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;This formula is keg-only, which means it was not symlinked into &#x2F;usr&#x2F;local.
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Apple has deprecated use of OpenSSL in favor of its own TLS and crypto libraries
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Generally there are no consequences of this for you. If you build your
+&lt;&#x2F;span&gt;&lt;span&gt;own software and it requires this formula, you&amp;#39;ll need to add to your
+&lt;&#x2F;span&gt;&lt;span&gt;build variables:
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    LDFLAGS:  -L&#x2F;usr&#x2F;local&#x2F;opt&#x2F;openssl&#x2F;lib
+&lt;&#x2F;span&gt;&lt;span&gt;    CPPFLAGS: -I&#x2F;usr&#x2F;local&#x2F;opt&#x2F;openssl&#x2F;include
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I know people are getting tired of all openSSL holes but this sounds like PR or overkill.
+Why not use something that exists? Why not name the lib they are favouring over openSSL?
+Is this security by obscurity or do they assume their users won&#x27;t understand it?
+Notice this: &lt;em&gt;&amp;quot;Generally there are no consequences of this for you.&amp;quot;&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I’ve heard good things about libreSSL which I would assume is what they’d use.
+Since it&#x27;s a BSD thing and OSX is BSD.&lt;&#x2F;p&gt;
+&lt;p&gt;I wonder what the future of OpenSSL is though this has been a long time coming.
+I also wonder whether we&#x27;ll start seeing more of this in the Linux server world.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

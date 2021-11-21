@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - C++</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/c/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2014-12-08T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/c/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Object Oriented Programming in C++</title>
+		<published>2014-12-08T00:00:00+00:00</published>
+		<updated>2014-12-08T00:00:00+00:00</updated>
+		<link href="https://njagi.me/wiki/object-oriented-programming-in-c/" type="text/html"/>
+		<id>https://njagi.me/wiki/object-oriented-programming-in-c/</id>
+		<content type="html">&lt;p&gt;These notes assume you&#x27;re familiar with functions, classes, inheritance and
+objects. This would be a good read for those taking &lt;a href=&quot;http:&#x2F;&#x2F;www.mu.ac.ke&#x2F;informationscience&#x2F;index.php&#x2F;academic-prorammes&#x2F;bachelor-programmes&#x2F;bachelor-of-science-in-informatics#second-semester&quot;&gt;INF 332&lt;&#x2F;a&gt; but a C++ text
+book or &lt;a href=&quot;https:&#x2F;&#x2F;en.wikibooks.org&#x2F;wiki&#x2F;C%2B%2B_Programming&#x2F;Classes&quot;&gt;this wikibooks article&lt;&#x2F;a&gt; would be better.
+I also use a lot of example code  so that it becomes easy for you (and me later)
+to follow along.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;definitions&quot;&gt;Definitions&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;Data member&lt;&#x2F;strong&gt;: (attribute) a variable accessible from within the class or
+global within the class.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Member function&lt;&#x2F;strong&gt;: (method) a function in a class.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Abstract class&lt;&#x2F;strong&gt;: A class containing at least one pure virtual function.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Getter&lt;&#x2F;strong&gt;: (accessor) a function used to access or get the value held by a
+private data member. These variable names often start with &lt;code&gt;get&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Setter&lt;&#x2F;strong&gt;: (modifier) a function used to modify or set the value held by a
+private data member. These variable names often start with &lt;code&gt;set&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Struct vs Class&lt;&#x2F;strong&gt;: There are two ways to define a class in C++.
+Using class and using struct.
+When using class all that is within the braces is private by default unless
+otherwise specified.
+When using struct all that is within the braces is public unless otherwise
+specified.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;this&lt;&#x2F;strong&gt; It&#x27;s a special pointer used to refer to the current object at the time.
+To use it dereference the pointer like so &lt;code&gt;this -&amp;gt; memFunction()&lt;&#x2F;code&gt; or
+&lt;code&gt;(*this).memFunction()&lt;&#x2F;code&gt; to call member functions of the object itself.
+In a human analogy it&#x27;s a pronoun the object can use to refer to itself;
+among people this would be &amp;quot;me&amp;quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Base class&lt;&#x2F;strong&gt;: a class from which other classes are derived&#x2F;inherit from.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Child class&lt;&#x2F;strong&gt;: a class that was derived from another, that class will then be
+its parent class.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Parent class&lt;&#x2F;strong&gt;: A parent class is the closest class that we derived from to
+create the one we are referencing as the child class.
+The one right above in the inheritance hierarchy.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;access-labels&quot;&gt;Access Labels&lt;&#x2F;h2&gt;
+&lt;p&gt;These are private, public and protected.
+They are used within classes to set access permissions for the members in that
+section of the class.
+They are also used for base classes to specify how you want the base class
+inherited as shown in the table below.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;public&lt;&#x2F;strong&gt;: This label indicates any members within the &#x27;public&#x27; section can be
+accessed freely anywhere a declared object is in scope.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;private&lt;&#x2F;strong&gt;: Members defined as private are only accessible within the class
+defining them, or friend classes. Usually the domain of member variables and
+helper functions.
+It&#x27;s often useful to begin putting functions here and then moving them to the
+higher access levels as needed so to reduce complexity.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;protected&lt;&#x2F;strong&gt;: The protected label has a special meaning to inheritance,
+protected members are accessible in the class that defines them and in classes
+that inherit from that base class, or friends of it.&lt;&#x2F;p&gt;
+&lt;p&gt;During inheritance things may change slightly as shown in this table.
+How things were in the parent class in terms of access lables may not be so in
+the child class.&lt;&#x2F;p&gt;
+&lt;p&gt;By type of inheritance I mean:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;class childClass: private parentClass&lt;&#x2F;em&gt; is private inheritance&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;class childClass: protected parentClass&lt;&#x2F;em&gt; is protected inheritance&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;class childClass: public parentClass&lt;&#x2F;em&gt; is public inheritance&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The following table indicates how the attributes are inherited in the three
+different types of inheritance:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;type of inheritance&lt;&#x2F;th&gt;&lt;th&gt;private&lt;&#x2F;th&gt;&lt;th&gt;protected&lt;&#x2F;th&gt;&lt;th&gt;public&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Private inheritance&lt;&#x2F;td&gt;&lt;td&gt;The member is inaccessible.&lt;&#x2F;td&gt;&lt;td&gt;The member is private.&lt;&#x2F;td&gt;&lt;td&gt;The member is private.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Protected inheritance&lt;&#x2F;td&gt;&lt;td&gt;The member is inaccessible.&lt;&#x2F;td&gt;&lt;td&gt;The member is protected&lt;&#x2F;td&gt;&lt;td&gt;The member is protected&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Public inheritance&lt;&#x2F;td&gt;&lt;td&gt;The member is inaccessible.&lt;&#x2F;td&gt;&lt;td&gt;The member is protected&lt;&#x2F;td&gt;&lt;td&gt;The member is public&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;&lt;em&gt;Table copied entirely from the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikibooks.org&#x2F;wiki&#x2F;C%2B%2B_Programming&#x2F;Classes&quot;&gt;wikibooks&lt;&#x2F;a&gt; article&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;constructors&quot;&gt;Constructors&lt;&#x2F;h2&gt;
+&lt;p&gt;A constructor is a special member function that is called &lt;em&gt;whenever&lt;&#x2F;em&gt; a new
+instance of a class is created.
+The compiler calls the  constructor &lt;em&gt;after&lt;&#x2F;em&gt; the new object has been allocated in
+memory, and converts that &amp;quot;raw&amp;quot; memory into a proper, typed object
+(typed here means the class becomes a type of the same level with int, string
+and so forth).&lt;&#x2F;p&gt;
+&lt;p&gt;A constructor is used to assign values to the data members that the creator of
+the class choses.
+If you don&#x27;t declare a constructor the compiler will impicitly make one for you.&lt;&#x2F;p&gt;
+&lt;p&gt;The constructor is declared much like a normal member function but it:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Doesn&#x27;t have a type annotation meaning it doesn&#x27;t start with the name of a
+type such as int or string.&lt;&#x2F;li&gt;
+&lt;li&gt;Has to have the same name as the class.&lt;&#x2F;li&gt;
+&lt;li&gt;Has no return value (Meaning it also has no return statement).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The constructor may or may not have arguments.
+A constructor that does not take arguments is called a &lt;strong&gt;default constructor&lt;&#x2F;strong&gt;,
+while a constructor that takes argument(s) is a &lt;strong&gt;non-default constructor&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Overloading&lt;&#x2F;strong&gt;: This is the ability to create multiple methods of the same name
+but with different implementations.
+Calls to an overloaded function will run a specific implementation of that
+function appropriate to the context of the call, allowing one function call to
+perform different tasks depending on context.&lt;&#x2F;p&gt;
+&lt;p&gt;So let&#x27;s rewrite this in a way that combines constructors and contructor
+overloading.
+Don&#x27;t focus on what the code in the constructors does since I haven&#x27;t yet
+covered it.
+However, take note that the constructors were called depending on the arguments
+that the objects passed to them.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;iostream&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;using namespace&lt;&#x2F;span&gt;&lt;span&gt; std;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;employee &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; emp_num;
+&lt;&#x2F;span&gt;&lt;span&gt;  string emp_name;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;employee &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {&lt;&#x2F;span&gt;&lt;span&gt; cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Default constructor of employee ran.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;employee &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int num&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;emp_num &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;num&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;emp_name &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Employee &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d33682;&quot;&gt;this &lt;&#x2F;span&gt;&lt;span&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getName&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt; created. With number &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d33682;&quot;&gt;this &lt;&#x2F;span&gt;&lt;span&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getNum&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;employee &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int num&lt;&#x2F;span&gt;&lt;span&gt;, string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;emp_num &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;num&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;emp_name &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Employee &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d33682;&quot;&gt;this &lt;&#x2F;span&gt;&lt;span&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getName&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt; created. With number &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d33682;&quot;&gt;this &lt;&#x2F;span&gt;&lt;span&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getNum&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getName&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return&lt;&#x2F;span&gt;&lt;span&gt; emp_name; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getNum&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return&lt;&#x2F;span&gt;&lt;span&gt; emp_num; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;  employee jack; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; It&amp;#39;s not &amp;quot;objectName ()&amp;quot; but &amp;quot;objectName&amp;quot;. No empty brackets.
+&lt;&#x2F;span&gt;&lt;span&gt;  employee &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;mo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;123&lt;&#x2F;span&gt;&lt;span&gt;, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Nikki&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  employee &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;jackie &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Jackson&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;254&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;   Output:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;   Default constructor of employee ran.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;   Employee Nikki created. With number 123
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;   Employee Jackson created. With number 254
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;*&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A constructor has the same name as the class, doesn&#x27;t begin with
+a type annotation and returns nothing.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;default-parameters&quot;&gt;Default parameters&lt;&#x2F;h3&gt;
+&lt;p&gt;It&#x27;s a good idea to read on the below constructor initialization lists first
+then read this before looking at the example code.
+Sometimes we may want to have a default value initialised to a data member in
+case the creator of an object doesn&#x27;t give it a value.
+In such situations we have default parameters.
+In the code below (the one under constructor initialization lists) we see that
+the constructor assumes that any phone that hasn&#x27;t had a parameter passed to it
+is a Phablet.
+Note that we have applied overloading to the constructor.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;constructor-initalization-lists&quot;&gt;Constructor initalization lists&lt;&#x2F;h3&gt;
+&lt;p&gt;These are also called &lt;em&gt;member initialization lists&lt;&#x2F;em&gt;.
+They are used to initialize data members and base classes in the cases of
+non-default constructors.&lt;&#x2F;p&gt;
+&lt;p&gt;Why do we need constructor initialization lists?&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;We save by not having to do an assignment.&lt;&#x2F;li&gt;
+&lt;li&gt;The compiler knows to construct the object with that value in memory.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;It would otherwise construct the object in memory and then start assigning
+values to it&#x27;s member functions.
+This would lead be bad for performance.&lt;&#x2F;p&gt;
+&lt;p&gt;Explained further: the difference between using constructor initialization list
+and custom constructors through assignment is run-time speed.
+If you have a class with a few large data members, assignment construction
+(or constructing by assignment) can create a lot of extra overhead.&lt;&#x2F;p&gt;
+&lt;p&gt;Constructors are used to assign values to data members however the
+initialization isn&#x27;t done within the body of constructors; such kind of
+initialization would actually be &lt;em&gt;assignment&lt;&#x2F;em&gt; and not initialization and would
+have the drawbacks stated above.
+Keep in mind that data members are initialized in the order they are
+&lt;em&gt;declared&lt;&#x2F;em&gt;, not the order they appear in the constructor initialisation list.
+It is therefore good practice to add the data members to the initializer list
+in the same order they&#x27;re declared.&lt;&#x2F;p&gt;
+&lt;p&gt;To quote the wikibook on C++ classes under constructor initialization lists:
+&lt;em&gt;The C++ standard defines that all initialization of data members are done
+before entering the body of constructors.
+This is the reason why certain types (const types and references) cannot be
+assigned to and must be initialized in the constructor initialization list.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Note: &lt;em&gt;we didn&#x27;t assign. The values look like paramters being passed to data
+members.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;iostream&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;using namespace&lt;&#x2F;span&gt;&lt;span&gt; std;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;phones &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F;Much thanks to crazypyro in ##programming freenode irc
+&lt;&#x2F;span&gt;&lt;span&gt;  string my_name;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; A default crazypro argument.
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;phones&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;my_name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;( &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Phablet&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Default name is: &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d33682;&quot;&gt;this &lt;&#x2F;span&gt;&lt;span&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;get_name &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;phones&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;my_name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt; name &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Non default name is: &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d33682;&quot;&gt;this &lt;&#x2F;span&gt;&lt;span&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;get_name &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;get_name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return&lt;&#x2F;span&gt;&lt;span&gt; my_name;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;  phones xiamoi;
+&lt;&#x2F;span&gt;&lt;span&gt;  phones &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;samsung &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Samsung&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Output:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Default name is: Phablet
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Non default name is: Samsung
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;*&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We&#x27;ve overloaded the constructor but used constructor initialization lists
+instead of assigning values. We also passed a default parameter &amp;quot;phablet&amp;quot; to
+the class phones.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;destructors&quot;&gt;Destructors&lt;&#x2F;h3&gt;
+&lt;p&gt;The Destructor is a special function that is invoked AFTER an object has been
+destroyed to restore the system to a desired state.
+Destructors, like constructors, are declared like any normal member function but
+will share the same name as the class and also lack a type annotation and a
+return value.
+What distinguishes them from constructors is that the destructor&#x27;s name is
+preceded by a &amp;quot;~&amp;quot;.
+A destructor also can not have arguments and therefore doesn&#x27;t require brackets
+after the destructor name.
+It also can&#x27;t be overloaded.
+Destructors are called whenever an object of the class it belongs to is
+destroyed.
+Destructors are crucial in avoiding resource leaks (by deallocating memory) and
+in implementing the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Resource_Acquisition_Is_Initialization&quot;&gt;RAII idiom&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Sadly in this section there are some concepts of memory management that you may
+not be familiar with.
+You can ignore them and just focus on how to declare a destructor but it might
+be better if you read this &lt;a href=&quot;https:&#x2F;&#x2F;en.wikibooks.org&#x2F;wiki&#x2F;C%2B%2B_Programming&#x2F;Memory_Management&quot;&gt;wikibooks page on memory management in C++&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;iostream&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;using namespace&lt;&#x2F;span&gt;&lt;span&gt; std;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;first &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; random;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;first&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;first created.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;~first&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;first destroyed.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;composition &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;first&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt; firstObj;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;composition &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    firstObj &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;new&lt;&#x2F;span&gt;&lt;span&gt; first;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;firstObj &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;NULL&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;      cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;firstObj points to an object of first&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;An object of composition has been created.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;~composition&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;delete&lt;&#x2F;span&gt;&lt;span&gt; firstObj;
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;composition destroyed.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;  composition com;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Output:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;first created.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;firstObj points to an object of first
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;An object of composition has been created.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;first destroyed.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;composition destroyed.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;With delete firsObj ommited:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;first created.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;firstObj points to an object of first
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;An object of composition has been created.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;composition destroyed.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;*&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We created the object firstObj on the heap and therefore had to destroy it in
+class composition&#x27;s destructor (~composition () ).
+If the line delete firstObj was ommited that would lead to a memory leak
+(memory is held by the program that it shouldn&#x27;t hold).
+You can try it out yourself.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;static&quot;&gt;Static&lt;&#x2F;h3&gt;
+&lt;p&gt;The static keyword can be used to:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;create permanent storage for local variables in a function&lt;&#x2F;li&gt;
+&lt;li&gt;specify internal linkage&lt;&#x2F;li&gt;
+&lt;li&gt;declare member functions that act like non-member functions&lt;&#x2F;li&gt;
+&lt;li&gt;create a single copy of a data member&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;Static member functions&lt;&#x2F;strong&gt;
+Member functions or variables declared static are shared between all instances
+of an object type.
+Meaning that only one copy of the member function or variable exists for any object type&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Member functions callable without an object&lt;&#x2F;strong&gt;
+These member functions are callable even without an object.
+This means that static member functions can be called without creating instances
+of the class. Normally member functions seem to take an implicit &lt;em&gt;this&lt;&#x2F;em&gt;
+parameter. However, in the case of static member functions this isn&#x27;t the case,
+since they behave as some sort of free (not tied to a class) function.&lt;&#x2F;p&gt;
+&lt;p&gt;To initialize an a static data member you initialize it in the scope right
+outside of the class and refer to it using double semi colons.
+In the below code we see the static data member, citizens::citizenship, being
+initialized in line 19.
+We use the double colon &lt;code&gt;::&lt;&#x2F;code&gt; to show [scope] that is, the level of abstraction
+that a part of our program (class, function, variable) belongs to.
+In this case citizenship and functions inside citizens are declared in a
+different level of abstraction (in class citizens) than where they are being
+called in the case of funtions or initialized in the case of data members
+(citizenship).&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;iostream&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;using namespace&lt;&#x2F;span&gt;&lt;span&gt; std;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;citizens &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;static&lt;&#x2F;span&gt;&lt;span&gt; string citizenship;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;citizens &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;New citizen created.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;static &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;setCitizenship&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;ctzn&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    citizenship &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; ctzn;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;static&lt;&#x2F;span&gt;&lt;span&gt; string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getCitizenship&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return&lt;&#x2F;span&gt;&lt;span&gt; citizenship;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;string citizens::citizenship &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&amp;quot;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; Initalizing citizenship to an empty string.
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;  citizens::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;setCitizenship &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Kenyan&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;citizens::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getCitizenship&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Output:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Kenyan
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;*&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We are interacting with citizenship without having created a citizen.
+Note that the constructor for citizenship never ran or else we would&#x27;ve seen
+the output &amp;quot;New citizen created.&amp;quot;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Named constructors&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Named constructors are functions used to create an object of a class without
+(directly) using it&#x27;s constructors.
+Going by how we said that static member functions can be called without
+belonging to an object it means we can use static member functions to make a
+call to a named constructor.
+This can be translated to manually calling the constructor.
+Consequently, we chose the contructor we want to call.&lt;&#x2F;p&gt;
+&lt;p&gt;Other reasons we may want to use named constructors:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;to circumvent the restriction that constructors can be overloaded only if
+their signatures differ.&lt;&#x2F;li&gt;
+&lt;li&gt;making the class non-inheritable by making the constructors private.&lt;&#x2F;li&gt;
+&lt;li&gt;preventing stack allocation by making constructors private&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;In the code below we&#x27;re taking different doubles but we are passing them
+differently to the constructor of the class &lt;code&gt;Temperature&lt;&#x2F;code&gt;.
+If this was part of an API it would give the programmer more freedom since the
+internal representation of temparature would be the same but they can think of
+temperature in the way they are most comfortable.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;iostream&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;using namespace&lt;&#x2F;span&gt;&lt;span&gt; std;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Temperature
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F;these static functions return a temporary object of type Temperature
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;static&lt;&#x2F;span&gt;&lt;span&gt; Temperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Fahrenheit &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;double f&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;static&lt;&#x2F;span&gt;&lt;span&gt; Temperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Celsius &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;double c&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;static&lt;&#x2F;span&gt;&lt;span&gt; Temperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Kelvin &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;double k&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F;A static member function can&amp;#39;t refer to non-static data.
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;double &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getTemperature&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return&lt;&#x2F;span&gt;&lt;span&gt; _temp; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;private&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Temperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;double temp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F;Constructor is private.
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;double&lt;&#x2F;span&gt;&lt;span&gt; _temp;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F;_temp instantiated outside of Temparature class.
+&lt;&#x2F;span&gt;&lt;span&gt;Temperature::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Temperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;double temp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;_temp &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;temp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Temperature Temperature::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Fahrenheit &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;double f&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Temperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;((&lt;&#x2F;span&gt;&lt;span&gt;f &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;+ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;459.67&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) &#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;1.8&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Temperature Temperature::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Celsius &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;double c&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Temperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;c &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;+ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;273.15&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Temperature Temperature::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Kelvin &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;double k&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Temperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;k&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; We are initializing the objects created here via kelvin(), celsius() and fahrenheit()
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; to objects
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; kelvin, celsius and fahrenheit.
+&lt;&#x2F;span&gt;&lt;span&gt;  Temperature kelvin &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;Temperature::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Kelvin &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;300.0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  Temperature celsius &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;Temperature::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Celsius &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;26.85&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  Temperature fahrenheit &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;Temperature::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;Fahrenheit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;80.33&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Entered kelvin &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; kelvin.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getTemperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Entered celsius &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; celsius.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getTemperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Entered fahrenheit &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; fahrenheit.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getTemperature &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() &amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Output:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Entered kelvin 300
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Entered celsius 300
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Entered fahrenheit 300
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;*&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;One cannot define a static function ( or a member function) that refers to
+non-static data.
+We are initializing the objects created here via functions Kelvin(), Celsius()
+and Fahrenheit() to objects kelvin, celsius and fahrenheit so these objects will
+be created holding these objects.
+The static functions in this code example return a temporary object of type
+Temperature each.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;composition&quot;&gt;Composition&lt;&#x2F;h3&gt;
+&lt;p&gt;A composition is a class which has at least one of it&#x27;s data members being an
+object of another class.
+For example below the class composition is a composition.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;iostream&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;using namespace&lt;&#x2F;span&gt;&lt;span&gt; std;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;bird &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  string species;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;bird &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;New bird created.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;setSpecies &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;sp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    species &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; sp;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getSpecies &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return&lt;&#x2F;span&gt;&lt;span&gt; species;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;composition &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  bird chicken;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;  composition newComposition;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Output:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  New bird created.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;*&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;inheritance&quot;&gt;Inheritance&lt;&#x2F;h3&gt;
+&lt;p&gt;So inheritance is a rather huge topic for me to explain here.
+It&#x27;s best you read it elsewhere.
+I shall just explain how to do inheritance in C++.
+Multiple inheritance to be specific.
+In the below case we shall have 3 classes&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;two base classes
+&lt;ul&gt;
+&lt;li&gt;baseClassA&lt;&#x2F;li&gt;
+&lt;li&gt;baseClassB;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;one child class that will inherit from both classes
+&lt;ul&gt;
+&lt;li&gt;childClass.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;We shall see the use of constructor initialization lists with multiple
+inheritance and regarding constructors of parent classes.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;iostream&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;using namespace&lt;&#x2F;span&gt;&lt;span&gt; std;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;baseClassA &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  string aString;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;baseClassA &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;aStr&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;aString&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;aStr&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Base class A object created.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;baseClassB &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; bInt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;baseClassB &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int bin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;bInt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;bin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Base class B object created&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;childClass&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;baseClassA&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;baseClassB &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;bool&lt;&#x2F;span&gt;&lt;span&gt; cBool;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;childClass&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;bool bul&lt;&#x2F;span&gt;&lt;span&gt;, string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;aStr&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int bIn&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;cBool&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;bul&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;baseClassA&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;aStr&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;baseClassB &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;bIn&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Child class of multiple inheritance object created.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;  childClass &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;kid &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;true&lt;&#x2F;span&gt;&lt;span&gt;, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;cats&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;3&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Output:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Base class A object created.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Base class B object created
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Child class of multiple inheritance object created.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;*&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;dynamic-polymorphism&quot;&gt;Dynamic Polymorphism&lt;&#x2F;h3&gt;
+&lt;p&gt;It would do you better to read this &lt;a href=&quot;https:&#x2F;&#x2F;en.wikibooks.org&#x2F;wiki&#x2F;C%2B%2B_Programming&#x2F;Classes#Dynamic_polymorphism_.28Overrides.29&quot;&gt;Dynamic polymorphism&lt;&#x2F;a&gt; but since I already
+read it I&#x27;ll just give you the part that I feel is most relevant.&lt;&#x2F;p&gt;
+&lt;p&gt;Suppose that we have two classes, A and B. B derives from A and redefines the
+implementation of a method c() that resides in class A.
+Now suppose that we have an object b of class B. How should the instruction
+b.c() be interpreted?&lt;&#x2F;p&gt;
+&lt;p&gt;If b is declared in the stack (not declared as a pointer or a reference) the
+compiler applies &lt;strong&gt;static binding&lt;&#x2F;strong&gt;, this means it interprets (at compile time)
+that we refer to the implementation of c() that resides in B.&lt;&#x2F;p&gt;
+&lt;p&gt;However, if we declare b as a pointer or a reference of class A, the compiler
+could not know which method to call at compile time, because b can be of type
+A or B.
+If this is resolved at run time, the method that resides in B will be called.
+This is called &lt;strong&gt;dynamic binding&lt;&#x2F;strong&gt;. If this is resolved at compile time, the
+method that resides in A will be called. This is again, &lt;strong&gt;static binding&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;virtual-member-funtions&quot;&gt;Virtual Member Funtions&lt;&#x2F;h3&gt;
+&lt;p&gt;Virtual member functions are member functions, that can be overridden in any
+class derived from the one where they were declared.
+Sort of like you can &amp;quot;overwrite&amp;quot; the funtion in the derived class.
+This is done by placing the keyword virtual before the method declaration.
+For example&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#859900;&quot;&gt;virtual &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;memberFunc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*Member function code*&#x2F;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The point is that when the compiler has to decide between applying static
+binding or dynamic binding it will apply dynamic binding. Otherwise, static
+binding will be applied.
+If the base class function is virtual all subclass overrides of it will also be
+virtual.
+However it is still good practice to add the virtual keyword before function
+definitions in subclasses, clarity and all.&lt;&#x2F;p&gt;
+&lt;p&gt;In this case assume we were simulating marketing companies in the world so.
+The new one will redefine marketing. (There&#x27;s a mutifaceted joke here btw :&#x27;-D )&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;iostream&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;using namespace&lt;&#x2F;span&gt;&lt;span&gt; std;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;oldCompany &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;virtual &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;marketing &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;How old company does marketing.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;newCompany&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;oldCompany &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;virtual &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;marketing &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Redefing marketing :D&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;  newCompany newish;
+&lt;&#x2F;span&gt;&lt;span&gt;  oldCompany oldish;
+&lt;&#x2F;span&gt;&lt;span&gt;  oldish.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;marketing &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  newish.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;marketing&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Output:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  How old company does marketing.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;  Redefing marketing :D
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;*&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h4 id=&quot;pure-virtual-member-functions&quot;&gt;Pure Virtual Member Functions&lt;&#x2F;h4&gt;
+&lt;p&gt;Sometimes we don&#x27;t want to provide an implementation of our function at all,
+but want to &lt;strong&gt;force&lt;&#x2F;strong&gt; people sub-classing our class to provide an implementation
+on their own.&lt;&#x2F;p&gt;
+&lt;p&gt;To create a pure virtual function:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Include the keyword &amp;quot;virtual&amp;quot; before the &amp;quot;void&amp;quot; type annotation for the pure virtual member function.&lt;&#x2F;li&gt;
+&lt;li&gt;Don&#x27;t write the function code (not even the braces {} however, just add &#x27;= 0&#x27; after function declaration.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;For example: &lt;em&gt;virtual void pureFunc() = 0;&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;In the code below the pure virtual function &amp;quot;divorce ()&amp;quot; makes &amp;quot;person&amp;quot; an abstact class.
+This way anyone deriving from class person will have to implement &lt;em&gt;divorce ()&lt;&#x2F;em&gt; or their code won&#x27;t compile.
+Assumption: This is by assumption that a person without a gender can&#x27;t undergo divorce.
+If that is offensive to anyone I&#x27;m sorry and I believe anyone should be able to marry anyone and divorce them if they want.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;iostream&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;using namespace&lt;&#x2F;span&gt;&lt;span&gt; std;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;person &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  string names, spouse, gender;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;person &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;nm&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;names &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;nm&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F; To demonstrate that the parent object is called before the child object.
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;New person created. &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; ;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;&#x2F;pure virtual function &amp;quot;divorce ()&amp;quot; makes &amp;quot;person&amp;quot; an abstact class
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;virtual &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;divorce &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getGender&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return&lt;&#x2F;span&gt;&lt;span&gt; gender;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;resetSpouse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {&lt;&#x2F;span&gt;&lt;span&gt;spouse.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;clear&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()&lt;&#x2F;span&gt;&lt;span&gt;;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;getSpouse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return&lt;&#x2F;span&gt;&lt;span&gt; spouse;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;man&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;person &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  string manGen;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;man &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;manGen &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Male&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;person&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Male added.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;divorce&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;resetSpouse &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()&lt;&#x2F;span&gt;&lt;span&gt;;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;trans&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;person &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;string transGen;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;trans &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;transGen &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Trans&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;person&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Trans added.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;divorce&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;resetSpouse &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()&lt;&#x2F;span&gt;&lt;span&gt;;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;woman&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;person &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  string womanGen;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;woman &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;string &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;womanGen &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Female&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;person&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Female added.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;divorce &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;resetSpouse &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;()&lt;&#x2F;span&gt;&lt;span&gt;;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;main &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;  woman &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;jane &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Jane&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  man &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;notJane &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Jack&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  trans &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;notJack &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Unicorn&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;&#x2F;*
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;Output:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;New person created. Male added.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;New person created. Male added.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;New person created. Trans added.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;*&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;&#x2F;h2&gt;
+&lt;p&gt;Basically every link here is a reference but the main ones are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;[1] Wikibooks classes: &lt;a href=&quot;https:&#x2F;&#x2F;en.wikibooks.org&#x2F;wiki&#x2F;C%2B%2B_Programming&#x2F;Classes&quot;&gt;Wikibooks&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;[2] Wikibooks memory management in C++: &lt;a href=&quot;https:&#x2F;&#x2F;en.wikibooks.org&#x2F;wiki&#x2F;C%2B%2B_Programming&#x2F;Memory_Management&quot;&gt;wikibooks page on memory management in C++&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Hail Stallman and may the FOSS be with you.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Scope in inheritance and composition in C++</title>
+		<published>2014-12-08T00:00:00+00:00</published>
+		<updated>2014-12-08T00:00:00+00:00</updated>
+		<link href="https://njagi.me/wiki/scope-in-inheritance-and-composition-in-c/" type="text/html"/>
+		<id>https://njagi.me/wiki/scope-in-inheritance-and-composition-in-c/</id>
+		<content type="html">&lt;p&gt;I hope you read my previous post before looking at this one if you don&#x27;t know much about OOP in C++. The previous post explains various things like naming of stuff in C++ which is different from naming conventions in other languages.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;This one is about explaining scope in C++ when we have inheritance and non-default constructors as well as compositions.&lt;&#x2F;p&gt;
+&lt;p&gt;The piont of this post is to establish:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;What order are constructors called in case we create an object of a derived class.&lt;&#x2F;li&gt;
+&lt;li&gt;What order are destructors called in case we destroy an object of a derived class.&lt;&#x2F;li&gt;
+&lt;li&gt;In the case of compositions (objects as data members) which constructors are called first. The one of the composing class or the object?&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Anyway let&#x27;s get to it.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;iostream&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;using namespace&lt;&#x2F;span&gt;&lt;span&gt; std;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;parent &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;parent&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Parent object created.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;~parent&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Parent object destoyed.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;child&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;parent &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;child&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Child object created.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;~child&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Child object destoyed.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;composition &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;child&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt; childObj;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;composition&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Composing object created&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;    childObj &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;new&lt;&#x2F;span&gt;&lt;span&gt; child;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;~composition&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;delete&lt;&#x2F;span&gt;&lt;span&gt; childObj;
+&lt;&#x2F;span&gt;&lt;span&gt;    cout &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Composed oject destroyed.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt; endl;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;main &lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;  composition compObject;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#657b83;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Output:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;Composing object created
+&lt;&#x2F;span&gt;&lt;span&gt;Parent object created.
+&lt;&#x2F;span&gt;&lt;span&gt;Child object created.
+&lt;&#x2F;span&gt;&lt;span&gt;Child object destoyed.
+&lt;&#x2F;span&gt;&lt;span&gt;Parent object destoyed.
+&lt;&#x2F;span&gt;&lt;span&gt;Composed oject destroyed.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So what do we see here:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;The composed object is created before the objects in it.&lt;&#x2F;li&gt;
+&lt;li&gt;The parent class is created before the child class.&lt;&#x2F;li&gt;
+&lt;li&gt;They are then destroyed in reverse order of their creation. Child then parent then composing.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;It&#x27;s really that simple.&lt;&#x2F;p&gt;
+&lt;p&gt;Hail Stallman and may the FOSS be with you.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

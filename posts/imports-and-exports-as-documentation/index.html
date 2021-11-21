@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+              crossorigin="anonymous"
+        >
+
+        
+
+        <link rel="stylesheet" href="https://njagi.me/style.css">
+
+        <title>Mostly Programming</title>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Home</a>
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/posts/">Posts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/notes/">Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/wiki/">Wiki</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tags/">Tags</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+                </ul>
+
+            </div> <!-- container fluid -->
+        </nav>
+
+        <div class="container">
+            <div class="margin-vertical-20">
+                
+
+<div class="row">
+    <div class="row justify-content-end"> <!-- start post heading -->
+        <div class="col-md-10">
+
+            <h1 id="post-title">Imports and Exports as Documentation</h1>
+
+            <div id="post-metadata">
+                August 22, 2015
+
+                <p>
+                    
+                    Tags:
+                    <span class="tags">
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/programming/">Programming</a>
+                        </button>
+                        
+                        <button type="button" class="btn btn-link btn-sm">
+                            <a href="https://njagi.me/tags/haskell/">Haskell</a>
+                        </button>
+                        
+                    </span>
+                    
+                </p>
+
+            </div> <!-- page metadata -->
+        </div>
+    </div> <!-- end post heading -->
+
+    <div class="row justify-content-center">  <!-- start post content -->
+        <div class="col-md-8">
+            <p>Lately I've been reading huge haskell code bases quite a lot.
+One thing that I have noted to be helpful when documentated
+has been the imports section as well as the code having a list of the code it exports.</p>
+<span id="continue-reading"></span>
+<p>I don't know whether this is just a non-experienced programmer issue or it cuts across the board.</p>
+<p>Documenting imports can happen:</p>
+<ul>
+<li>
+<p>explicitly through:</p>
+<ul>
+<li>comments</li>
+</ul>
+</li>
+<li>
+<p>implicity through:</p>
+<ul>
+<li>uniquely qualified imports.</li>
+</ul>
+<pre data-lang="haskell" style="background-color:#002b36;color:#839496;" class="language-haskell "><code class="language-haskell" data-lang="haskell"><span>    </span><span style="color:#cb4b16;">import </span><span style="color:#859900;">A </span><span style="color:#cb4b16;">qualified as </span><span style="color:#859900;">X
+</span><span>    </span><span style="color:#cb4b16;">import </span><span style="color:#859900;">B </span><span style="color:#cb4b16;">qualified as </span><span style="color:#859900;">Y
+</span></code></pre>
+<p>over</p>
+<pre data-lang="haskell" style="background-color:#002b36;color:#839496;" class="language-haskell "><code class="language-haskell" data-lang="haskell"><span>    </span><span style="color:#cb4b16;">import </span><span style="color:#859900;">A </span><span style="color:#cb4b16;">qualified as </span><span style="color:#859900;">X
+</span><span>    </span><span style="color:#cb4b16;">import </span><span style="color:#859900;">B </span><span style="color:#cb4b16;">qualified as </span><span style="color:#859900;">X
+</span></code></pre>
+<ul>
+<li>importing of specific instances (i.e using brackets to specify what one wants to import)</li>
+</ul>
+</li>
+</ul>
+<p>Basically anything that saves the programmer effort or time in:</p>
+<ul>
+<li>Understanding what you're importing</li>
+<li>Why you're importing it</li>
+<li>See the usage of a function and quickly know where it's from</li>
+</ul>
+<p>I can't quantify or explain exactly how this helps me understand the code but it really does.
+Especially when I can't hoogle a function name
+(the internet connections aren't too fast in these parts).
+It saves me the time of have to go through several modules trying to figure out where this import is from.</p>
+<p>Most of time we are in just too much of a hurry to do this I understand.
+I'm a victim of some terrible coding practices but I think it's a good habit to adopt.</p>
+<p>Well, the user can use tools like the repl to query where these imports are from
+but again when you can save the user time and effort of querying for meta information please do so.
+I know it's not possible to do it all the time and everywhere but please do it when and where you can.</p>
+<p>Let me illustrate this in some example code:</p>
+<pre data-lang="haskell" style="background-color:#002b36;color:#839496;" class="language-haskell "><code class="language-haskell" data-lang="haskell"><span style="color:#586e75;">{-|
+</span><span style="color:#586e75;">Module      : Devel.Build
+</span><span style="color:#586e75;">Description : Attempts to compile the WAI application.
+</span><span style="color:#586e75;">Copyright   : (c)
+</span><span style="color:#586e75;">License     : GPL-3
+</span><span style="color:#586e75;">Maintainer  : njagi@urbanslug.com
+</span><span style="color:#586e75;">Stability   : experimental
+</span><span style="color:#586e75;">Portability : POSIX
+</span><span style="color:#586e75;">
+</span><span style="color:#586e75;">compile compiles the app to give:
+</span><span style="color:#586e75;">Either a list of source errors or an ide-backend session.
+</span><span style="color:#586e75;">-}
+</span><span>
+</span><span style="color:#b58900;">{-# </span><span style="color:#859900;">LANGUAGE</span><span style="color:#b58900;"> PackageImports, OverloadedStrings #-}
+</span><span>
+</span><span style="color:#859900;">module Devel.Compile </span><span>(</span><span style="color:#b58900;">compile</span><span>) </span><span style="color:#859900;">where
+</span><span>
+</span><span style="color:#586e75;">-- Almost everything is dependent on ide-backend.
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">IdeSession
+</span><span>
+</span><span style="color:#586e75;">-- From Cabal-ide-backend
+</span><span style="color:#586e75;">-- for parsing the cabal file and extracting lang extensions used.
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Distribution.PackageDescription
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Distribution.PackageDescription.Parse
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Distribution.PackageDescription.Configuration
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Language.Haskell.Extension
+</span><span>
+</span><span style="color:#586e75;">-- Used internally for showing errors.
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Data.Text </span><span>(</span><span style="color:#b58900;">unpack</span><span>)
+</span><span>
+</span><span style="color:#586e75;">-- Utility functions
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Data.Monoid </span><span>(</span><span style="color:#b58900;">(&lt;&gt;)</span><span>)
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">System.Directory </span><span>(</span><span style="color:#b58900;">createDirectoryIfMissing</span><span>, </span><span style="color:#b58900;">getCurrentDirectory</span><span>)
+</span><span>
+</span><span style="color:#586e75;">-- Local imports
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Devel.Paths
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Devel.Types
+</span></code></pre>
+<p>Compare with this which I wrote in a hurry.</p>
+<pre data-lang="haskell" style="background-color:#002b36;color:#839496;" class="language-haskell "><code class="language-haskell" data-lang="haskell"><span style="color:#586e75;">{-|
+</span><span style="color:#586e75;">Module      : Devel.Paths
+</span><span style="color:#586e75;">Description : For filepath related matters.
+</span><span style="color:#586e75;">Copyright   : (c)
+</span><span style="color:#586e75;">License     : GPL-3
+</span><span style="color:#586e75;">Maintainer  : njagi@urbanslug.com
+</span><span style="color:#586e75;">Stability   : experimental
+</span><span style="color:#586e75;">Portability : POSIX
+</span><span style="color:#586e75;">
+</span><span style="color:#586e75;">Uses the GHC package to parse .hi files.
+</span><span style="color:#586e75;">Will hopefully be moved upstream to ide-backend.
+</span><span style="color:#586e75;">-}
+</span><span>
+</span><span style="color:#b58900;">{-# </span><span style="color:#859900;">LANGUAGE</span><span style="color:#b58900;"> OverloadedStrings #-}
+</span><span>
+</span><span style="color:#859900;">module Devel.Paths where
+</span><span>
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">System.Directory </span><span>(</span><span style="color:#b58900;">getCurrentDirectory</span><span>, </span><span style="color:#b58900;">doesDirectoryExist</span><span>, </span><span style="color:#b58900;">getDirectoryContents</span><span>)
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Control.Monad </span><span>(</span><span style="color:#b58900;">forM</span><span>)
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Control.Concurrent </span><span>(</span><span style="color:#b58900;">forkIO</span><span>)
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">System.FilePath.Glob
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">System.FilePath </span><span>(</span><span style="color:#b58900;">(&lt;/&gt;)</span><span>)
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Data.List
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">IdeSession
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Devel.Modules
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">System.FilePath.Posix </span><span>(</span><span style="color:#b58900;">replaceExtension</span><span>, </span><span style="color:#b58900;">dropExtension</span><span>, </span><span style="color:#b58900;">takeExtensions</span><span>)
+</span><span style="color:#cb4b16;">import qualified </span><span style="color:#859900;">Data.ByteString.Char</span><span>8 </span><span style="color:#cb4b16;">as </span><span style="color:#859900;">C</span><span>8
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">Control.Monad.IO.Class
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">System.FilePath </span><span>(</span><span style="color:#b58900;">pathSeparator</span><span>)
+</span><span style="color:#cb4b16;">import </span><span style="color:#859900;">System.Directory </span><span>(</span><span style="color:#b58900;">removeFile</span><span>)
+</span></code></pre>
+<p>As you can see one can learn quite a bit just from looking at the imports and module documentation alone.</p>
+<p>The issue is that it sometimes takes a while for one to clean up their code like this
+so it's okay if your imports aren't legible before refactoring.</p>
+<p>Another thing, I don't know if it's just an emacs thing but I
+can just to my imports and jump between sections of imports with f12.
+This is both advantageous to both the one writing the code and the one reading it.<br />
+The point of all of this is that well structured and well documented imports and exports are
+a win for both the programmer and the one reading the code.</p>
+
+        </div>
+    </div>  <!-- end post content -->
+
+</div> <!--  -->
+
+
+
+            </div>
+        </div>
+
+    </body>
+
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <p class="p-copyright">
+                        All work is under the <a href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License, Version 1.3</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</html>

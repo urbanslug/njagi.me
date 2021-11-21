@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Cal Newport</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/cal-newport/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2018-12-13T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/cal-newport/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Deep Work</title>
+		<published>2018-12-13T00:00:00+00:00</published>
+		<updated>2018-12-13T00:00:00+00:00</updated>
+		<link href="https://njagi.me/notes/deep-work/" type="text/html"/>
+		<id>https://njagi.me/notes/deep-work/</id>
+		<content type="html">&lt;p&gt;I don&#x27;t usually read inspirational books but this is a book I really liked and
+have had to read a second time because I felt that I needed deep work at this
+point in my life.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h1 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;&#x2F;h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org0babf32&quot;&gt;Introduction&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org773c2f8&quot;&gt;Examples of deep work&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orge50e341&quot;&gt;Carl Jung&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org5b4bb9f&quot;&gt;Woody Allen&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org4fd3ec5&quot;&gt;Peter Higgs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org50b7afa&quot;&gt;J.K. Rowling&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org956c33e&quot;&gt;Bill Gates&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org99e4ad4&quot;&gt;Jason Benn&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgf6f01ae&quot;&gt;Deep work hypothesis&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org2d57224&quot;&gt;How the book is organized&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org775fb47&quot;&gt;Part 1 - The Idea&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org0b688d3&quot;&gt;Chapter 1 - Deep Work is Valuable&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgc4a1baa&quot;&gt;There will be 3 types of winners in the information age&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org2915a43&quot;&gt;2 core abilities for thriving in the new economy&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org2a984b4&quot;&gt;Deep work helps you quickly learn things&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org25c9ad7&quot;&gt;Adam Grant&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgd9cb33f&quot;&gt;Attention residue&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgef3c34c&quot;&gt;Jack Dorsey&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orge14fbc9&quot;&gt;Chapter 2 -  Deep work is rare&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org52b5c3c&quot;&gt;Trends in organizations that derail deep work&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org3a3a4a3&quot;&gt;Chapter 3 - Deep work is meaningful&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org2d7e6a6&quot;&gt;Neurological argument for depth&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org4ac5070&quot;&gt;A psychological argument for depth&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org31aa0b6&quot;&gt;A philosophical argument for depth&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org33b9153&quot;&gt;Part 2 - The Rules&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org7a704c5&quot;&gt;Rule 1 - Work Deeply&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org0ad1e0e&quot;&gt;Eudaimonia machine&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org2ec67a1&quot;&gt;Willpower&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgdb3780a&quot;&gt;Ritualize&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org46e9e70&quot;&gt;Make grand gestures&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgcbdec22&quot;&gt;Don&#x27;t work alone&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org55ab9b9&quot;&gt;Execute like a business&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgee31859&quot;&gt;Be lazy&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org0f1937d&quot;&gt;Rule 2 - Embrace Boredom&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org17f5172&quot;&gt;Don&#x27;t take breaks from distraction. Instead take breaks from focus.&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org1e33753&quot;&gt;Work like Teddy Roosevelt&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org17c8b00&quot;&gt;Meditate productively&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgf02c6c4&quot;&gt;Memorise a deck of cards&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org2442ea2&quot;&gt;Rule 3 - Quit Social Media&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgd9e2c79&quot;&gt;The any benefit approach to network tool selection&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org5b024dc&quot;&gt;The craftsman approach to tool selection&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org5ab4ef8&quot;&gt;Rule 4 - Drain the Shallows&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org1153459&quot;&gt;Schedule every minute of your day&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org6428fe6&quot;&gt;Quantify the depth of every activity&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org0d37158&quot;&gt;Ask your boss for a shallow work budget&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgaaa26f4&quot;&gt;Finish your work by 5:30&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org378cecd&quot;&gt;Become hard to reach&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgb37211f&quot;&gt;Conclusion&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org10722d5&quot;&gt;Definitions&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#orgc10f622&quot;&gt;From the book&lt;&#x2F;a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org2cd9a3b&quot;&gt;Amygdala&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org0dd08dd&quot;&gt;Deep work&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org904eb30&quot;&gt;Eudaimonia&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org671f2b8&quot;&gt;Shallow work&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org2cde33a&quot;&gt;Myelin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org5c7c4a2&quot;&gt;h-index&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org0babf32&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h1&gt;
+&lt;p&gt;Here Newport provides a justification for the rest of the book using a couple of examples.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org773c2f8&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;examples-of-deep-work&quot;&gt;Examples of deep work&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a id=&quot;orge50e341&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;carl-jung&quot;&gt;Carl Jung&lt;&#x2F;h3&gt;
+&lt;p&gt;Worked in isolation at at the northern banks of L. Zurich&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org5b4bb9f&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;woody-allen&quot;&gt;Woody Allen&lt;&#x2F;h3&gt;
+&lt;p&gt;Woody Allen used a typewriter and not a computer&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org4fd3ec5&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;peter-higgs&quot;&gt;Peter Higgs&lt;&#x2F;h3&gt;
+&lt;p&gt;Theoretical physicist (Higgs boson). He was so isolated that journalists couldn&#x27;t find him when he won a Nobel Prize.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org50b7afa&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;j-k-rowling&quot;&gt;J.K. Rowling&lt;&#x2F;h3&gt;
+&lt;p&gt;Not on social media written the Harry Potter series amongst other things&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org956c33e&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;bill-gates&quot;&gt;Bill Gates&lt;&#x2F;h3&gt;
+&lt;p&gt;Conducted &lt;strong&gt;think weeks&lt;&#x2F;strong&gt; 2 times a year; he would isolate himself and do nothing but read and think deep thoughts.
+Thanks to this he wrote his famous &amp;quot;Internet tidal Wave&amp;quot; memo.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org99e4ad4&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;jason-benn&quot;&gt;Jason Benn&lt;&#x2F;h3&gt;
+&lt;p&gt;Financial analyst and later a computer programmer who learned to work deep on his own.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;orgf6f01ae&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;deep-work-hypothesis&quot;&gt;Deep work hypothesis&lt;&#x2F;h2&gt;
+&lt;p&gt;The ability to perform deep work is becoming increasingly rare and at exactly the same time it&#x27;s becoming increasingly valuable in our economy.
+Consequently, the few who cultivate this skill and make it a core of their working life will thrive.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org2d57224&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;how-the-book-is-organized&quot;&gt;How the book is organized&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Part 1:&lt;&#x2F;strong&gt; To prove the hypothesis true&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Part 2:&lt;&#x2F;strong&gt; To tech the reader how to perform deep work&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;a id=&quot;org775fb47&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;part-1-the-idea&quot;&gt;Part 1 - The Idea&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;a id=&quot;org0b688d3&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;chapter-1-deep-work-is-valuable&quot;&gt;Chapter 1 - Deep Work is Valuable&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a id=&quot;orgc4a1baa&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;there-will-be-3-types-of-winners-in-the-information-age&quot;&gt;There will be 3 types of winners in the information age&lt;&#x2F;h3&gt;
+&lt;p&gt;This is an idea raised in &lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;book&#x2F;show&#x2F;12952273-race-against-the-machine&quot;&gt;Race Against The Machine&lt;&#x2F;a&gt; and its corresponding &lt;a href=&quot;http:&#x2F;&#x2F;ebusiness.mit.edu&#x2F;research&#x2F;Briefs&#x2F;Brynjolfsson_McAfee_Race_Against_the_Machine.pdf&quot;&gt;research brief&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;High skilled workers&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Those who can work well and creatively with intelligent machines
+They have the ability to work with and tease valuable results out of increasigly complex machines will thrive&lt;&#x2F;p&gt;
+&lt;p&gt;Cites; Nate Silver - stats geek turned elections forecaster&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;The superstars&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Those who are the best at what they do; they stand out of the crowd.&lt;&#x2F;p&gt;
+&lt;p&gt;Cites; David Heinemeier Hansson - creator or ruby on rails.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;The owners&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Those with access to capital to invest in new tech that&#x27;s driving the great restructuring&lt;&#x2F;p&gt;
+&lt;p&gt;Cites; John Doerr - investor&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org2915a43&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-core-abilities-for-thriving-in-the-new-economy&quot;&gt;2 core abilities for thriving in the new economy&lt;&#x2F;h3&gt;
+&lt;p&gt;Given this isn&#x27;t a book about making tons of money it focuses on the first two.
+To end up as a super star or a highly skilled worker you need the following two abilities which depend on your ability to perform deep work:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;The ability to quickly master hard things.&lt;&#x2F;li&gt;
+&lt;li&gt;The ability to produce at an elite level, in terms of both quality and speed.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org2a984b4&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;deep-work-helps-you-quickly-learn-things&quot;&gt;Deep work helps you quickly learn things&lt;&#x2F;h3&gt;
+&lt;p&gt;To learn requires intense concentration; cites &lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;book&#x2F;show&#x2F;549384.The_Intellectual_Life&quot;&gt;The Intellectual Life: Its Spirit, Conditions, Methods  - Antonin Sertillanges&lt;&#x2F;a&gt;, written by a monk who had tried to master the fundamentals of intellect. He then goes on to how we end up learning and being good at &amp;quot;hard things&amp;quot;.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Deliberate practice&lt;&#x2F;p&gt;
+&lt;p&gt;Moves on to cite the paper &lt;a href=&quot;https:&#x2F;&#x2F;www.nytimes.com&#x2F;images&#x2F;blogs&#x2F;freakonomics&#x2F;pdf&#x2F;DeliberatePractice(PsychologicalReview).pdf&quot;&gt;The Role of Deliberate Practice in the Acquisition of Expert Performance - K. Anders Erricsson&lt;&#x2F;a&gt;.
+In this paper Ericsson coins the word &lt;strong&gt;deliberate practice&lt;&#x2F;strong&gt; as what distinguishes people who get really good at their filed from everyone else.
+The differences between expert performers and normal adults is a life long period of deliberate effort to improve performance in a specific domain&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;This paper is what Malcom Gladwell is said to have misread when he wrote &lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;book&#x2F;show&#x2F;3228917-outliers&quot;&gt;Outliers&lt;&#x2F;a&gt; and made the ten thousand hour claim.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Core components of deliberate practice&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Your attention is &lt;strong&gt;focused&lt;&#x2F;strong&gt; on the skill you&#x27;re trying to master.&lt;&#x2F;li&gt;
+&lt;li&gt;You receive &lt;strong&gt;feedback&lt;&#x2F;strong&gt; so you can &lt;strong&gt;correct your approach&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Neuroscintific justification&lt;&#x2F;p&gt;
+&lt;p&gt;To be great at something is to be well &lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org2cde33a&quot;&gt;mylinated&lt;&#x2F;a&gt;.
+By focusing on a specific skill you&#x27;re forcing the specific (relevant to that task) circuit to fire again and again in isolation.
+The repititive use of a specific circuit causes oligodendrocytes (cells) to begin wrapping layers of myelin around those specific neurons therefore cementing the skill.
+Focus is the only way to isolate the relevant neural circuit enough to trigger useful myelination.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org25c9ad7&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;adam-grant&quot;&gt;Adam Grant&lt;&#x2F;h3&gt;
+&lt;p&gt;Youngest full professor at Wharton and author of &lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;book&#x2F;show&#x2F;16158498-give-and-take&quot;&gt;Give and Take&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;He batches hard tasks into long uninterrupted stretches
+Does this at multiple levels:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;within the year:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;teaching:&lt;&#x2F;strong&gt; fall&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;research:&lt;&#x2F;strong&gt; spring and summer&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;within the research semester:
+&lt;ul&gt;
+&lt;li&gt;door is open to colleagues and students&lt;&#x2F;li&gt;
+&lt;li&gt;periods of isolation&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;How Adam Grant divides his writing&lt;&#x2F;p&gt;
+&lt;p&gt;Into 3 district tasks:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;analyzing the data&lt;&#x2F;li&gt;
+&lt;li&gt;writing a full draft&lt;&#x2F;li&gt;
+&lt;li&gt;editing the draft into something publishable&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Law of productivity&lt;&#x2F;p&gt;
+&lt;p&gt;Comes from Cal Newport and he doesn&#x27;t cite it but it goes:
+&lt;em&gt;high quality work = time spent * intensity of focus&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;orgd9cb33f&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;attention-residue&quot;&gt;Attention residue&lt;&#x2F;h3&gt;
+&lt;p&gt;Based on Sophie&#x27;s research on multi tasking.
+The effect of &lt;strong&gt;attention residue&lt;&#x2F;strong&gt; is introduced by Sophie Leroy&#x27;s in her 2009 paper &lt;a href=&quot;https:&#x2F;&#x2F;www.sciencedirect.com&#x2F;science&#x2F;article&#x2F;pii&#x2F;S0749597809000399&quot;&gt;Why is it so Hard to do My Work? The Challenge of Attention Residue when Switching Between Work Tasks&lt;&#x2F;a&gt;.
+The gist of this theory is that when you switch from task A to taks B your attention doesn&#x27;t immediately shift to the new task, a &lt;em&gt;residue&lt;&#x2F;em&gt; of your attention remains on the original task.
+Her conclusion was &amp;quot;People experiencing attention residue after switching between tasks are likely to demonstrate poor performance on that next task.&amp;quot;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;orgef3c34c&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;jack-dorsey&quot;&gt;Jack Dorsey&lt;&#x2F;h3&gt;
+&lt;p&gt;When it comes to high performing people who don&#x27;t work deeply Newport focuses on Jack Dorsey.
+Jack Dorsey and Kerry Trainor don&#x27;t work deeply because they&#x27;re coordinating large groups of people.
+It&#x27;s better to hire subordinates to do the deep work and advise them. However, these kinds of people represent a small percentage of the world.&lt;&#x2F;p&gt;
+&lt;p&gt;Example groups where deep work isn&#x27;t valued because constant connection is their most valuable resource:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;execs&lt;&#x2F;li&gt;
+&lt;li&gt;salesmen&lt;&#x2F;li&gt;
+&lt;li&gt;lobbyists&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;a id=&quot;orge14fbc9&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;chapter-2-deep-work-is-rare&quot;&gt;Chapter 2 -  Deep work is rare&lt;&#x2F;h2&gt;
+&lt;p&gt;Deep work is paradoxically rare in organization and here&#x27;s why according to Newport.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org52b5c3c&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;trends-in-organizations-that-derail-deep-work&quot;&gt;Trends in organizations that derail deep work&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Open offices&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Instant messaging&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;A push to maintain a social media presence&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;The metric black hole&lt;&#x2F;p&gt;
+&lt;p&gt;We have no way to measure the value that such messaging produces and offset it against how much it costs?&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;The principle of least resistance&lt;&#x2F;p&gt;
+&lt;p&gt;Using email and instant messaging to avoid planning one&#x27;s day and time&lt;&#x2F;p&gt;
+&lt;p&gt;Without clear feedback on the impact of various behaviors to the bottom line, we will tend towards behaviors that are easiest at the moment.
+e.g clearly defining goals and the direction of a project&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Why cultures of connectivity persist&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;It&#x27;s easier; you don&#x27;t have to plan your work&lt;&#x2F;li&gt;
+&lt;li&gt;it makes it acceptable to run your day out of you inbox&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;tech has come up with stand up meetings to solve this problem of not planning and just talking all day&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Busyness as a proxy for productivity&lt;&#x2F;p&gt;
+&lt;p&gt;In the absence of clear indicators of what it means to be productive and valuable in their
+jobs, knowledge workers turn back towards and industrial indicator of productivity;
+doing lots of work in a visible manner.&lt;&#x2F;p&gt;
+&lt;p&gt;We could eliminate this commitment to busyness if we could how much it costs.&lt;&#x2F;p&gt;
+&lt;p&gt;cites:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Richard Feynman who claimed to be responsible to avoid admin work and focus on physics.&lt;&#x2F;li&gt;
+&lt;li&gt;Matthew Crawford quit his job as the director of a think tank to repair motorcycles.&lt;&#x2F;li&gt;
+&lt;li&gt;Marrisa Mayer CEO of Yahoo banned employees from working from home when she felt that people weren&#x27;t being productive because they didn&#x27;t log into the VPN enough; a task mainly done to check email.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;the cult of the Internet&lt;&#x2F;p&gt;
+&lt;p&gt;Deep work can&#x27;t compete because it&#x27;s old fashioned and requires time to cultivate.
+This means companies even to their detriment have to embrace social media or become obsolete&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;technopoly&lt;&#x2F;p&gt;
+&lt;p&gt;Coined by Neil Postman, a culture since the invention of the PC where we only
+consider the of metrics tech but not it&#x27;s detriments.&lt;&#x2F;p&gt;
+&lt;p&gt;Technopoly eliminates it&#x27;s alternatives by making them invisible and therefore irrelevant.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Bad for business, good for you&lt;&#x2F;p&gt;
+&lt;p&gt;Here Newport claims that it may be bad for business not to value deep work but it&#x27;s a chance for
+the reader to foster their ability to do deep work so that they can stand out.
+Given deep work is becoming increasingly rare and valuable;
+the reader should take this as an opportunity to  practice it.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org3a3a4a3&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;chapter-3-deep-work-is-meaningful&quot;&gt;Chapter 3 - Deep work is meaningful&lt;&#x2F;h2&gt;
+&lt;p&gt;Talks about  Ric Furrer a craftsman who finds meaning in a craft.
+Then goes on to show that just as much meaning can be got
+from intellectual work as from a craft.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org2d7e6a6&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;neurological-argument-for-depth&quot;&gt;Neurological argument for depth&lt;&#x2F;h3&gt;
+&lt;p&gt;Talks about Winifred Gallagher who after a cancer diagnosis chose to focus on her life and not on the disease.
+Her life during this period was quite pleasant while one would have expected it to have been mired by grief.
+Our brains construct our world-view based on what &lt;em&gt;we pay attention to&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Who you are, what you feel, what you are is the sum of what you focus on.
+If you spend enough time in the state of deep work your mind will interpret your world as rich in meaning and importance.&lt;&#x2F;p&gt;
+&lt;p&gt;Doing knowledge work in a shallow way leeches meaning from the person&#x27;s life.&lt;&#x2F;p&gt;
+&lt;p&gt;Laura Carstensen, used an fMRI scanner to study brain behaviour of subjects presented with negative and positive imagery.
+For young people their amygdala fired with activity at both types of imagery;
+however, for elerderly subjects it only fired for positive stimuli.
+She hypothesises that the old had trained their prefrontal cortex to inhibit the amygdala in the presence of negative stimuli.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org4ac5070&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;a-psychological-argument-for-depth&quot;&gt;A psychological argument for depth&lt;&#x2F;h3&gt;
+&lt;p&gt;Mihaly Csikszentmihalyi came up with &lt;strong&gt;Experience Sampling Method&lt;&#x2F;strong&gt; where pagers would beep at random times in the day and people would record how they feel.&lt;&#x2F;p&gt;
+&lt;p&gt;This research helped validate a theory: &lt;em&gt;The best moments usually occur when a person&#x27;s body or mind is stretched to its limits in a voluntary effort to accomplish something difficult and worthwhile.&lt;&#x2F;em&gt;
+Mihaly called this mental state &lt;strong&gt;flow&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;He claims that jobs are much easier to enjoy because they have defined goals and structure compared to free time which requires more effort to structure.
+This is because our minds are adapted to structure and goal chasing.&lt;&#x2F;p&gt;
+&lt;p&gt;When measured empirically people were happier at work and less happy relaxing than they expected.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org31aa0b6&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;a-philosophical-argument-for-depth&quot;&gt;A philosophical argument for depth&lt;&#x2F;h3&gt;
+&lt;p&gt;Newport starts by talking about &lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;book&#x2F;show&#x2F;10087892-all-things-shining&quot;&gt;All Things Shining: Reading the Western Classics to Find Meaning in a Secular Age&lt;&#x2F;a&gt;.
+In the book the writers argue that people have lost reverence for the sacred and meaningful and attribute it to Descartes&#x27; skepticism.
+where the individual seeking objective truth trumped god and king bestowing truth.
+They argue that the resulting enlightenment lead to a world where we are the judges of what is meaningful and what is not; leading to nihilism&lt;&#x2F;p&gt;
+&lt;p&gt;In the book the writers conclude that &lt;strong&gt;craftsmanship&lt;&#x2F;strong&gt; provides a key reopening the sense of sacredness.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Any pursuit – be it physical or cognitive – that supports high levels of skill can also generate a sense of sacredness.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I this chapter Newport is tries to show that one can find the sacred or meaning in deep work.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org33b9153&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;part-2-the-rules&quot;&gt;Part 2 - The Rules&lt;&#x2F;h1&gt;
+&lt;p&gt;Describes a rigorous program for transforming your professional life into one centered on depth.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org7a704c5&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rule-1-work-deeply&quot;&gt;Rule 1 - Work Deeply&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a id=&quot;org0ad1e0e&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;eudaimonia-machine&quot;&gt;Eudaimonia machine&lt;&#x2F;h3&gt;
+&lt;p&gt;Starts with Newport talking about meeting David Dewane, an architect who was working on what he called the &lt;a href=&quot;https:&#x2F;&#x2F;njagi.me&#x2F;notes&#x2F;deep-work&#x2F;#org904eb30&quot;&gt;eudaimonia&lt;&#x2F;a&gt; machine;
+A one story building with 5 rooms placed in a line meant to enable the deepest possible work. Something unique to this building is that it has no shared hallway. You have to pass through one room to get to the next.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Rooms in the eudaimonia machine&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Gallery&lt;&#x2F;strong&gt; - contains examples of deep work produced in the building
+meant to create a culture of healthy stress and peer pressure&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Salon&lt;&#x2F;strong&gt; - access to high quality coffee maybe even a full blown bar
+create a mood that hovers between intense curiosity and argumentation&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Library&lt;&#x2F;strong&gt; - a collection of all the work that has been produced in the building
+hard drive of the machine&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Office&lt;&#x2F;strong&gt; - a standard conference room with a whiteboard and some cubicles with desks
+for shallow work&lt;&#x2F;li&gt;
+&lt;li&gt;Deep work chambers - places to perform deep work&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org2ec67a1&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;willpower&quot;&gt;Willpower&lt;&#x2F;h3&gt;
+&lt;p&gt;We have a finite amount of willpower that becomes depleted as we use it&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Ways to hack willpower&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Decide on your depth philosophy&lt;&#x2F;p&gt;
+&lt;p&gt;Here are a couple of depth philosophies or approaches to deep work:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The monastic philosophy of deep work&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Eliminate everything and just do deep work
+this method attempts to maximize deep efforts by eliminating or radically minimizing shallow obligations&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The bimodal philosophy of deep work scheduling&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Working deeply for a &amp;quot;season&amp;quot; then performing shallow tasks.
+The author cites Jung, Adam Grant (Wharton professor) and the consultants who took a week off as practitioners of this.
+Minimum stretch of deep work in this method is a full day&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The rhythmic philosophy of deep work scheduling&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Make deep work a simple regular habit
+Cites Brian Chappell who woke up early to work on his dissertation&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The journalistic philosophy of deep work scheduling&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Taking the opportunities to perform deep work whenever the opportunity presents itself.
+Cites, Walter Issacson who co-authored &lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;book&#x2F;show&#x2F;10885.The_Wise_Men&quot;&gt;The Wise Men: Six Friends and the World They Made&lt;&#x2F;a&gt; while on
+summer vacation and while working a full time job as a writer.&lt;&#x2F;p&gt;
+&lt;p&gt;He calls it journalistic because journalists are expected to switch to deep work mode at a moment&#x27;s notice.&lt;&#x2F;p&gt;
+&lt;p&gt;This is the method Newport adopted when he wrote deep work&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;orgdb3780a&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;ritualize&quot;&gt;Ritualize&lt;&#x2F;h3&gt;
+&lt;p&gt;Having a set of rules to follow before performing deep work.
+Cites Darwin et al who had deep work rituals.&lt;&#x2F;p&gt;
+&lt;p&gt;Any effective deep work ritual must address the following:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;where&lt;&#x2F;strong&gt; will you work and &lt;strong&gt;how long&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;how&lt;&#x2F;strong&gt; you&#x27;ll work once you start your work&lt;&#x2F;li&gt;
+&lt;li&gt;how you&#x27;ll &lt;strong&gt;support&lt;&#x2F;strong&gt; your work&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org46e9e70&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;make-grand-gestures&quot;&gt;Make grand gestures&lt;&#x2F;h3&gt;
+&lt;p&gt;Here we try to boost the sense of importance that your mind assigns a given task.
+A high sense of importance reduces your minds instict to proctrastinate and delivers motivation and energy&lt;&#x2F;p&gt;
+&lt;p&gt;Newport cites:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;J.K. Rowling&lt;&#x2F;strong&gt; checking into a suite at Balmoral Hotel to finish &lt;em&gt;The Deahtly Hallows&lt;&#x2F;em&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Bill Gate&#x27;s&lt;&#x2F;strong&gt; think weeks.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Alan Lightman&lt;&#x2F;strong&gt; retreats each summer to an island in Maine to think deeply and recharge&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Willian Shockley&lt;&#x2F;strong&gt; locked himself in a hotel room to work on a better design of the transistor&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Peter Shankman&lt;&#x2F;strong&gt; finished a manuscript in approx 30 hours on a round trip flight to Japan.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;em&gt;&#x27;Sometimes to go deep, you must first go big.&#x27;&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;orgcbdec22&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;don-t-work-alone&quot;&gt;Don&#x27;t work alone&lt;&#x2F;h3&gt;
+&lt;p&gt;Here the writer talks about a &lt;strong&gt;hub&lt;&#x2F;strong&gt; and &lt;strong&gt;spoke&lt;&#x2F;strong&gt; model as well as a &lt;strong&gt;whiteboard effect&lt;&#x2F;strong&gt;.
+During the hub one interacts with peer and during the spoke one retreats to perform deep work.
+While performing deep work though Newport argues about having a whiteboard effect; in this case not performing deep work alone but pushing each other with a peer will lead into more depth and avoid procrastination.&lt;&#x2F;p&gt;
+&lt;p&gt;He argues that deep work should happen but the opportunity for serendipitous creativity should also be allowed.
+He claims that the open office is still not good for deep work as there are distractions but also
+argues that there is value in people from different disciplines mixing.&lt;&#x2F;p&gt;
+&lt;p&gt;He cites:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;MIT building 20&lt;&#x2F;li&gt;
+&lt;li&gt;Bell labs&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;a id=&quot;org55ab9b9&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;execute-like-a-business&quot;&gt;Execute like a business&lt;&#x2F;h3&gt;
+&lt;p&gt;Here we start with the basics of disruption where startups begin with cheap offerings
+at their low end of the market but then over time improve their cheap products just enough to begin stealing high end market share.&lt;&#x2F;p&gt;
+&lt;p&gt;You find a solution for this when companies target both high income and low income populations.&lt;&#x2F;p&gt;
+&lt;p&gt;He talks about a disconnect between &lt;strong&gt;what&lt;&#x2F;strong&gt; and &lt;strong&gt;how&lt;&#x2F;strong&gt;.
+We may know what to do but now how to do it.&lt;&#x2F;p&gt;
+&lt;p&gt;He cites Clayton Christensen author of in &lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;book&#x2F;show&#x2F;13260184-the-4-disciplines-of-execution&quot;&gt;The 4 Disciplines of Execution: Achieving Your Wildly Important Goals&lt;&#x2F;a&gt; where
+Andy Groove asked him about how to do something because he knew what he needed to do.&lt;&#x2F;p&gt;
+&lt;p&gt;In this case Newport knew he needed to adapt depth but didn&#x27;t know how to do it.
+He ended up applying the  4DX strategy from the aforementioned book in his own life.&lt;&#x2F;p&gt;
+&lt;p&gt;Makes a fundamental premise that execution is more difficult that strategizing
+The writer also alludes to consistency over intensity when it comes to achieving lag goals.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Discipline 1: Focus on the wildly important&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The more you try to do the less you accomplish you must therefore focus on a small number of wildly important and specific goals.
+With deep work identify a small number of ambitious outcomes to pursue with your deep work hours.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Discipline 2: Act on the lead measures&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Once you come up with wildly important goals you need to come up with ways to measure success.
+In 4DX there are two types of metrics:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;lag measures:&lt;&#x2F;strong&gt; they measure the thing you&#x27;re ultimately trying to improve.
+e.g customer satisfaction could be what you&#x27;re trying to improve and customer review scores being the a lag measure.
+Problem is the scores come in too late to change the behavior.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;lead measures:&lt;&#x2F;strong&gt; these measure the new behaviors that will drive success on the lag measures.
+e.g. number of customers who receive free samples at a bakery, this you can increase by giving out free samples.
+They turn your attention to improve behaviors you can directly control the near future that will have a positive impact on your long term goals.
+for deep work you could define it as the time spent in deep work aimed at your goal&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Discipline 3: Keep a compelling scoreboard&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Keep a scoreboard of your lead measures in a place where you can see it.
+In the case of deep work hours you can keep this tally and mark milestones to associate them with deep work hours.
+This helps motivate and keep on track of the lead measures.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Discipline 4: Create a cadence of accountability&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;In the case of a team there should be regular and frequent meetings to review progress on a wildly important goal
+In the case of deep work one should have weekly reviews to see what went well or badly,
+what caused bad weeks and how to keep good weeks happening in future.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;orgee31859&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;be-lazy&quot;&gt;Be lazy&lt;&#x2F;h3&gt;
+&lt;p&gt;Here Newport argues for the value of &lt;em&gt;downtime&lt;&#x2F;em&gt;.
+Downtime in this case is time spent not working or thinking deeply and just relaxing, being idle.
+Why downtime is profitable to a practitioner of deep work:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Reason 1: Downtime aids insights&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Introduced &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Unconscious_thought_theory&quot;&gt;UTT (Unconscious Thought Theory)&lt;&#x2F;a&gt;: &lt;em&gt;it&#x27;s better to let your subconscious work through some
+problems that actively trying to tackle them&lt;&#x2F;em&gt;.
+For decisions that require the application of strict rules the conscious mind must be involved e.g. actively doing math
+For decision that involve large amounts of info and multiple vague, and perhaps conflicting constraints the unconscious mind is best e.g. coming up with a proof.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Reason 2: Downtime helps recharge the energy needed to work deeply&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Introduces the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Attention_restoration_theory&quot;&gt;ART (Attention Restoration Theory)&lt;&#x2F;a&gt; which claims that spending time in nature can improve your ability to concentrate.
+This is based on the concept of &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Directed_attention_fatigue&quot;&gt;Directed Attention Fatigue&lt;&#x2F;a&gt;.
+To concentrate requires &lt;em&gt;directed attention&lt;&#x2F;em&gt; which is a finite resource which when exhausted makes it hard to concentrate.
+Walking in the city requires directed attention to stay alive but in nature one allows the replenishment of focused attention.&lt;&#x2F;p&gt;
+&lt;p&gt;In this case trying to squeeze in a little more work in the evenings reduces your ability to perform deep work the next day.
+Your mind must believe that you are done for work until the next day.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Reason 3: The work that evening downtime replaces is usually not that important&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This section is based on the premise that your capacity for deep work per day is limited.&lt;&#x2F;p&gt;
+&lt;p&gt;In the case of deliberate practice novices spent a max 1hr in a state of depth but elite players averaged about 3.5 hrs.
+If you&#x27;re careful about your schedule; you should hit your deep work capacity during your workday.
+Therefore, by evening you&#x27;re beyond your capacity to work deeply.&lt;&#x2F;p&gt;
+&lt;p&gt;Your night efforts will likely be &lt;strong&gt;low value&lt;&#x2F;strong&gt; shallow tasks. By deferring these activities you&#x27;re not missing out on much of importance.
+A key commitment for succeeding with shutting down is having a shutdown ritual.&lt;&#x2F;p&gt;
+&lt;p&gt;A shutdown ritual should ensure incomplete tasks have been reviewed&lt;&#x2F;p&gt;
+&lt;p&gt;Zierganik effect: the ability of incomplete tasks to dominate our attention
+To fix this make a plan on how to complete these tasks that would otherwise haunt you&lt;&#x2F;p&gt;
+&lt;p&gt;Side note: What about people like Elon Musk?&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org0f1937d&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rule-2-embrace-boredom&quot;&gt;Rule 2 - Embrace Boredom&lt;&#x2F;h2&gt;
+&lt;p&gt;This rule is meant to significantly improve your deep work limit.&lt;&#x2F;p&gt;
+&lt;p&gt;The ability to concentrate intensely is a skill that must be trained.
+This training involves:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Improving your ability to concentrate intensely.&lt;&#x2F;li&gt;
+&lt;li&gt;Overcoming your desire for distraction.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Your brain get addicted to distraction.
+You therefore shouldn&#x27;t engage in distracting things even outside of your workday; let yourself be bored.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org17f5172&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;don-t-take-breaks-from-distraction-instead-take-breaks-from-focus&quot;&gt;Don&#x27;t take breaks from distraction. Instead take breaks from focus.&lt;&#x2F;h3&gt;
+&lt;p&gt;Here Newport talks about the Internet sabbath popularized by William Powers in &lt;em&gt;Hamlet&#x27;s Blackberry&lt;&#x2F;em&gt;.
+This Internet sabbath involves taking one day a week when we don&#x27;t use the Internet. It could also be varied to be
+2 months in a year, 2 hours in a day and so forth.
+He however compares this with being on a diet where we eat healthy on only one day a week.
+This wouldn&#x27;t work.
+You must rewire your brain to resist distracting stimuli&lt;&#x2F;p&gt;
+&lt;p&gt;He therefore argues for a different approach; this is to schedule (high intensity&#x2F;low value) distraction.
+To plan for blocks when to use the Internet. When we have our next &amp;quot;distraction block&amp;quot; say in 30 minutess.
+Resisting the urge to stay on topic and not go online is an exercise
+training your mental muscle to resist distraction.&lt;&#x2F;p&gt;
+&lt;p&gt;Implementing this may be hard to put it in practice here are some considerations:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;This strategy works even if your job requires lots of Internet use and&#x2F;or prompt e-mail replies.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Just have more Internet blocks.
+The total number of Internet blocks doesn&#x27;t matter as much as
+making sure the integrity of your online blocks stays intact.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;Regardless of how you schedule your Internet blocks, you must keep the time outside these blocks absolutely free from Internet use.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The aforementioned strategy sounds good in theory but what happens when you start an offline
+block and realize that you forgot to check for a crucial piece of information needed for this block on the Internet?&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;switch to a different offline activity&lt;&#x2F;li&gt;
+&lt;li&gt;Schedule your next Internet block to start sooner but at least 5 minutes from the current moment.
+This at least 5 minute gap is important in that it separates the sensation of wanting to do online with the reward of actually doing so.&lt;&#x2F;li&gt;
+&lt;li&gt;Scheduling Internet use at home and at work can further improve your concentration training
+Your attempts outside work to rewire your brain could get undone by your giving into distraction on weekends and in the evenings.
+You should therefore continue with the scheduling of Internet use.
+You should keep this up if in an offline block and even waiting in line&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org1e33753&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;work-like-teddy-roosevelt&quot;&gt;Work like Teddy Roosevelt&lt;&#x2F;h3&gt;
+&lt;p&gt;Roosevelt while at Harvard didn&#x27;t study for a long time however, he would study with high intensity.
+What the writer here advises is to give our tasks very short deadlines which will
+force us to work at high levels of intensity.&lt;&#x2F;p&gt;
+&lt;p&gt;This training will aid deep work as deep work is about intensely concentrating.
+He argues for doing this once a week and increasing the count of these intense work sessions.
+Also keeping a timer at a place where it&#x27;s clearly visible to force us to work intensely.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org17c8b00&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;meditate-productively&quot;&gt;Meditate productively&lt;&#x2F;h3&gt;
+&lt;p&gt;This is taking a time when your occupied physically but not mentally
+(e.g walking, showering, commuting) to work on a single well defined mental problem.&lt;&#x2F;p&gt;
+&lt;p&gt;As with mindfulness meditation, you must continue to bring your
+attention back when it wanders or stalls.
+He advises that one have 2 or 3 such sessions a week.&lt;&#x2F;p&gt;
+&lt;p&gt;This practice isn&#x27;t productive but it increases one&#x27;s ability to think deeply.
+Be patient with it. It takes time. However to ramp up the speed at which is takes effect:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Be wary of distractions and looping&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Distraction&lt;&#x2F;p&gt;
+&lt;p&gt;Redirect your attention back to the topic at hand.
+At times your mind might veer off into other seemingly important but off-topic tasks. Resist this urge.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Looping&lt;&#x2F;p&gt;
+&lt;p&gt;This is more subtle and is according to the writer an evolutionary adaptation to avoid expending too much
+energy. Your mind will avoid going deeper on the topic and keep looping over what is already known.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Structure your deep thinking&lt;&#x2F;p&gt;
+&lt;p&gt;This point wasn&#x27;t very clear to me but here&#x27;s what I got.
+Try to think about the things you need to achieve at the end of productive meditation.
+Then plan it out like first this then I&#x27;ll get to that etc.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;orgf02c6c4&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;memorise-a-deck-of-cards&quot;&gt;Memorise a deck of cards&lt;&#x2F;h3&gt;
+&lt;p&gt;The writer provides yet another way to train one&#x27;s attention; learning to memorize a deck of cards.
+He claims that in learning to memorize the deck of cards you need to keep bringing back your
+attention to the matter at hand which increases your ability to pay attention.&lt;&#x2F;p&gt;
+&lt;p&gt;He cites Daniel Kilov who was diagnosed with ADD and used to perform poorly in school
+but once he started learning about managing attention
+went ahead to graduate from a top Australian University with
+first class honors and is a memory athlete.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org2442ea2&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rule-3-quit-social-media&quot;&gt;Rule 3 - Quit Social Media&lt;&#x2F;h2&gt;
+&lt;p&gt;The writer claims that network tools:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Fragment our time and reduce our ability to concentrate&lt;&#x2F;li&gt;
+&lt;li&gt;are overwhelming&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Knowing this however we end up feeling like we have only 2 options:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Quit the Internet entirely or take an Internet sabbatical&lt;&#x2F;li&gt;
+&lt;li&gt;Accept our current distracted state as inevitable.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This section of the book provides a 3rd option&lt;&#x2F;p&gt;
+&lt;p&gt;Newport argues that social media adds very little value to one&#x27;s life.
+However, many have adapted an &lt;strong&gt;any benefit mindset&lt;&#x2F;strong&gt; this includes
+finding any benefit as sufficient for justifying the use of social media.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;orgd9e2c79&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-any-benefit-approach-to-network-tool-selection&quot;&gt;The any benefit approach to network tool selection&lt;&#x2F;h3&gt;
+&lt;p&gt;You&#x27;re justified to use a network tool if you can identify any possible benefit to its use,
+or anything you might miss out on if you don&#x27;t use it.&lt;&#x2F;p&gt;
+&lt;p&gt;The problem with this is that it ignores all the drawbacks of something.&lt;&#x2F;p&gt;
+&lt;p&gt;He argues that we should see network tools as just another set of tools that are a means to an end.
+You should select and use carefully your tools as a knowledge worker. He calls this the &lt;em&gt;craftsman approach&lt;&#x2F;em&gt; to tool selection.&lt;&#x2F;p&gt;
+&lt;p&gt;Cites Forrest Pritchard, a farmer, who found it better to buy hay than grow grass on his land
+and use a hay baler (he actually sold his) to compact it and make hay for feeding cows in the winter when grazing is impossible.
+Forrest in this case considered all the costs as well as the opportunity cost of making
+hay in the winter when he could&#x27;ve been doing something else.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org5b024dc&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-craftsman-approach-to-tool-selection&quot;&gt;The craftsman approach to tool selection&lt;&#x2F;h3&gt;
+&lt;p&gt;Identify core factors that determine success and happiness in your professional and personal life.
+Adopt a tool only if the pros outweigh the cons in regards to the factors.&lt;&#x2F;p&gt;
+&lt;p&gt;Below are strategies to help you evaluate network tools.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Apply the law of the vital few to your Internet habits&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;The law of the vital few: In many settings 80% of a given effect is due to just 20% of the possible causes.&lt;&#x2F;em&gt;
+If we assumed that this holds for most goals in one&#x27;s life.
+This would help find the 20% of the activities needed to achieve said goals.
+Seeing how network tools affect these goals should be a big consideration in how we use said tools.&lt;&#x2F;p&gt;
+&lt;p&gt;Moreover, if you use limited time and attention on other activities
+especially low value they take from the 20% that would have the highest impact.
+Conversely, by taking the time consumed by low impact activities and
+reinvesting in high impact activities you end up more successful in your goal.&lt;&#x2F;p&gt;
+&lt;p&gt;In this case outline a few high level goals and activities that enable the achievement of this goal.
+Professionally for Newport this would be&lt;&#x2F;p&gt;
+&lt;p&gt;The goals should be high level but not too generic e.g &amp;quot;do better research…&amp;quot; is too general and &amp;quot;finish paper on …&amp;quot; is too specific.&lt;&#x2F;p&gt;
+&lt;p&gt;A few goals&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Be a better researcher&lt;&#x2F;li&gt;
+&lt;li&gt;Be a better teacher to his students&lt;&#x2F;li&gt;
+&lt;li&gt;Be an effective mentor to his students&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Supporting activities would be:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Regularly read and understand cutting edge results in his field&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;In this case he would assess a tool against these.&lt;&#x2F;p&gt;
+&lt;p&gt;Cites Malcolm Gladwell et al.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Quit social media&lt;&#x2F;p&gt;
+&lt;p&gt;Cites Ryan Nicodemus, a man who decided to declutter his life by packing what he owned in boxes.
+He then went on with life only unpacking something when he needed it.
+After a week he noticed that he didn&#x27;t need a majority of his stuff and go rid of it.&lt;&#x2F;p&gt;
+&lt;p&gt;Newport argues that people hold onto stuff with the thought that they might need it someday.
+This same logic is held when it comes to social media. He then goes on to say that we should
+do the same with our network tools.&lt;&#x2F;p&gt;
+&lt;p&gt;Stop using network tools for 30 days cold turkey; after these 30 days find out:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Would the last 30 days have been better if I had been able to use this service&lt;&#x2F;li&gt;
+&lt;li&gt;Did people care that I wasn&#x27;t using this service.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;If your answer to both is no then quit the service. If it&#x27;s yes then return to using the service.
+If ambiguous it&#x27;s up to you though he would encourage you to lean towards leaving.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Don&#x27;t use the Internet to entertain yourself&lt;&#x2F;p&gt;
+&lt;p&gt;He opens with commentary on Arnold Bennett; and English writer who lived at a time
+when the white collar worker had just been created by the industrial revolution.
+He felt that the industrial revolution had presented to people an opportunity
+to live a full life but they weren&#x27;t taking advantage of it.&lt;&#x2F;p&gt;
+&lt;p&gt;Bennet argued that the worker who works 10 to 6 had 16 hours a day to himself
+but viewed only their work hours as they day.
+He thought this was &amp;quot;utterly illogical and unhealthy&amp;quot;.
+He argued that one should see these 16 hours as &amp;quot;a day within a day&amp;quot;.
+He should spend this time performing rigorous self improvement.&lt;&#x2F;p&gt;
+&lt;p&gt;Newport argues that people can and should make deliberate use of their time outside work.
+He then goes on to say that network tools today attack when our mind is weakest.
+After work when we&#x27;re tired we end up spending those 16 hours clicking about.&lt;&#x2F;p&gt;
+&lt;p&gt;He advocates what Bennett did, &lt;em&gt;put more thought into your leisure time&lt;&#x2F;em&gt;.
+he suggested one of the things to do in our leisure time is to read an interesting book.
+The structure in one&#x27;s leisure time actually leaves one feeling even more rested.&lt;&#x2F;p&gt;
+&lt;p&gt;In conclusion, get a higher quality alternative to social media.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org5ab4ef8&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rule-4-drain-the-shallows&quot;&gt;Rule 4 - Drain the Shallows&lt;&#x2F;h2&gt;
+&lt;p&gt;Newport cites 37 signals, a company that let its workers work 4 days a week
+save for customer care and were successful with this.
+They then went ahead and had them have 5 weeks in which they worked deeply on their
+own projects then come back with a product on pitch day which was a success.&lt;&#x2F;p&gt;
+&lt;p&gt;Newport argues that we should partition our time so that
+we have ample time ~4 hours of deep work
+and the rest we can do shallow work such as meeting
+and emails since these are unavoidable.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org1153459&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;schedule-every-minute-of-your-day&quot;&gt;Schedule every minute of your day&lt;&#x2F;h3&gt;
+&lt;p&gt;The goal here isn&#x27;t to adhere to a schedule but to maintain a &lt;strong&gt;thoughtful&lt;&#x2F;strong&gt; say in what you do with your time going forward.&lt;&#x2F;p&gt;
+&lt;p&gt;You could have a book for this purpose alone.
+Here&#x27;s how it goes:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;At the beginning of the day on the left hand side mark every line with an hour of the day; this divides your day into blocks&lt;&#x2F;li&gt;
+&lt;li&gt;Draw blocks (skinny are better for revision) marking what you will do with each hour.
+&lt;ul&gt;
+&lt;li&gt;There should be blocks for lunch and relaxation. Not all the blocks should be dedicated to work.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;If your schedule is interrupted cancel the remaining blocks and make a new revised schedule for the remaining time to the right&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This allows you to take a moment and &lt;strong&gt;ask&lt;&#x2F;strong&gt; &lt;em&gt;&amp;quot;What makes sense for me to do with the remaining time?&amp;quot;&lt;&#x2F;em&gt;
+The value lies in the thoughtfulness.&lt;&#x2F;p&gt;
+&lt;table border=&quot;2&quot; cellspacing=&quot;0&quot; cellpadding=&quot;6&quot; rules=&quot;groups&quot; frame=&quot;hsides&quot;&gt;
+&lt;colgroup&gt;
+&lt;col  class=&quot;org-right&quot; &#x2F;&gt;
+&lt;col  class=&quot;org-left&quot; &#x2F;&gt;
+&lt;&#x2F;colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope=&quot;col&quot; class=&quot;org-right&quot;&gt;Time&lt;&#x2F;th&gt;
+&lt;th scope=&quot;col&quot; class=&quot;org-left&quot;&gt;Activity&lt;&#x2F;th&gt;
+&lt;&#x2F;tr&gt;
+&lt;&#x2F;thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;06:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;07:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;08:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;09:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;10:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;11:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;12:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;13:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;14:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;15:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;16:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;17:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;18:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;19:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;org-right&quot;&gt;20:00&lt;&#x2F;td&gt;
+&lt;td class=&quot;org-left&quot;&gt;&amp;#xa0;&lt;&#x2F;td&gt;
+&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;
+&lt;&#x2F;table&gt;
+&lt;p&gt;If your schedule keeps getting interrupted:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Recognize that at the start you will have trouble coming up with estimates.&lt;&#x2F;li&gt;
+&lt;li&gt;Create overflow conditional blocks (if you&#x27;re not sure how long you will take on a task).&lt;&#x2F;li&gt;
+&lt;li&gt;Be liberal with your use of task blocks - don&#x27;t be afraid to cross blocks out.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;org6428fe6&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;quantify-the-depth-of-every-activity&quot;&gt;Quantify the depth of every activity&lt;&#x2F;h3&gt;
+&lt;p&gt;To come up with this metric you should ask:
+&lt;em&gt;How long would it take, in months, to train a smart recent graduate with no specialized training in my field to complete this task?&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org0d37158&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;ask-your-boss-for-a-shallow-work-budget&quot;&gt;Ask your boss for a shallow work budget&lt;&#x2F;h3&gt;
+&lt;p&gt;This is the question:
+&lt;em&gt;What percentage of your time should be spent on shallow tasks?&lt;&#x2F;em&gt;
+then try to stick to this budget.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;orgaaa26f4&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;finish-your-work-by-5-30&quot;&gt;Finish your work by 5:30&lt;&#x2F;h3&gt;
+&lt;p&gt;Newport introduces the concept of &lt;em&gt;fixed schedule productivity&lt;&#x2F;em&gt;.
+In this case, we limit our work to only take a certain time per week or day.&lt;&#x2F;p&gt;
+&lt;p&gt;He claims that most junior professors are forced to work late into
+the night and on weekends but this can be avoided.
+He cites Radhika Nagpal, who one of the ways she made her pre tenure years good
+is to set drastic quotas on shallow endevours.&lt;&#x2F;p&gt;
+&lt;p&gt;She set quotas on the number of papers she would review per year and set maximum number of travels to 5.&lt;&#x2F;p&gt;
+&lt;p&gt;Cap time dedicated to shallow work and ruthlessly protect time dedicated to deep work.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org378cecd&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;become-hard-to-reach&quot;&gt;Become hard to reach&lt;&#x2F;h3&gt;
+&lt;p&gt;This section is about how tyrannical email has become and how to manage
+the number of email conversations one ends up in.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Make people who send you email do more work&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Do more work when you send or reply to emails
+Before replying to an email consider:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;which project it presents&lt;&#x2F;li&gt;
+&lt;li&gt;the most efficient (in terms of email) process for bringing this project to a successful conclusion&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This ends up:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;reducing the number of emails in your inbox&lt;&#x2F;li&gt;
+&lt;li&gt;closes the loop wit respect to the project, takes it off the back of your mind&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Don&#x27;t respond
+It should be the senders responsibility to convince the reader that a response is worthwhile.
+Don&#x27;t respond to an email if:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;is ambiguous&lt;&#x2F;li&gt;
+&lt;li&gt;not a question or proposal that interests you&lt;&#x2F;li&gt;
+&lt;li&gt;nothing really good would happen if you did respond and nothing really bad if you didn&#x27;t respond&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;a id=&quot;orgb37211f&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h1&gt;
+&lt;p&gt;To finish off, Newport cites Bill Gates and his ability to create
+a billion dollar company in less than a semester.
+He then goes on to talk about how he has applied deep work in his life
+and had it produce results that surprised even him.&lt;&#x2F;p&gt;
+&lt;p&gt;I think the major points here lie in:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The day planner&lt;&#x2F;li&gt;
+&lt;li&gt;Maintaining a tally of deep work&lt;&#x2F;li&gt;
+&lt;li&gt;Executing like a business or 4DX&lt;&#x2F;li&gt;
+&lt;li&gt;Limit the time you assign to deep work and shallow work to relatively short periods, this creates a sense of urgency&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;a id=&quot;org10722d5&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;definitions&quot;&gt;Definitions&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;a id=&quot;orgc10f622&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;from-the-book&quot;&gt;From the book&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a id=&quot;org2cd9a3b&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;amygdala&quot;&gt;Amygdala&lt;&#x2F;h3&gt;
+&lt;p&gt;A center of emotion&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org0dd08dd&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;deep-work&quot;&gt;Deep work&lt;&#x2F;h3&gt;
+&lt;p&gt;Professional activities performed in a state of distraction free concentration that push your cognitive abilities to their limit.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;create new value&lt;&#x2F;li&gt;
+&lt;li&gt;improve skill&lt;&#x2F;li&gt;
+&lt;li&gt;hard to replicate&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;a id=&quot;org904eb30&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;eudaimonia&quot;&gt;Eudaimonia&lt;&#x2F;h3&gt;
+&lt;p&gt;A state in which you&#x27;re achieving your full human potential&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org671f2b8&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;shallow-work&quot;&gt;Shallow work&lt;&#x2F;h3&gt;
+&lt;p&gt;Non cognitively demanding logistical style tasks often performed while distracted.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;tend not to create much new value in the world&lt;&#x2F;li&gt;
+&lt;li&gt;easy to replicate&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;a id=&quot;org2cde33a&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;myelin&quot;&gt;Myelin&lt;&#x2F;h3&gt;
+&lt;p&gt;a layer of fatty tissue that grows around neurons, acting as an insulator that allows cells to fire faster and cleaner&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a id=&quot;org5c7c4a2&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;h-index&quot;&gt;h-index&lt;&#x2F;h3&gt;
+&lt;p&gt;A formula that processes your publication and citation counts into a single value that approximates your impact on your field&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

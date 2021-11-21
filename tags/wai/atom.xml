@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - WAI</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/wai/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2015-08-21T19:14:34+00:00</updated>
+	<id>https://njagi.me/tags/wai/atom.xml</id>
+	<entry xml:lang="en">
+		<title>wai-devel final submission</title>
+		<published>2015-08-21T19:14:34+00:00</published>
+		<updated>2015-08-21T19:14:34+00:00</updated>
+		<link href="https://njagi.me/posts/wai-devel-final-submission/" type="text/html"/>
+		<id>https://njagi.me/posts/wai-devel-final-submission/</id>
+		<content type="html">&lt;p&gt;This is the final day of code submissions to Google for Google Summer of Code.
+So it&#x27;s only fair that I give the community a report on the current state of affairs regarding wai-devel.&lt;br &#x2F;&gt;
+This is more of a very detailed changelog than a blog post about wai-devel.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;what-wai-devel-expects-from-your-application&quot;&gt;What wai-devel expects from your application.&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;NOTHING&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+Yes, wai-devel expects nothing from your application.
+However, your application shall receive a port number through the environment variable &lt;code&gt;PORT&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;UPDATE:&lt;&#x2F;em&gt;
+Due to it&#x27;s reliance on ide-backend you also have to set the environment variable &lt;code&gt;GHC_PACKAGE_PATH&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-port-is-used-for&quot;&gt;What PORT is used for:&lt;&#x2F;h3&gt;
+&lt;p&gt;Your application shall listen for connections on &lt;code&gt;localhost:&amp;lt;PORT&amp;gt;&lt;&#x2F;code&gt;
+wai-devel by default creates a reverse proxy from port number 3000 to your application which is listening in on PORT.&lt;br &#x2F;&gt;
+You can change the port from the default port 3000 by setting the environment variable PORT yourself.&lt;&#x2F;p&gt;
+&lt;p&gt;wai-devel takes PORT and then cycles through various port numbers adding 1 to PORT to find a port that is free, sets that as the destination port and changes the PORT environment variable to that destination port. Therefore we can reverse proxy from PORT to a random port.&lt;&#x2F;p&gt;
+&lt;p&gt;Reverse proxying is important for error reporting, future proofing and other ways of abstracting away the services wai-devel provides to your application.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;more-reliable-dirtiness-checking&quot;&gt;More reliable dirtiness checking.&lt;&#x2F;h2&gt;
+&lt;p&gt;wai-devel will use the the module you have chosen to find the files to watch for changes in.
+It watches the files it imports and their Template Haskell dependencies as well as the cabal file.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;compatibility-with-haskell-wai-applications&quot;&gt;Compatibility with Haskell wai-applications.&lt;&#x2F;h2&gt;
+&lt;p&gt;wai-devel works with your usual yesod scaffold from yesod-bin out of the box and should work with other haskell wai apps as long as they use the PORT environment variable.&lt;&#x2F;p&gt;
+&lt;p&gt;You can pass the filepath and function to run via command line arguments &lt;code&gt;--path&lt;&#x2F;code&gt; or &lt;code&gt;-p&lt;&#x2F;code&gt; and function &lt;code&gt;--function&lt;&#x2F;code&gt; or &lt;code&gt;-f&lt;&#x2F;code&gt;.
+When these aren&#x27;t passed it assumes Application.develMain (borrowed from yesod).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;yet-to-come&quot;&gt;Yet to come.&lt;&#x2F;h2&gt;
+&lt;p&gt;I will be actively developing wai-devel well after Google Summer of Code is over (that is today).&lt;&#x2F;p&gt;
+&lt;p&gt;The following are coming next:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Show build progress in the browser.&lt;&#x2F;li&gt;
+&lt;li&gt;Provide a dashboard page with compilation status, garbage collection statistics, and other useful meta-information.&lt;&#x2F;li&gt;
+&lt;li&gt;Port to Windows. (This depends on ide-backend getting ported to Windows.)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Progress with wai-devel</title>
+		<published>2015-08-13T00:00:00+00:00</published>
+		<updated>2015-08-13T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/progress-with-wai-devel/" type="text/html"/>
+		<id>https://njagi.me/posts/progress-with-wai-devel/</id>
+		<content type="html">&lt;p&gt;wai-devel is a  development server for wai compliant haskell web applications.&lt;&#x2F;p&gt;
+&lt;p&gt;Its name changed from yesod-devel (the haskell reddit community suggested this).
+You can find it at: &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;wai-devel&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;wai-devel&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;what-wai-devel-expects-from-your-application&quot;&gt;What wai-devel expects from your application&lt;&#x2F;h2&gt;
+&lt;p&gt;Since wai-devel is very loosely coupled to your application it expects mainly two things from your application:
+a &lt;strong&gt;host:port&lt;&#x2F;strong&gt; pair and a function, &lt;strong&gt;Application.develMain&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Due to it&#x27;s dependence on ide-backend it also expects you to set the environment variable &lt;code&gt;GHC_PACKAGE_PATH&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Mine for example is: &lt;code&gt;export GHC_PACKAGE_PATH=~&#x2F;.stack&#x2F;snapshots&#x2F;x86_64-linux&#x2F;lts-2.22&#x2F;7.8.4&#x2F;pkgdb:&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The host:port pair is expected to be passed in as two environment variables:
+wai_host and wai_port for example:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;export wai_host=127.0.0.1&lt;&#x2F;li&gt;
+&lt;li&gt;export wai_port=3001&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Better yet, the application itself should set the environment variables as in the example code below.&lt;&#x2F;p&gt;
+&lt;p&gt;wai-devel looks for a function Application.develMain
+I have a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;yesod&quot;&gt;fork of yesod&lt;&#x2F;a&gt;, that builds a yesod binary which
+generates a scaffold with this function implemented.
+I recommend using it to generate the scaffold with which to try out wai-devel with.&lt;&#x2F;p&gt;
+&lt;p&gt;The specifics of how to set the port and host within yesod applications will obviously change.
+The point of this fork is to generate a scaffold that works with wai-devel out of the box.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is a snippet develMain function from my yesod fork.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;haskell&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-haskell &quot;&gt;&lt;code class=&quot;language-haskell&quot; data-lang=&quot;haskell&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- | main function for use by yesod devel
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;develMain &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;IO &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;develMain &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; develMainHelper&amp;#39; getApplicationDev
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;develMainHelper&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;IO&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Settings&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;Application&lt;&#x2F;span&gt;&lt;span&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;IO &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;develMainHelper&amp;#39; getSettingsApp &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;= do
+&lt;&#x2F;span&gt;&lt;span&gt;    (settings, app) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;-&lt;&#x2F;span&gt;&lt;span&gt; getSettingsApp
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    _ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;-&lt;&#x2F;span&gt;&lt;span&gt; unsetEnv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;wai_port&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; setEnv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;wai_port&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;3001&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;    _ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;-&lt;&#x2F;span&gt;&lt;span&gt; unsetEnv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;wai_host&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; setEnv &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;wai_host&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;127.0.0.1&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; settings&amp;#39;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; setPort (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;3001 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;Port&lt;&#x2F;span&gt;&lt;span&gt;) settings
+&lt;&#x2F;span&gt;&lt;span&gt;        settings&amp;#39;&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; setHost ((read &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;127.0.0.1&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;HostPreference&lt;&#x2F;span&gt;&lt;span&gt;) settings&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;\&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    sock &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;-&lt;&#x2F;span&gt;&lt;span&gt; createSocket
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    runSettingsSocket settings&amp;#39;&amp;#39; sock app
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;where &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- | Create the socket that we will use to communicate with
+&lt;&#x2F;span&gt;&lt;span&gt;          &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- localhost:3001 here.
+&lt;&#x2F;span&gt;&lt;span&gt;          &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;createSocket &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;:: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;IO Socket
+&lt;&#x2F;span&gt;&lt;span&gt;          createSocket &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;= do
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;            sock &lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;&amp;lt;-&lt;&#x2F;span&gt;&lt;span&gt; socket &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;AF_INET Stream&lt;&#x2F;span&gt;&lt;span&gt; defaultProtocol
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- Tell the OS *not* to reserve the socket after your program exits.
+&lt;&#x2F;span&gt;&lt;span&gt;            setSocketOption sock &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;ReuseAddr &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;1
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- Bind the socket to localhost:3000 and listen.
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;-- I wonder why I can&amp;#39;t specify localhost instead of iNADDR_ANY
+&lt;&#x2F;span&gt;&lt;span&gt;            bindSocket sock (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cb4b16;&quot;&gt;SockAddrInet &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;3001&lt;&#x2F;span&gt;&lt;span&gt; iNADDR_ANY)
+&lt;&#x2F;span&gt;&lt;span&gt;            listen sock &lt;&#x2F;span&gt;&lt;span style=&quot;color:#6c71c4;&quot;&gt;2
+&lt;&#x2F;span&gt;&lt;span&gt;            return sock
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;During socket creation I made sure that the socket option ReuseAddr has been set to 1.&lt;br &#x2F;&gt;
+This way the operating system doesn&#x27;t hold on to the socket after the program exits.
+This is important for when wai-devel takes note of file changes and the development server is restarted.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;ignoring-files-and-directories&quot;&gt;Ignoring files and directories&lt;&#x2F;h2&gt;
+&lt;p&gt;wai-devel expects that there will be a single &lt;code&gt;Main.main&lt;&#x2F;code&gt; function.
+In the case of having more than one, for example with yesod, we ignore all but one.
+Specifically, we ignore the file app&#x2F;DevelMain.hs.
+There is no need for app&#x2F;devel.hs so it has been removed in my fork.&lt;&#x2F;p&gt;
+&lt;p&gt;Moreover, wai-devel ignores files in your &lt;code&gt;test&#x2F;&lt;&#x2F;code&gt; directory.&lt;br &#x2F;&gt;
+This is because wai-devel depends on ide-backend which will attempt to build all files in the current working diretory,
+including your test directory. This leads to a world of hurt because the test&#x2F; directory also has a &lt;code&gt;Main.main&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Please report an issue if you would like any file ignored during builds.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;moved-to-stack&quot;&gt;Moved to stack&lt;&#x2F;h1&gt;
+&lt;p&gt;Since the Haskell community has moved in this direction, so has wai-devel.&lt;br &#x2F;&gt;
+wai-devel only depends on cabal in that stack and ide-backend depend on Cabal the library.
+Otherwise, the cabal binary is not used and hasn&#x27;t been tested to work with wai-devel.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;compatible-versions-of-ghc&quot;&gt;Compatible versions of GHC&lt;&#x2F;h2&gt;
+&lt;p&gt;Currently wai-devel is built and tested against:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;GHC-7.8&lt;&#x2F;li&gt;
+&lt;li&gt;GHC-7.10&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;regarding-file-watching&quot;&gt;Regarding file watching&lt;&#x2F;h2&gt;
+&lt;p&gt;wai-devel watches for file changes on files with the following extensions:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;hamlet&lt;&#x2F;li&gt;
+&lt;li&gt;shamlet&lt;&#x2F;li&gt;
+&lt;li&gt;julius&lt;&#x2F;li&gt;
+&lt;li&gt;lucius&lt;&#x2F;li&gt;
+&lt;li&gt;hs&lt;&#x2F;li&gt;
+&lt;li&gt;yaml&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;When a change takes place wai-devel will recompile and re-run your application
+on localhost:3001 or display an error if any on the browser at localhost:3000&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;If you would want another extension added to the list of file extensions to watch for please report it as an issue.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;command-line-arguments&quot;&gt;Command line arguments&lt;&#x2F;h2&gt;
+&lt;p&gt;Currently wai-devel takes only these two arguments and the two are optional.
+If you feel the need for more arguments please report it as an issue on github.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;-r &lt;em&gt;to turn off reverse proxying&lt;&#x2F;em&gt;
+If this is turned on you will access your application at an address that is specific to
+your web application or web framework.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;--show-iface [hi file] &lt;em&gt;passes this command to ghc&lt;&#x2F;em&gt;
+Same as ghc --show-iface&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+</feed>

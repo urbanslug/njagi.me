@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Inspiration</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/inspiration/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2014-04-05T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/inspiration/atom.xml</id>
+	<entry xml:lang="en">
+		<title>The Man in the Arena</title>
+		<published>2014-04-05T00:00:00+00:00</published>
+		<updated>2014-04-05T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/man-in-the-arena/" type="text/html"/>
+		<id>https://njagi.me/posts/man-in-the-arena/</id>
+		<content type="html">&lt;p&gt;I was on you tube when I watched &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=8-JXOnFOXQk&quot;&gt;Brené Brown: Why Your Critics Aren&#x27;t The Ones Who Count&lt;&#x2F;a&gt;. You should watch it.
+It&#x27;s all about not minding the haters.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Citizenship in a Republic is the title of a speech given by former President of the United States, Theodore Roosevelt at the Sorbonne in Paris, France on April 23, 1910.
+One notable passage on page seven of the 35-page speech is referred to as &amp;quot;The Man in the Arena&amp;quot;&lt;&#x2F;p&gt;
+&lt;p&gt;Read about it on wikipedia if you please &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Citizenship_in_a_Republic&quot;&gt;Citizenship in a Republic&lt;&#x2F;a&gt;. &lt;&#x2F;p&gt;
+&lt;p&gt;Here is &amp;quot;The Man in the Arena&amp;quot;:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;It is not the critic who counts; not the man who points out how the strong man stumbles, or where the doer of deeds could have done them better. The credit belongs to the man who is actually in the arena, whose face is marred by dust and sweat and blood; who strives valiantly; who errs, who comes short again and again, because there is no effort without error and shortcoming; but who does actually strive to do the deeds; who knows great enthusiasms, the great devotions; who spends himself in a worthy cause; who at the best knows in the end the triumph of high achievement, and who at the worst, if he fails, at least fails while daring greatly, so that his place shall never be with those cold and timid souls who neither know victory nor defeat.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

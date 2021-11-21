@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Statistics</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/statistics/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2019-02-27T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/statistics/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Statistics</title>
+		<published>2019-02-27T00:00:00+00:00</published>
+		<updated>2019-02-27T00:00:00+00:00</updated>
+		<link href="https://njagi.me/wiki/statistics/" type="text/html"/>
+		<id>https://njagi.me/wiki/statistics/</id>
+		<content type="html">&lt;p&gt;A link to notes (PDF) I had when I took a statistics unit a while ago. Not guaranteed to be correct.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h1&gt;
+&lt;p&gt;Statistics the science of generalizing knowledge from data.
+Population complete set of elements being studied.&lt;&#x2F;p&gt;
+&lt;p&gt;Variations in sampling&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sampling variation&#x2F;Intrinsic variation :: is variation caused by sampling&lt;&#x2F;li&gt;
+&lt;li&gt;Variability :: vary from the mean&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;z critical
+confidence interval
+critical value&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;normal-distribution&quot;&gt;Normal distribution&lt;&#x2F;h2&gt;
+&lt;p&gt;Why normal distribution is important:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Empirical rule&lt;&#x2F;li&gt;
+&lt;li&gt;Underlies distribution of P values which are used to test hypothesis&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;measures-of-central-tendency&quot;&gt;Measures of central tendency&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;mean&quot;&gt;Mean&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;arithmetic-mean&quot;&gt;Arithmetic mean&lt;&#x2F;h3&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\bar x = \dfrac{\sum\limits^{n}_{i=1} x_i }{n}&lt;&#x2F;script&gt;
+&lt;h3 id=&quot;sample-mean&quot;&gt;Sample mean&lt;&#x2F;h3&gt;
+&lt;p&gt;A point estimator of the population mean:&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\bar x = \dfrac{\sum\limits^{n}_{i=1} x_i }{n}&lt;&#x2F;script&gt;
+&lt;h3 id=&quot;population-mean&quot;&gt;Population mean&lt;&#x2F;h3&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\mu = \dfrac{\sum\limits^{n}_{i=1} x_i }{N}&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;mode&quot;&gt;Mode&lt;&#x2F;h2&gt;
+&lt;p&gt;Most repeated&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;median&quot;&gt;Median&lt;&#x2F;h2&gt;
+&lt;p&gt;Value in the middle&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;measures-of-spread-variability&quot;&gt;Measures of spread&#x2F;variability&lt;&#x2F;h1&gt;
+&lt;p&gt;Spread is variance, how spread out is the graph?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;ways-to-measure-variation&quot;&gt;Ways to measure variation&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;range&quot;&gt;Range&lt;&#x2F;h3&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;Range = max\ value - min\ value&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;variance&quot;&gt;Variance&lt;&#x2F;h2&gt;
+&lt;p&gt;Applications in:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;QA&lt;&#x2F;li&gt;
+&lt;li&gt;Ops&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;In finance risk is often another term for a stock&#x27;s variance.
+Some stocks are steady (low risk) but offer lower potential returns.
+Others are swing wildly (high risk) but offer more potential upside.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;population-variance-sigma-2&quot;&gt;Population variance (&lt;script type=&quot;math&#x2F;tex&quot;&gt;\sigma^2&lt;&#x2F;script&gt;)&lt;&#x2F;h3&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\sigma^2 = \dfrac{\Sigma (x_i - \mu)^2}{N}&lt;&#x2F;script&gt;
+&lt;h3 id=&quot;sample-variance-s-2&quot;&gt;Sample variance (&lt;script type=&quot;math&#x2F;tex&quot;&gt;s^2&lt;&#x2F;script&gt;)&lt;&#x2F;h3&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;s^2 = \dfrac{\Sigma (x_i - \bar x)^2}{n-1}&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;standard-deviation&quot;&gt;Standard deviation&lt;&#x2F;h2&gt;
+&lt;p&gt;Measures the &lt;em&gt;average&lt;&#x2F;em&gt; distance your data values are from the mean.
+It&#x27;s also \sqrt{variance}.&lt;&#x2F;p&gt;
+&lt;p&gt;Closely grouped data has a large standard deviation and the opposite for spread out data.&lt;&#x2F;p&gt;
+&lt;p&gt;It is:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;never negative&lt;&#x2F;li&gt;
+&lt;li&gt;never 0 unless there&#x27;s no deviation at all in the data&lt;&#x2F;li&gt;
+&lt;li&gt;Greatly affected by outliers&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;sample-standard-deviation&quot;&gt;Sample standard deviation&lt;&#x2F;h3&gt;
+&lt;p&gt;Lower case &#x2F;s&#x2F; means &lt;em&gt;sample&lt;&#x2F;em&gt; standard deviation&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;s = \sqrt{\frac{\sum\limits^{n}_{i=1} (x_i-\bar x)^2 }{n-1}}&lt;&#x2F;script&gt;
+&lt;p&gt;In sample standard deviation we do &#x2F;n-1&#x2F; to &lt;em&gt;overestimate&lt;&#x2F;em&gt; the variation
+because &#x2F;-1&#x2F; decreases the denominator making the result, s, bigger.&lt;&#x2F;p&gt;
+&lt;p&gt;Simpler formula:&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;s = \sqrt\frac{n\sum\limits^{n}_{i=1} x_i^2 - (\sum\limits^{n}_{i=1} x_i)^2} {n(n-1)} \\&lt;&#x2F;script&gt;
+&lt;p&gt;or&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;s = \sqrt\frac{n\sum x^2 - (\sum x)^2} {n(n-1)}&lt;&#x2F;script&gt;
+&lt;h3 id=&quot;population-standard-deviation&quot;&gt;Population standard deviation&lt;&#x2F;h3&gt;
+&lt;p&gt;Symbol for population standard deviation is \sigma. \
+\mu is population mean.&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\sigma = \sqrt\frac{\sum\limits^{n}_{i=1}(x_i-\mu)^2}{N}&lt;&#x2F;script&gt;
+&lt;p&gt;We don&#x27;t divide by n-1 but N because we don&#x27;t want to overestimate our population.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;empirical-rule&quot;&gt;Empirical rule&lt;&#x2F;h2&gt;
+&lt;p&gt;How much proportion or percentage of a dataset will fall within certain std devs from the mean.
+Applies only to a &lt;em&gt;normally&lt;&#x2F;em&gt; distributed dataset.
+Also called 68%, 95%, 99.7% rule. \
+If data is normally distributed then:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;68% of data will fall within 1 standard deviation from the mean&lt;&#x2F;li&gt;
+&lt;li&gt;95% of data will fall within 2 standard deviation from the mean&lt;&#x2F;li&gt;
+&lt;li&gt;99.7% of data will fall within 3 standard deviation from the mean&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Data values &#x2F;within&#x2F; 2 standard deviations are &lt;em&gt;usual&lt;&#x2F;em&gt;.
+Data values &#x2F;outside&#x2F; 2 standard deviations are &lt;em&gt;unusual&lt;&#x2F;em&gt;.
+A data value outside of 3 standard deviations from the mean is extremely rare.&lt;&#x2F;p&gt;
+&lt;p&gt;Given different standard deviations (with different units, values, samples etc), we have to find a way to represent what has more spread.
+To do this we use:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Coefficient of variation :: translates s in comparison to \bar x as a percentage&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;c.v. = \frac{s}{\bar x} * 100&lt;&#x2F;script&gt;
+&lt;ul&gt;
+&lt;li&gt;Z score :: The number of standard deviations away from the mean that a data value lies in. This lets to compare two datasets directly to see which has more variation.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;sampling-distribution-of-sample-mean&quot;&gt;Sampling distribution of sample mean&lt;&#x2F;h2&gt;
+&lt;p&gt;When we take many samples of the same size from a &lt;em&gt;population&lt;&#x2F;em&gt; and find the sample means \bar x.
+The means of those samples follow a normal curve when placed in their own distribution.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;sampling-distribution-of-sample-variance&quot;&gt;Sampling distribution of sample variance&lt;&#x2F;h2&gt;
+&lt;p&gt;When we take many samples of the same size from a &lt;em&gt;normal population&lt;&#x2F;em&gt; and then fine those sample variances s^2, those sample variances don&#x27;t follow a normal curve when placed in their own distribution.&lt;&#x2F;p&gt;
+&lt;p&gt;They follow the chi-square \chi^2 distribution with n-1 degrees of freedom.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;chi-squared-distribution&quot;&gt;Chi Squared distribution&lt;&#x2F;h2&gt;
+&lt;p&gt;Compares sample variance to pop variance.
+We try to estimate population variance&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\chi^2 = \frac{(n-1) s^2}{\sigma^2}&lt;&#x2F;script&gt;
+&lt;ul&gt;
+&lt;li&gt;n :: sample size&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;script type=&quot;math&#x2F;tex&quot;&gt;s^2&lt;&#x2F;script&gt; :: sample variance
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;script type=&quot;math&#x2F;tex&quot;&gt;\sigma^2&lt;&#x2F;script&gt; :: population variance
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;A \chi^2 distribution has a tail to the right.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Not symmetrical&lt;&#x2F;li&gt;
+&lt;li&gt;Values are non negative -  No 0 in the middle because std and variance can&#x27;t be 0&lt;&#x2F;li&gt;
+&lt;li&gt;As degrees of freedom go up the distribution becomes more symmetrical&lt;&#x2F;li&gt;
+&lt;li&gt;Gives critical values for the area to the &lt;em&gt;right&lt;&#x2F;em&gt; - Based on area to the right&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;anatomy-of-the-chi-square-distribution&quot;&gt;Anatomy of the chi-square distribution&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;There is no one chi distribution&lt;&#x2F;li&gt;
+&lt;li&gt;Area (probability) under the curve is 1&lt;&#x2F;li&gt;
+&lt;li&gt;The curve is asymptotic; never touches the x axis&lt;&#x2F;li&gt;
+&lt;li&gt;1 is at the left and 0 is at the right&lt;&#x2F;li&gt;
+&lt;li&gt;Cumulative probability runs right to left&lt;&#x2F;li&gt;
+&lt;li&gt;Probabilities are found in the chi-square table in the same manner as normal curves&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;example-1&quot;&gt;Example 1&lt;&#x2F;h3&gt;
+&lt;p&gt;Given n = 12 and confidence level = 95%. Find the critical value which make the &lt;script type=&quot;math&#x2F;tex&quot;&gt;\chi^2&lt;&#x2F;script&gt; distribution.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Solution&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\alpha = 1-0.95 = 0.05 \\
+
+\dfrac{0.05}{2} = 0.025\\
+
+From the table:\\
+Using\ 0.025\ as\ P:\ Area\ to\ the\ right \chi^2 critical\ value = 21.29\\
+
+Using\ 0.975\ as\ P:\ Area\ to\ the\ left \chi^2 critical\ value = 3.816&lt;&#x2F;script&gt;
+&lt;p&gt;Because we try to estimate pop variance then&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\chi^2 = \frac{(n-1) s^2}{\sigma^2}
+\rightarrow
+\sigma^2= \frac{(n-1) s^2}{\chi^2}&lt;&#x2F;script&gt;
+&lt;p&gt;We have two  &lt;script type=&quot;math&#x2F;tex&quot;&gt;\chi^2&lt;&#x2F;script&gt; values A &lt;script type=&quot;math&#x2F;tex&quot;&gt;\chi^2_{left}&lt;&#x2F;script&gt; and &lt;script type=&quot;math&#x2F;tex&quot;&gt;\chi^2_{right}&lt;&#x2F;script&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;From above it&#x27;s &lt;script type=&quot;math&#x2F;tex&quot;&gt;\chi^2_{left} = 3.816  \chi^2_{right} = 21.29&lt;&#x2F;script&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;script type=&quot;math&#x2F;tex&quot;&gt;\chi^2_{right}&lt;&#x2F;script&gt; is larger therefore when &lt;script type=&quot;math&#x2F;tex&quot;&gt;(n-1)s^2&lt;&#x2F;script&gt; is divided by it, we get a smaller value. Therefore:&lt;&#x2F;p&gt;
+&lt;p&gt;Variance:&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\dfrac{(n-1)s^2}{\chi^2_{right}} &lt; \sigma^2 &lt;  \dfrac{(n-1)s^2}{\chi^2_{left}}&lt;&#x2F;script&gt;
+&lt;p&gt;Standard deviation:&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\sqrt{\dfrac{(n-1)s^2}{\chi^2_{right}}} &lt; \sigma &lt; \sqrt{\dfrac{(n-1)s^2}{\chi^2_{left}}}&lt;&#x2F;script&gt;
+&lt;p&gt;The &lt;script type=&quot;math&#x2F;tex&quot;&gt;\alpha&lt;&#x2F;script&gt; and confidence level are complimentary&lt;&#x2F;p&gt;
+&lt;p&gt;This says our pop variance lies within this range with 95% certainty&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;example-2&quot;&gt;Example 2&lt;&#x2F;h3&gt;
+&lt;p&gt;We sample 10 phone chargers and we have a std dev of 0.15 volts.
+Construct a 95% CI for &lt;script type=&quot;math&#x2F;tex&quot;&gt;\sigma&lt;&#x2F;script&gt; and &lt;script type=&quot;math&#x2F;tex&quot;&gt;\sigma^2&lt;&#x2F;script&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Solution&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;s = 0.15
+
+n  = 10
+
+\alpha = 0.05&lt;&#x2F;script&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\chi^2_{right}\ 0.025 \rightarrow 19.023
+
+\chi^2_{left}\ 0.975 \rightarrow 2.7&lt;&#x2F;script&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\dfrac{(n-1)s^2}{\chi^2_{right}} &lt; \sigma^2 &lt; \dfrac{(n-1)0.15^2}{\chi^2_{left}}&lt;&#x2F;script&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\dfrac{(10-1)0.15^2}{19.023} &lt; \sigma^2 &lt;  \dfrac{(10-1)s^2}{2.7}
+
+0.0105 &lt;  \sigma^2 &lt; 0.075&lt;&#x2F;script&gt;
+&lt;p&gt;For voltage specifically use the sqaure root to get: &lt;script type=&quot;math&#x2F;tex&quot;&gt;0.1031 &amp;lt; \sigma &amp;lt; 0.2738&lt;&#x2F;script&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;f-ratio-and-f-distribution&quot;&gt;F ratio and F distribution&lt;&#x2F;h2&gt;
+&lt;p&gt;Whether 2 sample variances are equal given the limits of random sampling
+We want to know whether a difference is statistically significant or caused by a sampling error.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;f-ratio&quot;&gt;F ratio&lt;&#x2F;h4&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;F = \dfrac{larger\ sample\ variance}{smaller\ sample\ variance} = \dfrac{s^2_x}{s^2_y}&lt;&#x2F;script&gt;
+&lt;h4 id=&quot;f-distribution&quot;&gt;F distribution&lt;&#x2F;h4&gt;
+&lt;p&gt;The distribution of F ratios
+sample df = n - 1&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;equality-of-variance&quot;&gt;Equality of variance&lt;&#x2F;h4&gt;
+&lt;p&gt;Are the variances equal or not?&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;measures-of-relative-standing&quot;&gt;Measures of relative standing&lt;&#x2F;h1&gt;
+&lt;p&gt;Comparing measures between or within datasets.
+This lets you compare the variation of two samples or populations.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;coefficient-of-variation&quot;&gt;Coefficient of variation&lt;&#x2F;h2&gt;
+&lt;p&gt;The ratio of standard deviation to the mean as a percentage&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;c.v. = \frac{s}{\bar x} * 100&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;z-score&quot;&gt;Z score&lt;&#x2F;h2&gt;
+&lt;p&gt;The number of standard deviations that data value is away from the mean.
+Same for sample as well as population.
+Z scores can be negative or positive.
+A z score at the mean is 0
+Z scores can also be usual &amp;gt;= -2 &amp;amp;&amp;amp; &amp;lt;= 2 or unusual &amp;lt; -2 &amp;amp;&amp;amp; &amp;gt; 2
+The larger the z score in terms of absolute value the more rare the data.&lt;&#x2F;p&gt;
+&lt;p&gt;Sample&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;z = \frac{x - \bar x}{s}&lt;&#x2F;script&gt;
+&lt;p&gt;Population&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;z = \frac{x - \mu}{\sigma}&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;quartiles&quot;&gt;Quartiles&lt;&#x2F;h2&gt;
+&lt;p&gt;Data has to be sorted, has to be values.
+Go from left to right:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Q1 :: bottom 25%&lt;&#x2F;li&gt;
+&lt;li&gt;Q2 (median) :: bottom 50%&lt;&#x2F;li&gt;
+&lt;li&gt;Q3 :: bottom 75% of the data
+There&#x27;s no Q4 because that&#x27;s everything.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;|---|---|---|----|----|----|----|----|
+| 1 | 3 | 6 | 10 | 15 | 21 | 28 | 36 |
+|---|---|---|----|----|----|----|----|&lt;&#x2F;p&gt;
+&lt;p&gt;In the sample above:\
+Q1 = 4.5\
+Q2 = 12.5\
+Q3 = 24.5&lt;&#x2F;p&gt;
+&lt;p&gt;|---|---|---|----|----|----|----|----|----|
+| 1 | 3 | 6 | 10 | 15 | 21 | 28 | 36 | 39 |
+|---|---|---|----|----|----|----|----|----|&lt;&#x2F;p&gt;
+&lt;p&gt;We pretend in this case that the 15 doesn&#x27;t exist.\
+Q1 = 4.5\
+Q2 = 15\
+Q3 = 32&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;percentiles&quot;&gt;Percentiles&lt;&#x2F;h2&gt;
+&lt;p&gt;Separates data into 100 parts. We have 99 parts&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;Percentile\ of\ x = \frac{number\ of\ values\ less\ than\ x}{total\ number\ of\ values}*100&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;interquartile-range-iqr&quot;&gt;InterQuartile range (IQR)&lt;&#x2F;h2&gt;
+&lt;p&gt;75th percentile - 25th percentile&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;population-vs-sample-data&quot;&gt;Population vs sample data&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;population-data&quot;&gt;Population data&lt;&#x2F;h2&gt;
+&lt;p&gt;The population is defined by the researcher e.g all women, all bulbs produced by a certain company etc.
+Populations can be large, it&#x27;s hard to collect data on each member of a population.&lt;&#x2F;p&gt;
+&lt;p&gt;Collecting data on all members of a population is called a [[https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Census][census]].&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;sample-data&quot;&gt;Sample data&lt;&#x2F;h2&gt;
+&lt;p&gt;When we need to make a conclusion about our population we use a sample.
+A small but well chosen sample can accurately represent the population.&lt;&#x2F;p&gt;
+&lt;p&gt;Sample guidelines:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;All elements in the sample should be part of the population&lt;&#x2F;li&gt;
+&lt;li&gt;The sample should be representative of the population&lt;&#x2F;li&gt;
+&lt;li&gt;In most cases (if not all) samples from the population should be independent of each other&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Kinds of samples:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Random&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;A sample is always an approximation of the population. Therefore:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sample data sets always have error built into them&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;point-estimate&quot;&gt;Point estimate&lt;&#x2F;h2&gt;
+&lt;p&gt;Using a single value from a sample to approximate an entire population parameter.&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;p = population proportion\ of\ successes
+
+\^{p} = sample proportion\ of\ success = \dfrac{x}{n}
+
+\^{q} = sample proportion\ of\ failure = 1-\^{p}
+
+\^{p} is a *point estimate* for p&lt;&#x2F;script&gt;
+&lt;p&gt;You have no idea how accurate the point estimate is.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;confidence-interval&quot;&gt;Confidence interval&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;em&gt;Range&lt;&#x2F;em&gt; of numbers used to estimate a population parameter.
+Estimates a population proportion from a sample proportion.&lt;&#x2F;p&gt;
+&lt;p&gt;They have:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Confidence level (1-\alpha): how confident you are that the actual value of the population parameter will be inside the interval.
+&lt;ul&gt;
+&lt;li&gt;\alpha is the complement of the confidence level.&lt;&#x2F;li&gt;
+&lt;li&gt;most common confidence levels:
+&lt;ul&gt;
+&lt;li&gt;90% \rightarrow \alpha = 0.1&lt;&#x2F;li&gt;
+&lt;li&gt;95% (most used) \rightarrow \alpha = 0.05&lt;&#x2F;li&gt;
+&lt;li&gt;99% \rightarrow \alpha = 0.01&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Requirements:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;A random sample.&lt;&#x2F;li&gt;
+&lt;li&gt;Conditions for binomial
+&lt;ul&gt;
+&lt;li&gt;Fixed number of trials&lt;&#x2F;li&gt;
+&lt;li&gt;Trials are independent&lt;&#x2F;li&gt;
+&lt;li&gt;Two outcomes (success or failure)&lt;&#x2F;li&gt;
+&lt;li&gt;n&lt;em&gt;p &amp;gt;= 5 and n&lt;&#x2F;em&gt;q &amp;gt;= 5&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Example: The 95% CI for p is 0.38 &amp;lt; p &amp;lt; 0.497
+I don&#x27;t know what p is but I&#x27;m 95% sure that it falls between 0.38 and 0.497 of the population&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;critical-value&quot;&gt;Critical value&lt;&#x2F;h2&gt;
+&lt;p&gt;A z score that separates the likely region from the unlikely region.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;margin-of-error&quot;&gt;Margin of error&lt;&#x2F;h2&gt;
+&lt;p&gt;Max difference between ^{p} and p.&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;E = Z_{\alpha&#x2F;2}\sqrt{\dfrac{\hat{p}-\hat{q}}{n}}&lt;&#x2F;script&gt;
+&lt;h3 id=&quot;example&quot;&gt;Example&lt;&#x2F;h3&gt;
+&lt;p&gt;We are given that n = 670, ^{p} = 0.85, we also jusqt learned that the standard eror of the sample proportion is SE = p(1-p). Which of
+the below is the correct calculation of the 95% confidence interval?&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;0.85 \pm 1.96 * \sqrt{\dfrac{0.85*0.15}{670}}&lt;&#x2F;script&gt;
+&lt;h1 id=&quot;descriptive-statistics&quot;&gt;Descriptive statistics&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;z-scores&quot;&gt;z-scores&lt;&#x2F;h2&gt;
+&lt;p&gt;Measure of &lt;em&gt;distance&lt;&#x2F;em&gt; from the mean. \
+How far from the mean is a is a given data point.
+How many &lt;em&gt;standard deviations&lt;&#x2F;em&gt; away (above or below) from the mean is a data point.
+Standard deviation here is a unit of measurement like a kg, meter etc.&lt;&#x2F;p&gt;
+&lt;p&gt;z-scores are standardized measures where the unit is a standard deviations.&lt;&#x2F;p&gt;
+&lt;p&gt;z score of the mean is 0 because it&#x27;s zero distance from itself.&lt;&#x2F;p&gt;
+&lt;p&gt;Like mass of person x is 5 kgs; we can say z-score of x is 1 standard deviations.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;formula&quot;&gt;Formula&lt;&#x2F;h3&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;z_{datapoint} = \frac{data\ point - mean\ value}{standard\ deviation}&lt;&#x2F;script&gt;
+&lt;h4 id=&quot;population&quot;&gt;Population&lt;&#x2F;h4&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;z_x = \dfrac{x - \mu}{\sigma}&lt;&#x2F;script&gt;
+&lt;h4 id=&quot;sample&quot;&gt;Sample&lt;&#x2F;h4&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;z_x = \dfrac{x - \bar x}{s}&lt;&#x2F;script&gt;
+&lt;h1 id=&quot;correlation&quot;&gt;Correlation&lt;&#x2F;h1&gt;
+&lt;p&gt;Independent variable should be on the x axis while the dependent variable should be on the y axis.
+Correlation seeks a statistical relationship between &lt;em&gt;two&lt;&#x2F;em&gt; variables or &lt;em&gt;bivariate&lt;&#x2F;em&gt; data.&lt;&#x2F;p&gt;
+&lt;p&gt;A regression model is unique to the data it represents.
+Adding data will change the regression model.
+It&#x27;s not proper to extrapolate above or below data being evaluated.
+How much better is our line of fit compared to only using the mean of the dependent variable.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dependence&quot;&gt;Dependence&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;correlation-and-causation&quot;&gt;Correlation and causation&lt;&#x2F;h2&gt;
+&lt;p&gt;It is tempting to assume that one variable causes another however, correlation doesn&#x27;t imply causation.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;uses-of-correlation&quot;&gt;Uses of correlation&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;comparing models :: You compare a given model against just the mean of the dependent variable&lt;&#x2F;li&gt;
+&lt;li&gt;prediction :: useful because they indicate a &lt;em&gt;predictive&lt;&#x2F;em&gt; relationship that can be exploited in practice&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;correlation-coefficient-r&quot;&gt;Correlation coefficient (r)&lt;&#x2F;h2&gt;
+&lt;p&gt;Correlation coefficient is a popular way of summarizing a scatter plot into one value between 1 and -1.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;+ve slope is +ve correlation&lt;&#x2F;li&gt;
+&lt;li&gt;-ve slope is -ve correlation&lt;&#x2F;li&gt;
+&lt;li&gt;0 slope is no correlation&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&#x2F;A weak correlation is closer to 0; whereas a strong correlation is near 1 or -1&#x2F;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;steps&quot;&gt;Steps&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;1-fit-line&quot;&gt;1. Fit line&lt;&#x2F;h3&gt;
+&lt;p&gt;Helps fit a straight line through the data
+Minimum square distances between fitted line and individual points&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-remember-slope&quot;&gt;2. Remember slope&lt;&#x2F;h3&gt;
+&lt;p&gt;Remembers if slope is pointing upwards or downwards&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;3-quality-of-fit-of-the-straight-line-for-the-data&quot;&gt;3. Quality of fit of the straight line for the data&lt;&#x2F;h3&gt;
+&lt;p&gt;Shows how well the slope fits the data based on whether the correlation is weak or strong&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;example-3&quot;&gt;Example&lt;&#x2F;h2&gt;
+&lt;p&gt;Trying to see whether more fertilizer leads to higher yields of beans&lt;&#x2F;p&gt;
+&lt;p&gt;|------------------|---|---|---|---|---|---|---|
+| Fertilizer (lbs) | 2 | 1 | 3 | 2 | 4 | 5 | 3 |
+|------------------|---|---|---|---|---|---|---|
+| Bushels of beans | 4 | 3 | 4 | 3 | 6 | 5 | 5 |
+|------------------|---|---|---|---|---|---|---|&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;x&lt;&#x2F;th&gt;&lt;th&gt;y&lt;&#x2F;th&gt;&lt;th&gt;x \cdot y&lt;&#x2F;th&gt;&lt;th&gt;x^2&lt;&#x2F;th&gt;&lt;th&gt;y^2&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;&#x2F;td&gt;&lt;td&gt;4&lt;&#x2F;td&gt;&lt;td&gt;8&lt;&#x2F;td&gt;&lt;td&gt;4&lt;&#x2F;td&gt;&lt;td&gt;16&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;1&lt;&#x2F;td&gt;&lt;td&gt;3&lt;&#x2F;td&gt;&lt;td&gt;3&lt;&#x2F;td&gt;&lt;td&gt;1&lt;&#x2F;td&gt;&lt;td&gt;9&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;&#x2F;td&gt;&lt;td&gt;4&lt;&#x2F;td&gt;&lt;td&gt;12&lt;&#x2F;td&gt;&lt;td&gt;9&lt;&#x2F;td&gt;&lt;td&gt;16&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;&#x2F;td&gt;&lt;td&gt;3&lt;&#x2F;td&gt;&lt;td&gt;6&lt;&#x2F;td&gt;&lt;td&gt;4&lt;&#x2F;td&gt;&lt;td&gt;9&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;4&lt;&#x2F;td&gt;&lt;td&gt;6&lt;&#x2F;td&gt;&lt;td&gt;24&lt;&#x2F;td&gt;&lt;td&gt;16&lt;&#x2F;td&gt;&lt;td&gt;36&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;5&lt;&#x2F;td&gt;&lt;td&gt;5&lt;&#x2F;td&gt;&lt;td&gt;25&lt;&#x2F;td&gt;&lt;td&gt;25&lt;&#x2F;td&gt;&lt;td&gt;25&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;&#x2F;td&gt;&lt;td&gt;5&lt;&#x2F;td&gt;&lt;td&gt;15&lt;&#x2F;td&gt;&lt;td&gt;9&lt;&#x2F;td&gt;&lt;td&gt;25&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\Sigma x 20
+\Sigma y 30
+\Sigma x \cdot y 93
+\Sigma x^2 68
+\Sigma y^2 136
+
+r = \dfrac{n(\Sigma x \cdot y) - (\Sigma x)(\Sigma y)}{\sqrt{(n(\Sigma x^2) - (\Sigma x)^2) (n(\Sigma y^2) - (\Sigma y)^2)}}&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;fit&quot;&gt;Fit&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;residuals-errors&quot;&gt;Residuals&#x2F;errors&lt;&#x2F;h2&gt;
+&lt;p&gt;These are values of how far our values are from the line of best fit&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;coefficient-of-determination&quot;&gt;Coefficient of determination&lt;&#x2F;h2&gt;
+&lt;p&gt;Calculated by: r^2 = SSR&#x2F;SST&lt;&#x2F;p&gt;
+&lt;p&gt;When r^2*100 we get the percentage of results due to SSE&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;simple-linear-regression&quot;&gt;Simple linear regression&lt;&#x2F;h1&gt;
+&lt;p&gt;We compare a model of the dependent variable on it&#x27;s own against
+a model of the dependent variable against the independent variable.&lt;&#x2F;p&gt;
+&lt;p&gt;Assume:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;normal distribution&lt;&#x2F;li&gt;
+&lt;li&gt;both x and y are continuous&lt;&#x2F;li&gt;
+&lt;li&gt;both x and y are numerical&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;coming-up-with-a-regression-line&quot;&gt;Coming up with a regression line&lt;&#x2F;h2&gt;
+&lt;p&gt;Get the &lt;em&gt;centroid&lt;&#x2F;em&gt; point made by ( (\bar x, \bar y) ).
+Your line of best fit must pass through the centroid.&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\beta_0 = intercept
+
+\beta_1 = gradient
+
+\^{y}_i = \beta_0 + \beta_1 x \rightarrow Similar\ to: y = mx + c\\[2mm]
+
+\beta_1 = \dfrac {\Sigma (x_i - \bar x) (y_i - \bar y)}{\Sigma (x_i - \bar x)^2}\\[1mm]&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;sse-sum-of-squared-errors&quot;&gt;SSE (Sum of squared Errors)&lt;&#x2F;h2&gt;
+&lt;p&gt;TODO&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;sst-total-sum-of-squares&quot;&gt;SST (Total Sum of Squares)&lt;&#x2F;h2&gt;
+&lt;p&gt;$$\Sigma (x_i - \bar x)^2$$&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;ssr-sum-of-squares-due-to-regression&quot;&gt;SSR (Sum of squares due to regression)&lt;&#x2F;h2&gt;
+&lt;p&gt;SSR = Sum of squared errors of \bar y alone - Sum of squared errors of best line of fit&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;logistic-regression&quot;&gt;Logistic regression&lt;&#x2F;h1&gt;
+&lt;p&gt;Dependent variable is binary
+We want to link our probabilities back to 0 &amp;amp; 1&lt;&#x2F;p&gt;
+&lt;p&gt;Logistic regression seeks to:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Model&lt;&#x2F;em&gt; the probability of an event occurring based on the values of an independent variable, which can be categorical or numerical.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;Estimate&lt;&#x2F;em&gt; the prob that an event occurs for a randomly selected observation vs the prob that the event doesn&#x27;t occur&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;Predict&lt;&#x2F;em&gt; the effect of a series of vars on a binary response var&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;Classify&lt;&#x2F;em&gt; observations by estimating the prob that an observation is in particular category (e.g bank loan approved or not)&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;probability&quot;&gt;Probability&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;odds&quot;&gt;Odds&lt;&#x2F;h2&gt;
+&lt;p&gt;Odds are probability of something occurring &#x2F; probability of something not occurring&lt;&#x2F;p&gt;
+&lt;p&gt;$$odds = \dfrac{P(occurring)}{P(not\ occurring)}$$&lt;&#x2F;p&gt;
+&lt;p&gt;Probability of it not occurring is: 1 - probability of it occurring&lt;&#x2F;p&gt;
+&lt;p&gt;$$odds =  \dfrac{p}{q} = \dfrac{p}{1-p}$$&lt;&#x2F;p&gt;
+&lt;p&gt;&#x2F;What about events that have a probability of 1 occurring? We get odds of infinity&#x2F;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;examples&quot;&gt;Examples&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;flipping-a-fair-coin&quot;&gt;Flipping a fair coin&lt;&#x2F;h4&gt;
+&lt;p&gt;Odds of getting heads:&lt;&#x2F;p&gt;
+&lt;p&gt;odds(heads) = \dfrac{0.5}{0.5} = 1 or 1:1&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;rolling-a-fair-die&quot;&gt;Rolling a fair die&lt;&#x2F;h4&gt;
+&lt;p&gt;Odds of getting 1 or 2:&lt;&#x2F;p&gt;
+&lt;p&gt;odds(1 or 2) = \dfrac{0.333}{0.666} = \dfrac{1}{2} = 0.5 or 1:2&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;deck-of-playing-cards&quot;&gt;Deck of playing cards&lt;&#x2F;h4&gt;
+&lt;p&gt;Odds of pulling out a diamond card:&lt;&#x2F;p&gt;
+&lt;p&gt;odds(diamonds) = \dfrac{0.25}{0.75} = \dfrac{1}{3} = 0.333 or 1:3&lt;&#x2F;p&gt;
+&lt;p&gt;&#x2F;There are 52 cards in a deck and 4 types of cards (diamond, spade, flowers &amp;amp; hearts) and in equal numbers&#x2F;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;odds-ratio&quot;&gt;Odds ratio&lt;&#x2F;h2&gt;
+&lt;p&gt;A ratio of two odds
+We are comparing the likelihood of getting an outcome in two separate &amp;quot;systems&amp;quot;&lt;&#x2F;p&gt;
+&lt;p&gt;If we want to know how much we increase the odds of getting an outcome by changing one variable and holding all others constant.
+&#x2F;odds ratio for a variable show how the odds change with 1 unit increase in that variable holding all other variables constant.&#x2F;
+e.g&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;What are the odds of getting a loan approved by increasing your credit score  by 1?&lt;&#x2F;li&gt;
+&lt;li&gt;What are the odds of getting  a heart attack when you increase your bodyweight 1 kg past a certain threshold?&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;examples-1&quot;&gt;Examples&lt;&#x2F;h4&gt;
+&lt;p&gt;Say we want to start a casino and want to make some loaded coins to make sure the house wins.
+We may want to know how to load our coin so that the house wins but the players also win a few times to keep them coming.
+We want to know how many more times our loaded coin will get a certain outcome compares to a fair coin.&lt;&#x2F;p&gt;
+&lt;h6 id=&quot;a-loaded-coin&quot;&gt;A loaded coin&lt;&#x2F;h6&gt;
+&lt;p&gt;P(heads) = \dfrac{7}{10} = 0.7 \
+odds(heads) = \dfrac{0.7}{0.3} = 2.333&lt;&#x2F;p&gt;
+&lt;h6 id=&quot;a-fair-coin&quot;&gt;A fair coin&lt;&#x2F;h6&gt;
+&lt;p&gt;P(heads) = \dfrac{1}{2} = 0.5 \
+odds(heads) = \dfrac{0.5}{0.5} = 1.0&lt;&#x2F;p&gt;
+&lt;p&gt;Odds ratio would be:
+\dfrac{2.333}{1.0} = 2.333&lt;&#x2F;p&gt;
+&lt;p&gt;This means that in the loaded coin we are 2.333 more times likely to get heads than on the fair coin.
+Loading the coin by 2 increases the odds of getting a heads by 2.333&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;odds-ratio-in-logistic-regression&quot;&gt;Odds ratio in logistic regression&lt;&#x2F;h2&gt;
+&lt;p&gt;The odds ratio for a variable in logistic regression represents how the odds change with 1 unit increase in that variable holding all other variables constant.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;example-4&quot;&gt;Example&lt;&#x2F;h3&gt;
+&lt;p&gt;By increasing our credit score by one how do we affect the probability of getting a loan approved?&lt;&#x2F;p&gt;
+&lt;p&gt;Body weight and sleep apnea. Categories:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;apnea&lt;&#x2F;li&gt;
+&lt;li&gt;no apnea&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Weight variable has an odds ratio of 1.07&lt;&#x2F;p&gt;
+&lt;p&gt;This means a 1 pound increase in body weight increase the odds of having sleep apnea by 1.07.\
+A 10 lbs increase in weight increase the odds to 1.98.\
+A 20 lbs increase raised odds to 3.87.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;odds-vs-probability&quot;&gt;Odds vs probability&lt;&#x2F;h2&gt;
+&lt;p&gt;One could have high odds but still low probability for something.
+You may increase your odds of something but the probability of getting that outcome was still low to begin with.
+Another may have lower odds but high probability of getting an outcome.&lt;&#x2F;p&gt;
+&lt;p&gt;Take the case of people in different ages on different diets and on different drugs and their chances of them getting sick because of it. Younger people have a low probability of getting sick whether or not they do things that increase their odds of getting sick.&lt;&#x2F;p&gt;
+&lt;p&gt;Odds can have a large magnitude change even if the underlying probabilities are low.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;logit&quot;&gt;Logit&lt;&#x2F;h2&gt;
+&lt;p&gt;We don&#x27;t know p and we wish to estimate it. The estimate of p is written src_LANG[headers]{\hat p} (p hat).
+We need a function that links the independent variable x axis with probabilities on the y axis.&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;ln(odds) = ln(\frac{p}{q}) = ln(p) - ln(q) = logit(p)
+
+log_ex = ln\ x&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;regression-equation&quot;&gt;Regression equation&lt;&#x2F;h2&gt;
+&lt;p&gt;We are estimating an unknown p for any given linear combo of independent variables.
+In the logit function we have 0 to 1 running along our x axis but we want to have them on our y axis.
+We can achieve that by taking the inverse of the logit function.&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;logit(p) =  ln(\dfrac{p}{1-p})\\[3mm]
+
+Where p is between 0 and 1\\[2mm]
+
+logit^{-1}(\alpha) = \dfrac{1}{1+e^{-\alpha}} =  \dfrac{e^{\alpha}}{1+e^{\alpha}}\\[3mm]
+
+log_ex = ln\ x\\[2mm]
+
+logit(p) = ln(\dfrac{p}{1-p}) = \beta_0 + \beta_1 x_1\\[2mm]
+
+\dfrac{p}{1-p} = e^{\beta_0 + \beta_1 x_1}\\[2mm]
+
+p = e^{\beta_0 + \beta_1 x_1}(1-p)\\[2mm]
+
+distribute\\[0.5mm]
+
+p = e^{\beta_0 + \beta_1 x_1} - e^{\beta_0 + \beta_1 x_1} * p\\[2mm]
+
+p +  e^{\beta_0 + \beta_1 x_1} * p = e^{\beta_0 + \beta_1 x_1}\\[2mm]
+
+p(1 + e^{\beta_0 + \beta_1 x_1}) =  e^{\beta_0 + \beta_1 x_1}\\[2mm]
+
+Therefore the estimated regression equation:\\[1mm]
+
+\^p =  \dfrac{e^{\beta_0 + \beta_1 x_1}}{1+ e^{\beta_0 + \beta_1 x_1}}&lt;&#x2F;script&gt;
+&lt;h3 id=&quot;example-5&quot;&gt;Example&lt;&#x2F;h3&gt;
+&lt;p&gt;Home owners loans
+n = 1000
+1 approved
+0 not aprroved&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;finite-math&quot;&gt;Finite math&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;permutations&quot;&gt;Permutations&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;em&gt;order matters&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;combinations&quot;&gt;Combinations&lt;&#x2F;h2&gt;
+&lt;p&gt;The number of &lt;em&gt;different ways&lt;&#x2F;em&gt; that r objects can be selected from n objects.
+If there are n objects, how many different ways can we select &lt;em&gt;groups&lt;&#x2F;em&gt; of size r?&lt;&#x2F;p&gt;
+&lt;p&gt;Often said as n choose r, denoted as C(n,r)&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Order doesn&#x27;t matter&lt;&#x2F;em&gt;
+Think of sets.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;formula-1&quot;&gt;Formula&lt;&#x2F;h3&gt;
+&lt;p&gt;C(n,r) = \dfrac{n!}{r! (n-r)!}&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;discrete-distributions&quot;&gt;Discrete distributions&lt;&#x2F;h1&gt;
+&lt;p&gt;The outcomes are finite and must be integers&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;the-binomial-distribution&quot;&gt;The Binomial Distribution&lt;&#x2F;h1&gt;
+&lt;p&gt;A type of discrete distribution.&lt;&#x2F;p&gt;
+&lt;p&gt;The probability of any given outcome is a combination of both the &lt;em&gt;number of trials&lt;&#x2F;em&gt; and the &lt;em&gt;success rate&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Binomial Bi two and nomial is a name in our case an outcome, 2 outcomes.
+We categorize our outcomes as either a &lt;em&gt;success&lt;&#x2F;em&gt; or a &lt;em&gt;failure&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;binomial-experiment&quot;&gt;Binomial experiment&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;characteristics&quot;&gt;Characteristics&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;You have to have a &lt;em&gt;fixed&lt;&#x2F;em&gt; number of trails.&lt;&#x2F;li&gt;
+&lt;li&gt;Trials must be independent - outcome of one trial doesn&#x27;t affect any other&lt;&#x2F;li&gt;
+&lt;li&gt;Each trial has only 2 outcomes a success or a failure&lt;&#x2F;li&gt;
+&lt;li&gt;The probability of success remains the same in every trial&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;formula-2&quot;&gt;Formula&lt;&#x2F;h3&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;Probability\ of\ x\ in\ n  = C(n,x) p^x (1-p)^{n-x}&lt;&#x2F;script&gt;
+&lt;p&gt;Where (look under [[Finite math]]):&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;C(n,x) = {}{_n}C{_x} = \frac{n!}{x
+!(n-x)!}&lt;&#x2F;script&gt;
+&lt;ul&gt;
+&lt;li&gt;n: number of trails&lt;&#x2F;li&gt;
+&lt;li&gt;x: number of successes in n trials&lt;&#x2F;li&gt;
+&lt;li&gt;p: probability of success in a single trial&lt;&#x2F;li&gt;
+&lt;li&gt;q: probability of a failure in any trial&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;example-6&quot;&gt;Example&lt;&#x2F;h3&gt;
+&lt;p&gt;In a die, what is the probability of rolling a 4 is 30%. The die is rolled 10 times.
+Find the probability of rolling eight 4s.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Solution&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;p = 0.3
+
+q = 0.7
+
+x = 4
+
+n-x = 10-4 = 6\\[1mm]
+
+{}_{10}C_4 = \frac{10!}{4!(10-4!)} = 210 \\[3mm]
+
+P(x) = C(n,x) p^x (1-p)^{n-x} = 210*0.3^4*0.7^6 = 0.2&lt;&#x2F;script&gt;
+&lt;h1 id=&quot;standard-error-standard-error-of-the-mean&quot;&gt;Standard Error&#x2F;Standard Error of the mean&lt;&#x2F;h1&gt;
+&lt;p&gt;This is the estimated population standard deviation from the sample standard deviation.
+Sample mean is unlikely to be equal to population mean.
+Standard deviation of the means of many samples from the population mean.&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;s.e. = \hat \sigma = \dfrac{s}{\sqrt n}&lt;&#x2F;script&gt;
+&lt;h1 id=&quot;anova-analysis-of-variance&quot;&gt;ANOVA (ANalysis Of VAriance)&lt;&#x2F;h1&gt;
+&lt;p&gt;This is the variability among&#x2F;between sample means vs variability within each sample&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;H_0: \mu_1 = \mu_2 = \mu_3&lt;&#x2F;script&gt;
+&lt;p&gt;\
+Therefore, the samples are &lt;em&gt;likely&lt;&#x2F;em&gt; to come from the same population. \
+&lt;em&gt;Why not multiple t-tests?&lt;&#x2F;em&gt; The error compounds in each t-test. \&lt;&#x2F;p&gt;
+&lt;p&gt;ANOVA is really a variability ratio:&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;A\ variability\ ratio = \dfrac{variability\ between\ means}{variability\ within\ distributions}&lt;&#x2F;script&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;Variance\ Between + Variance\ Within = Total\ Variance&lt;&#x2F;script&gt;
+&lt;ul&gt;
+&lt;li&gt;partitioning :: separating total variance into its component parts&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;If variance between the means is relatively large than within the means ratio
+will be much larger than 1 and the samples likely don&#x27;t come from a common population.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Overview&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;At least one  mean is an outlier and each distribution is narrow; distinct from each other&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;Reject\ H_0 =  \dfrac{LARGE}{small} \\&lt;&#x2F;script&gt;
+&lt;p&gt;Means are fairly close to overall mean and&#x2F;or distributions overlap a bit, hard to distinguish&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;Fail\ to\ reject\ H_0 = \dfrac{similar}{similar}&lt;&#x2F;script&gt;
+&lt;p&gt;Means are very close to overall mean and&#x2F;or distributions melt together&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;Fail\ to\ reject\ H_0 = \dfrac{similar}{LARGE}&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;one-way-anova&quot;&gt;One way ANOVA&lt;&#x2F;h2&gt;
+&lt;p&gt;Also called single factor ANOVA (ANalysis Of VAriance).&lt;&#x2F;p&gt;
+&lt;p&gt;Without getting the avg of the sum of squared deviations&lt;&#x2F;p&gt;
+&lt;p&gt;SST (Sum of Squares Total)&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Find difference between each data point and overall mean&lt;&#x2F;li&gt;
+&lt;li&gt;square the difference&lt;&#x2F;li&gt;
+&lt;li&gt;add them up&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;SSC (Sum of Squares of the Columns)&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Difference between each group mean and overall mean&lt;&#x2F;li&gt;
+&lt;li&gt;Square the deviations&lt;&#x2F;li&gt;
+&lt;li&gt;add them up&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;SSE (Sum of Squares Error)&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Find the difference between each data point and it&#x27;s own column mean&lt;&#x2F;li&gt;
+&lt;li&gt;square each deviation&lt;&#x2F;li&gt;
+&lt;li&gt;Add them up&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;SST = SSE + SSC&lt;&#x2F;p&gt;
+&lt;p&gt;Sum of squares:
+SS = \Sigma (x-\mu)^2&lt;&#x2F;p&gt;
+&lt;p&gt;Sample variance:&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;s^2 = \dfrac{\Sigma(x-\mu)^2}{n-1}&lt;&#x2F;script&gt;
+&lt;h3 id=&quot;example-7&quot;&gt;Example&lt;&#x2F;h3&gt;
+&lt;p&gt;H_0: \mu_1 = \mu_2 = \mu_3 \
+H_\alpha: There is at least one difference among the means
+\alpha = 0.05&lt;&#x2F;p&gt;
+&lt;p&gt;|---|---|---|
+| 1 | 2 | 3 |
+|---|---|---|
+| 1 | 2 | 2 |
+| 2 | 4 | 3 |
+| 5 | 2 | 4 |&lt;&#x2F;p&gt;
+&lt;p&gt;Means within:&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\bar x{_1} = \frac{1+2+5}{3} = \frac{8}{3} = 2.67 \\
+\bar x{_2} = \frac{2+4+2}{3} = \frac{8}{3} = 2.67 \\
+\bar x{_3} = \frac{2+3+4}{3} = \frac{9}{3} = 3 \\
+\bar{\bar x} = \frac{1 + 2 + 5 + 2 + 4 + 2 + 2 + 3 + 4}{9} = \frac{25}{9} = 2.78&lt;&#x2F;script&gt;
+&lt;p&gt;Means between:&lt;&#x2F;p&gt;
+&lt;p&gt;Degrees of freedom:\&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;k :: number of conditions&lt;&#x2F;li&gt;
+&lt;li&gt;N :: number of scores&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;df_{between}: k-1 = 3-1 = 2\\
+df_{within}: N-k = 9-3 = 6 \\
+df_{total}: 2+6 = 8&lt;&#x2F;script&gt;
+&lt;p&gt;From the above we get the F_{critical} from our table.&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;df_{1} = df_{between}\\
+df_{2} = df_{within}&lt;&#x2F;script&gt;
+&lt;p&gt;For the above in our table we get F_{critical} of 5.14&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;SS_{total} = \Sigma(x-\bar{\bar x})^2
+SS_{within} = \Sigma
+SS_{within} = SS_{total} -SS_{within}&lt;&#x2F;script&gt;
+&lt;p&gt;$$ANOVA = \frac{SS_{total} - SS_{within}}{SS_{within}} = \frac{SS_{between}}{SS_{within}}$$&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;SS_{total} = (1-2.78)^2 + (2-2.78)^2 + ... + (2-2.78)^2 + ... + (4-2.78)^2 = 13.6\\
+
+SS_{within} = (1-2.67)^2 + (2-2.67)^2 + ... + (2-2.67)^2 + ... + (4-3)^2 = 13.34\\
+
+SS_{between} = SS_{total} - SS_{within} = 13.6-13.34 = 0.26\\
+
+Variance_{between} = \frac{SS_{between}}{df_{betweeen}}\\
+Variance_{within} = \frac{SS_{within}}{df_{withinn}}
+
+F = \dfrac{Variance_{between}} {Variance_{within}} = \dfrac{\dfrac{0.26}{2}{}}{\frac{13.34}{6}} = \dfrac{0.13}{2.22} = 0.059 \\
+
+
+
+F_{critical} = 5.14 \\
+F = 0.059
+
+F &lt; F_{critical}
+
+0.059 &lt; 5.14&lt;&#x2F;script&gt;
+&lt;p&gt;Therefore, we fail to reject our H_0 \
+&#x2F;Mean squared between&#x2F; is also &#x2F;variance between&#x2F;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;two-way-anova&quot;&gt;Two way ANOVA&lt;&#x2F;h2&gt;
+&lt;p&gt;Out of scope&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;z-test-t-test-p-values&quot;&gt;z-test, t-test &amp;amp; p values&lt;&#x2F;h1&gt;
+&lt;p&gt;How to conduct hypothesis tests on 2 population means.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;t-test&quot;&gt;t-test&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;t-value&quot;&gt;t value&lt;&#x2F;h3&gt;
+&lt;p&gt;Shows the difference &lt;em&gt;within groups&lt;&#x2F;em&gt; and compares it to difference &lt;em&gt;between the same groups&lt;&#x2F;em&gt;.
+In the case of the paired t-test we get the t value for &lt;em&gt;paired&lt;&#x2F;em&gt; data.&lt;&#x2F;p&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;t-value: = \dfrac{\bar x - H_0}{\dfrac{s}{\sqrt{n}}}&lt;&#x2F;script&gt;
+&lt;h1 id=&quot;independent-samples-random-t-test&quot;&gt;Independent samples (random) t-test&lt;&#x2F;h1&gt;
+&lt;h1 id=&quot;matched-sample-paired-t-test&quot;&gt;Matched sample (paired) t-test&lt;&#x2F;h1&gt;
+&lt;p&gt;The paired t-test - also called two sample, within subjects, repeated measures and dependent samples t-test - is a statistical method used to measure the change within the same sample after an event occurs.
+It uses paired or dependent data (where the data in one sample affects the data in the other sample e.g before and after a process such as taking a drug).&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;properties-of-the-paired-t-test&quot;&gt;Properties of the paired t test&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;holds more statistical power as there isn&#x27;t variability between subjects&lt;&#x2F;li&gt;
+&lt;li&gt;susceptible to ordering effects&lt;&#x2F;li&gt;
+&lt;li&gt;used where we care about the difference between each observation&lt;&#x2F;li&gt;
+&lt;li&gt;assumes the difference between pairs is normally distributed&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;example-8&quot;&gt;Example&lt;&#x2F;h4&gt;
+&lt;p&gt;Paired t-test on the effectiveness of a weight loss drug.&lt;&#x2F;p&gt;
+&lt;p&gt;#+CAPTION: Positive values indicate weight loss and negative values indicate weight gain
+| subject | on drug | on placebo |  d_i |
+|---------|---------|------------|------|
+|       1 |     1.1 |          0 |  1.1 |
+|       2 |     1.3 |       -0.3 |  1.6 |
+|       3 |     1.0 |        0.6 |  0.4 |
+|       4 |     1.7 |        0.3 |  1.4 |
+|       5 |     1.4 |        0.7 |  0.7 |
+|       6 |     0.1 |       -0.2 |  0.3 |
+|       7 |     0.5 |        0.6 | -0.1 |
+|       8 |     1.6 |        0.9 |  0.7 |
+|       9 |    -0.5 |       -2.0 |  1.5 |
+|---------|---------|------------|------|
+|         |         |            |  7.6 |
+#+TBLFM: $4=vsum(@2$4..@10$4)&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;H_0 :: The given weight loss drug has no effect on weight loss.&lt;&#x2F;li&gt;
+&lt;li&gt;H_1 :: The given weight loss drug leads to weight loss.&lt;&#x2F;li&gt;
+&lt;li&gt;\alpha :: 0.05 (threshold for whether to accept H_0).&lt;&#x2F;li&gt;
+&lt;li&gt;d_i :: difference between measurements of each subject&lt;&#x2F;li&gt;
+&lt;li&gt;\mu_d :: mean difference between the measurements of each subject, if \mu_d = 0 there&#x27;s no difference between the two measurements.&lt;&#x2F;li&gt;
+&lt;li&gt;degrees of freedom (df) :: n - 1&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\mu_d = \dfrac{\Sigma{d_i}}{n} = \dfrac{7.6}{9} = 0.8444
+
+s = 0.72
+
+n = 9
+\bar x = 0.8
+
+H_0 = 0  \tiny \textbf{ null hypothesis is always 0}
+
+df = n - 1 = 9 - 1= 8
+
+t* = \dfrac{1.0 - 0}{\dfrac{0.72}{\sqrt{9}}} = 4.17
+
+p = 0.005&lt;&#x2F;script&gt;
+&lt;h5 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h5&gt;
+&lt;p&gt;The result is significant at p &amp;lt; 0.05
+Since p-value (0.005) &amp;gt; than \alpha (0.05), we reject H_0. Therefore, we accept H_1 that our drug is effective at weight loss because there&#x27;s only 0.005 chance that the weight loss was not because of the drug.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;p-values&quot;&gt;P values&lt;&#x2F;h2&gt;
+&lt;p&gt;Get them from the p tables given the z score&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;types-of-variables&quot;&gt;Types of variables&lt;&#x2F;h1&gt;
+&lt;p&gt;Types of variables:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;numerical ::&lt;&#x2F;li&gt;
+&lt;li&gt;derived :: e.g. Body Mass Index&lt;&#x2F;li&gt;
+&lt;li&gt;transformed :: e.g logarithm&lt;&#x2F;li&gt;
+&lt;li&gt;qualitative :: non-numeric
+&lt;ul&gt;
+&lt;li&gt;categorical :: discrete yes or no&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;quantitivative :: numeric
+&lt;ul&gt;
+&lt;li&gt;discrete ::&lt;&#x2F;li&gt;
+&lt;li&gt;continuous ::&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Exposure and outcome variables&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;predictor ::&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;response ::&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Cumulative frequency :: summation of frequency&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;numerical&quot;&gt;Numerical&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;binary-or-categorical&quot;&gt;Binary or categorical&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;rates&quot;&gt;Rates&lt;&#x2F;h2&gt;
+&lt;h1 id=&quot;degrees-of-freedom-df&quot;&gt;Degrees of freedom (df)&lt;&#x2F;h1&gt;
+&lt;h1 id=&quot;hypothesis-testing&quot;&gt;Hypothesis testing&lt;&#x2F;h1&gt;
+&lt;p&gt;Testing whether a claim is valid.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;types-of-studies&quot;&gt;Types of studies&lt;&#x2F;h1&gt;
+&lt;ul&gt;
+&lt;li&gt;observational studies&lt;&#x2F;li&gt;
+&lt;li&gt;case control study&lt;&#x2F;li&gt;
+&lt;li&gt;cohort study&lt;&#x2F;li&gt;
+&lt;li&gt;cross sectional study&lt;&#x2F;li&gt;
+&lt;li&gt;controlled experimental study&lt;&#x2F;li&gt;
+&lt;li&gt;before-and-after-type study&lt;&#x2F;li&gt;
+&lt;li&gt;experimental study&lt;&#x2F;li&gt;
+&lt;li&gt;blinded&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;references&quot;&gt;References&lt;&#x2F;h1&gt;
+&lt;ol&gt;
+&lt;li&gt;[[https:&#x2F;&#x2F;www.youtube.com&#x2F;user&#x2F;BCFoltz&#x2F;][Brandon Foltz Youtube]]&lt;&#x2F;li&gt;
+&lt;li&gt;[[https:&#x2F;&#x2F;www.youtube.com&#x2F;user&#x2F;professorleonard57][Professor Leonard Youtube]]&lt;&#x2F;li&gt;
+&lt;li&gt;Kirkwood BR, Sterne JAC. 2003. Essential Medical Statistics. 2nd ed., Blackwell.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+	</entry>
+</feed>

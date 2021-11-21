@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Devops</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/devops/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2017-10-16T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/devops/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Pipeline as Code—Putting Everything Together</title>
+		<published>2017-10-16T00:00:00+00:00</published>
+		<updated>2017-10-16T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/code-pipeline-putting-everything-together/" type="text/html"/>
+		<id>https://njagi.me/posts/code-pipeline-putting-everything-together/</id>
+		<content type="html">&lt;p&gt;In this post we shall implement a continuous deployment pipeline using
+&lt;a href=&quot;https:&#x2F;&#x2F;www.ansible.com&#x2F;&quot;&gt;ansible&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;travis-ci.org&#x2F;&quot;&gt;travis ci&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;git-scm.com&#x2F;&quot;&gt;git&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;During implementation we don&#x27;t have steps such as planning, provisioning,
+configuration management etc that we mentioned in the &lt;a href=&quot;&#x2F;posts&#x2F;2017-10-13-code-pipeline-overview.html&quot;&gt;previous post&lt;&#x2F;a&gt;; those are
+conceptual. The flowchart below represents the actual places that our software
+should live at all times. Think of each component in the flowchart as a service
+that exposes an API.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;Content&#x2F;Flowcharts&#x2F;Pipeline_as_code_putting.svg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;deploy-server&quot;&gt;Deploy server&lt;&#x2F;h2&gt;
+&lt;p&gt;In the diagram above we introduce an deploy server. This is the
+host from which you can access your other servers such production, staging etsc.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Exposes: ansible, ssh&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;git-version-control&quot;&gt;Git (Version Control)&lt;&#x2F;h2&gt;
+&lt;p&gt;We want to have playbooks, deploy scripts and code in version control.&lt;br &#x2F;&gt;
+What we get from version control that is necessary for continuous deployment is:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;tags get deployed to the main production environment&lt;&#x2F;li&gt;
+&lt;li&gt;master branch gets deployed to the main staging environment&lt;&#x2F;li&gt;
+&lt;li&gt;other major branches get deployed to other staging environments of our
+choosing&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Not all these steps need to be done for it to be a continuous deployment
+pipeline. For example: for this blog, changes that get merged into master go
+straight into production. This is because the application is really small and
+simple so before anything goes into master I know it&#x27;s error free.
+Moreover, even if the blog were to experience downtime I have very little to
+lose compared to a business. This is the same model that github pages uses;
+what is in master is pushed into the &lt;code&gt;gh-pages&lt;&#x2F;code&gt; branch which is basically a
+github pages blog&#x27;s production environment.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Exposes: git branches and git tags&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;ansible-provisioning-and-configuration-management&quot;&gt;Ansible (Provisioning and Configuration Management)&lt;&#x2F;h2&gt;
+&lt;p&gt;Assuming you have a fresh server such as the one Digital Ocean would offer
+or a fresh EC2 instance. We want an ansible play that creates an unprivileged
+user with SSH authentication.
+So we have to do the following locally or on our deploy server:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;generate an SSH key pair &lt;strong&gt;without a passphrase&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;add the public key of the generated key to the deploy user&#x27;s known_hosts file&lt;&#x2F;li&gt;
+&lt;li&gt;push the private key of the generated key to travis ci so that the travis
+container can autheniticate as that user.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;generate-an-ssh-keypair-without-a-passphrase&quot;&gt;Generate an SSH keypair without a passphrase&lt;&#x2F;h3&gt;
+&lt;p&gt;Under &lt;code&gt;Enter file in which to save the key...&lt;&#x2F;code&gt; type in &lt;code&gt;travis-ci&lt;&#x2F;code&gt;.&lt;br &#x2F;&gt;
+Under &lt;code&gt;Enter passphrase (empty for no passphrase):&lt;&#x2F;code&gt; just press enter&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#002b36;color:#839496;&quot;&gt;&lt;code&gt;&lt;span&gt;$ ssh-keygen -t ed25519 -C &amp;quot;travis@travis-ci.org&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will create two files &lt;code&gt;travis-ci&lt;&#x2F;code&gt; and &lt;code&gt;travis-ci.pub&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;add-the-public-key-to-the-deploy-user-s-known-hosts&quot;&gt;Add the public key to the deploy user&#x27;s known_hosts&lt;&#x2F;h3&gt;
+&lt;p&gt;Write a play to prepare the deploy environment.&lt;br &#x2F;&gt;
+Copy the contents of &lt;code&gt;travis-ci.pub&lt;&#x2F;code&gt; file to a vars file in your the playbooks
+For example &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;playbooks&#x2F;blob&#x2F;master&#x2F;roles&#x2F;base&#x2F;vars&#x2F;vars.yml#L1&quot;&gt;here&#x27;s my vars file&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yml&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-yml &quot;&gt;&lt;code class=&quot;language-yml&quot; data-lang=&quot;yml&quot;&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;travis_ci_pubkey&lt;&#x2F;span&gt;&lt;span&gt;: &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINFzeaPrMXDVS1&#x2F;+V4hKsgC+Pzoa9tnGGP+VCPT21QXP travis@travis-ci.org&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Add a section in a play of your choosing that copies the public key to the
+deploy user&#x27;s known_hosts.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yml&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-yml &quot;&gt;&lt;code class=&quot;language-yml&quot; data-lang=&quot;yml&quot;&gt;&lt;span&gt;- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;include_vars&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;vars.yml
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Create deploy user
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;user&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;name=deploy
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;group=www
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;copy travis-ci public ssh key to deploy user
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;authorized_key&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;key=&amp;quot;{{ travis_ci_pubkey }}&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;                  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;path=&#x2F;home&#x2F;deploy&#x2F;.ssh&#x2F;authorized_keys
+&lt;&#x2F;span&gt;&lt;span&gt;                  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;user=deploy
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This creates the deploy user and adds the travis-ci.pub
+to the deploy user&#x27;s &lt;code&gt;~&#x2F;.ssh&#x2F;known_hosts&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;make-your-target-a-git-server&quot;&gt;Make your target a git server&lt;&#x2F;h3&gt;
+&lt;p&gt;For commands like &lt;code&gt;git push&lt;&#x2F;code&gt; to work from travis-ci to your deploy user
+you have to have your server be ready to receive git push commands.
+I will explain this later in a different post but for now what you need is a
+play that:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Installs git&lt;&#x2F;li&gt;
+&lt;li&gt;Creates a target git repo which we shall push to&lt;&#x2F;li&gt;
+&lt;li&gt;Is able to overwrite the current contents of the repo when a change occurs.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre data-lang=&quot;yaml&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-yaml &quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# creates a blog.git dir which is a bare git repo
+&lt;&#x2F;span&gt;&lt;span&gt;- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;:    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Create a bare blog.git repo
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;command&lt;&#x2F;span&gt;&lt;span&gt;: &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;git init --bare blog.git&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Add a post-receive hook to update blog
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;copy&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;src=..&#x2F;files&#x2F;git&#x2F;hooks&#x2F;post-receive
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;dest=blog.git&#x2F;hooks&#x2F;post-receive
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;owner=deploy
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;group=www
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;mode=0550
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;backup=yes
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;#! &#x2F;bin&#x2F;bash
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# post-recieve hook to handle updates
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# delete the current blog
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;rm&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; -rf &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d33682;&quot;&gt;~&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;blog
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#859900;&quot;&gt;cd &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d33682;&quot;&gt;~&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# clone from the blog.git bare repo into a blog dir
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;git&lt;&#x2F;span&gt;&lt;span&gt; clone blog.git blog
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you take notice this is similar to the bare git repo that github provides.
+For example: to clone this blog from github via ssh we would run:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; git clone git@github.com:urbanslug&#x2F;blog.git
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and if you had ssh access to the server hosting this blog you would run:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; git clone deploy@git.urbanslug.com:blog.git
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I hope you can draw some interesting parallels there.
+Here&#x27;s my &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;urbanslug&#x2F;playbooks&#x2F;blob&#x2F;master&#x2F;roles&#x2F;blog&#x2F;tasks&#x2F;main.yml&quot;&gt;blog&#x27;s play&lt;&#x2F;a&gt; for reference.&lt;&#x2F;p&gt;
+&lt;p&gt;In the case of this blog I run the below command from my deploy server.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; ansible-playbook base.yml&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; --ask-sudo-pass --ask-vault-pass
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;push-the-private-key-to-travis-ci&quot;&gt;Push the private key to travis ci&lt;&#x2F;h3&gt;
+&lt;p&gt;Install the &lt;a href=&quot;https:&#x2F;&#x2F;docs.travis-ci.com&#x2F;user&#x2F;encryption-keys&#x2F;#Usage&quot;&gt;travis cli tool&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; gem install travis
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Encrypt your private key and add the decryption command to your .travis.yml file
+using the travis cli tool and also push your public key to travis-ci with:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; travis encrypt-file travis-ci&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; --add
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The &lt;code&gt;--add&lt;&#x2F;code&gt; flag  should add a  &lt;code&gt;before_install&lt;&#x2F;code&gt; phase to your .travis.yml file
+that resembles the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yml&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-yml &quot;&gt;&lt;code class=&quot;language-yml&quot; data-lang=&quot;yml&quot;&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;before_install&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt; - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;openssl aes-256-cbc -K $encrypted_7f9f7befb56d_key -iv $encrypted_7f9f7befb56d_iv -in travis-ci.enc -out travis-ci -d
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;That line decrypts your travis-ci private key in the travis container at runtime
+and creates a &lt;code&gt;~&#x2F;travis-ci&lt;&#x2F;code&gt; which is the private key. Make sure not to have
+multiple before-install phases.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Exposes: travis encrypt-file, ssh-keygen, ansible-playbook, ansible vars&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;travis-ci-continuous-integration-and-continuous-deployment&quot;&gt;Travis CI (Continuous Integration and Continuous Deployment)&lt;&#x2F;h2&gt;
+&lt;p&gt;Travis CI is a mix of open source and some proprietary tools.&lt;br &#x2F;&gt;
+To quote them &amp;quot;Travis CI is run as a hosted service, free for Open Source, a
+paid product for private code, and it’s available as an on-premises version
+(Travis CI Enterprise).&amp;quot;&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s their &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;travis-ci&quot;&gt;github page&lt;&#x2F;a&gt; and
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;travis-ci&#x2F;travis-ci&quot;&gt;info page&lt;&#x2F;a&gt;.
+To learn how to get started with travis in your project you can read
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.travis-ci.com&#x2F;user&#x2F;getting-started&#x2F;&quot;&gt;get started doc&lt;&#x2F;a&gt;.
+Moving on, I assume you have (gained) enough experience with travis to go on.&lt;&#x2F;p&gt;
+&lt;p&gt;Travis will run tests and&#x2F;or build our application on every branch or
+specific branches based on rules that we set. We then build on this
+functionality to deploy to a target based on various
+rules. The obvious one being when our tests pass.&lt;&#x2F;p&gt;
+&lt;p&gt;In our case: we want to run tests then after that deploy to the relevant target.
+In your .travis.yml file you can use one of the following
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.travis-ci.com&#x2F;user&#x2F;customizing-the-build&#x2F;#The-Build-Lifecycle&quot;&gt;travis ci build phases&lt;&#x2F;a&gt; &lt;code&gt;after_success&lt;&#x2F;code&gt; or &lt;code&gt;deploy&lt;&#x2F;code&gt; steps.
+I prefer to use &lt;code&gt;after_success&lt;&#x2F;code&gt; when I want to run a deploy script and then list
+all the commands that my script would run and &lt;code&gt;deploy&lt;&#x2F;code&gt; for already supported
+deploy environments.
+This is because the script feature is experimental at the time of writing this.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Exposes: .travis.yml&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;continuously-deploying-to-a-host&quot;&gt;Continuously deploying to a host&lt;&#x2F;h3&gt;
+&lt;p&gt;We want to push code from our travis container to our server.
+Here are some essesntials that would guide you in creating a .travis.yml file
+that would deploy to your target.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;using-after-success&quot;&gt;Using after_success&lt;&#x2F;h3&gt;
+&lt;p&gt;The &lt;code&gt;branches&lt;&#x2F;code&gt; section is essential in this case because it ensures that the
+.travis.yml file will only be ran for the master branch.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yaml&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-yaml &quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;branches&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;only&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;master
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;addons&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# add the target server to the containers known_hosts
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# this prevents a blocking prompt to add the server to travis-ci&amp;#39;s
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# known_hosts when attempting to git push
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;ssh_known_hosts&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;git.urbanslug.com
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# decrypt our public key
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;before_install&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;openssl aes-256-cbc -K $encrypted_7f9f7befb56d_key -iv $encrypted_7f9f7befb56d_iv -in travis-ci.enc -out travis-ci -d
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;env&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;global&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;GIT_EMAIL&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;travis@travis-ci.org
+&lt;&#x2F;span&gt;&lt;span&gt;    - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;GIT_NAME&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;Travis CI
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;script&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;.&#x2F;site.hs build
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# run the following commends after the script phase is successful
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;after_success&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;eval &amp;quot;$(ssh-agent -s)&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# start the ssh agent
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;chmod 600 travis-ci
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;ssh-add  travis-ci &lt;&#x2F;span&gt;&lt;span style=&quot;color:#586e75;&quot;&gt;# add travis-ci private key to the ssh agent
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;cd _site
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;git init
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;git config --global user.email &amp;quot;$GIT_EMAIL&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;git config --global user.name  &amp;quot;$GIT_NAME&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;git remote add deploy &amp;quot;deploy@git.urbanslug.com:blog.git&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;git add --all
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;git status
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;git commit -m &amp;quot;Built by Travis ( build $TRAVIS_BUILD_NUMBER )&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;git push -q --force deploy master:master
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;github-pages&quot;&gt;Github pages&lt;&#x2F;h3&gt;
+&lt;p&gt;Here&#x27;s the way &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;goodbotai&#x2F;borq&quot;&gt;borq, a library from goodbot.ai,&lt;&#x2F;a&gt; has its docs deployed to
+github pages every time a tag is created and here&#x27;s the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;goodbotai&#x2F;borq&#x2F;blob&#x2F;master&#x2F;.travis.yml&quot;&gt;complete travis.yml file for borq&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In the above case &lt;code&gt;travis-encrypt&lt;&#x2F;code&gt; is used to encrypt the github token like so&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; travis encrypt GH_TOKEN=super_secret_token&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt; --add
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The essentials of our .travis.yml file&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yaml&quot; style=&quot;background-color:#002b36;color:#839496;&quot; class=&quot;language-yaml &quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;env&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;global&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;GH_REF&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;github.com&#x2F;goodbotai&#x2F;borq.git
+&lt;&#x2F;span&gt;&lt;span&gt;    - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;secure&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;S567U&#x2F;zOMKOddrGtQBmFyA6ROzinMgheQ7rGoyVbw9i43hBzvKVgk+C77+cVCLPr8ps6qwqhV9Ex5ehM3ic9gXDJt9ZlpzlevP+epKxG11WL3S3RwAOGlp&#x2F;wOkSM+KhEqYqNOSzjA5WLttzg5GFSqs+T3l7HelQfZk55t2O4HSmmKUKPbFfDZ&#x2F;84suvPSf1pm+d8f99k5KQFnTO3JHbIkbdx76Hsa8KRsZFJ2oA3DgQOXPOf+W3AdlG5zT5t1hAv0wg1O1Q45zB1MDcMfAUYcJOk72eajWTx9E0jreAgEVNUG2oyBG+GNdN2eMtbO4hANcdbBAH6wQq797OK76YVN6MM2HiMMZ1W7emNmo5wP6nc23w7YXJ88a1Ysffxxi4aLOMD1rBlVT5&#x2F;cjcjvRUeR&#x2F;OHx+9fOLPo&#x2F;G6KioC5oz0iXwNPSYkZBHQ3nKf4uribXAPV&#x2F;8f+n9HzjSQTnILWXiYaaGqIJAjEzL8WL5dBBGhngkILzCX&#x2F;Ur4LeYJkhLnrVTg089X8urjtWnBpZKMKAwhPfV768prfKurmRbirIlgJfw5WfRoiV34Bl3O7bcNQMQ0nIobgaNhF8JZRq6adp0K8ChVnfNl3oplXN1kiVr9YJRRb4ErLzRSJZqkP&#x2F;TNUqOs5wFeiSoFGgCUvAyjQZN5IkKIr4VrdKcnbEgj&#x2F;3Co=
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;deploy&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;skip_cleanup&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;provider&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;pages
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;local_dir&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;out
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;github_token&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#2aa198;&quot;&gt;$GH_TOKEN
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;on&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#268bd2;&quot;&gt;tags&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b58900;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I just explained how we can set up a project so that the CI tool handles all
+deploys going forward after the inital setting up. If anything goes wrong we can
+go into the deploy server and then run an ansible script and have it roll back
+to a specific tag&#x2F;branch.&lt;&#x2F;p&gt;
+&lt;p&gt;In the next post we shall talk about continuous deployment in a microservice
+architechture using the same tools but deploying to AWS ECS.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Pipeline as Code—Overview</title>
+		<published>2017-10-13T00:00:00+00:00</published>
+		<updated>2017-10-13T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/code-pipeline-overview/" type="text/html"/>
+		<id>https://njagi.me/posts/code-pipeline-overview/</id>
+		<content type="html">&lt;p&gt;Pipeline in this context refers to the collection of steps software goes through
+from planning to deployment. Pipeline as code is having this pipeline be stored
+in an executable or&#x2F;and a version controllable way.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Why does this matter? A code pipeline that is executable and&#x2F;or version
+controllable:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;is easy to keep tracking of as changes occur&lt;&#x2F;li&gt;
+&lt;li&gt;makes it possible to keep track of the actual and all possible agents of change (people and&#x2F;or hosts)&lt;&#x2F;li&gt;
+&lt;li&gt;reduces repitition and consequently saves time&lt;&#x2F;li&gt;
+&lt;li&gt;is easy to delegate parts of to tools or completely automate&lt;&#x2F;li&gt;
+&lt;li&gt;has clear and consistent history&lt;&#x2F;li&gt;
+&lt;li&gt;has immutable code pipeline history meaning we can revert to previous stable state&lt;&#x2F;li&gt;
+&lt;li&gt;in case of failure, the broken state can be reproduced and post moterms performed&lt;&#x2F;li&gt;
+&lt;li&gt;is much it easier to maintain and keep track of its components in complex architechtures such as microservices&lt;&#x2F;li&gt;
+&lt;li&gt;makes it much easier to build tools that lower the bar of entry into ops such as running ansible plays and chatops bots&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Pipeline as code is the next step in planning, provisioning, configuration
+management and application deployment, continuous integration and continuous
+deployment.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s also a great way to manage growing complexity in terms of both
+the architechture and teams involved. I just threw a number of buzzwords around
+so let me explain each of them and why they matter.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It&#x27;s important to note that the tools used in each step have a lot of overlap between them and a tool is likely to show up in multple sections.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;planning&quot;&gt;Planning&lt;&#x2F;h3&gt;
+&lt;p&gt;Since we can&#x27;t execute plans as code, yet; we have to settle for version
+controlling them.
+Save your execution plans as documentation in a &lt;code&gt;docs&#x2F;&lt;&#x2F;code&gt; directory or a git
+submodule (or any other format) files and put them in version control.&lt;&#x2F;p&gt;
+&lt;p&gt;You can also commit &lt;code&gt;.org&lt;&#x2F;code&gt; files you created during meetings, export them into
+&lt;code&gt;.md&lt;&#x2F;code&gt; and add them as docs.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tools: version control systems&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;provisioning&quot;&gt;Provisioning&lt;&#x2F;h3&gt;
+&lt;p&gt;Provision is the past participle of provide, in this context it means providing
+everything that your application will need to run.&lt;&#x2F;p&gt;
+&lt;p&gt;It is an implementation of the infrastructure diagram&#x2F;plan; it involves the
+to run the software. That is: where to host it, how many servers, OS versions,
+server requirements, dependencies, file system, directory structure. The answer
+to whether to use a vendor solution like AWS Lamda, or ECS would lie here.&lt;&#x2F;p&gt;
+&lt;p&gt;You probably need to do this once or at most 3 times &lt;strong&gt;ever&lt;&#x2F;strong&gt; unless you keep
+changing core infrastructure. You could put this in an ansible script, ECS task
+definitions, docker images, Amazon Machine Images, virtual machine
+images et cetera.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tools: Packer, Terraform, Ansible, Kubernetes pods, ECS clusters.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;configuration-management&quot;&gt;Configuration management&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;i.giphy.com&#x2F;media&#x2F;3oz8xOOWHS2MYEJXXO&#x2F;giphy.gif&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Applications today are a collection of tools combined to solve a need.
+In the example of a simple web application we have a database, an app, an app
+server and a webserver. Configuration management is basically managing the glue
+that binds these tools together; which commands to run, which services to start
+and stop and when, arguments, environment variables, order of running them and
+so forth.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tools: ansible vars&#x2F;vault, ansible plays&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;application-deployment&quot;&gt;Application deployment&lt;&#x2F;h3&gt;
+&lt;p&gt;This is putting all the parts of the application that need to run on their
+respective servers, starting them and making sure they&#x27;re all working together
+and correctly.
+In this case you have vendor tools such as Identity and Access Management from
+AWS which you can build on top of.
+This will mean having the following in an executable and version controllable
+form: the deploy server, their user, deploy scripts avaible to them,
+actual deploy commands to run and the order in which to run them.
+You will only need to this during the first deployment or when something goes
+terribly wrong and you have to rollback but even then it&#x27;s still going to be a
+few commands or just one. You can also use other tools for deployment such as
+bots.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tools: ansible, puppet, chef&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;continuous-integration&quot;&gt;Continuous integration&lt;&#x2F;h3&gt;
+&lt;p&gt;This is running tests and building the application to catch errors either in the
+code or the way parts of it integrate with each other.
+Running tests, style checks and catching errors in the code.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tools: travis ci, circle ci, gitlab ci&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;continuous-deployment&quot;&gt;Continuous deployment&lt;&#x2F;h3&gt;
+&lt;p&gt;Once the continuous integration tests run and pass, have a tool compile a binary
+or create a commit, push it to a deploy environment and make sure it&#x27;s running.&lt;&#x2F;p&gt;
+&lt;p&gt;This is comparable to continuous delivery which accordingo to Wikipedia:
+&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Continuous_delivery&quot;&gt;&amp;quot;Continuous Delivery means that the team ensures every change can be deployed to production but may choose not to do it, usually due to business reasons&amp;quot;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tools: travis-ecs-deploy, deploy scripts, terraformy&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt; &lt;&#x2F;p&gt;
+&lt;p&gt; &lt;&#x2F;p&gt;
+&lt;p&gt;In this post I&#x27;ve explained how the pipeline can be presented as code but only
+as seperate components not how these components can be combined to work as one.&lt;&#x2F;p&gt;
+&lt;p&gt;In the next post I&#x27;ll explain how you can use free tools and some open source
+tools to create a code pipeline that runs from provisioning, configuration
+management, version control, continuous integration and continuous deployment
+requiring very little input from devops and with as little complexity as
+possible.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>
