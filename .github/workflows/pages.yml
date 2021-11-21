@@ -1,0 +1,29 @@
+name: github-pages
+
+on:
+  push:
+    branches: [ publish ]
+  pull_request:
+    branches: [ publish ]
+    
+jobs:
+  publish-github-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch
+        uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - run: |
+          sudo apt install snapd
+          sudo snap install --edge zola
+      - name: Build
+        run: zola build
+
+      - name: Deploy
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: gh-pages
+          FOLDER: public
+          GITHUB_TOKEN: ${{ secrets.GH_PAGES_DEPLOYMENT_SECRET_TOKEN }}
