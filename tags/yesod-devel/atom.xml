@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Mostly Programming - Yesod-Devel</title>
+	<subtitle>Programming, Bioinformatics, Data, Books, and More</subtitle>
+	<link href="https://njagi.me/tags/yesod-devel/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://njagi.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2015-07-19T00:00:00+00:00</updated>
+	<id>https://njagi.me/tags/yesod-devel/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Google Summer of Code (2015)</title>
+		<published>2015-07-19T00:00:00+00:00</published>
+		<updated>2015-07-19T00:00:00+00:00</updated>
+		<link href="https://njagi.me/posts/google-summer-of-code-2015/" type="text/html"/>
+		<id>https://njagi.me/posts/google-summer-of-code-2015/</id>
+		<content type="html">&lt;p&gt;This post is long overdue and I should&#x27;ve started writing on this a while ago but oh well I will write as much in the remaining time and try to make up for lost time.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;So I sent in a proposal for Google Summer of Code aimed at &lt;a href=&quot;https:&#x2F;&#x2F;www.haskell.org&quot;&gt;haskell.org&lt;&#x2F;a&gt;.
+The aim of the proposal was &lt;strong&gt;To build an improved yesod-devel server&lt;&#x2F;strong&gt;. Let the name not fool you, this server is supposed to work with all &lt;a href=&quot;https:&#x2F;&#x2F;www.yesodweb.com&#x2F;book&#x2F;web-application-interface&quot;&gt;WAI&lt;&#x2F;a&gt; compliant haskell web applications such as yesod, spock, scotty applications among others.
+My mentor has been &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;snoyberg&quot;&gt;Michael Snoyman&lt;&#x2F;a&gt;. I&#x27;ve also been working closely with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mgsloan&quot;&gt;Michael Sloan&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ncreep&quot;&gt;Daniel Beskin&lt;&#x2F;a&gt;.
+It started on a high note. I was added to the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;fpco&quot;&gt;FP Complete github organisation&lt;&#x2F;a&gt;. That had me very excited because of the kind of people who are in that organisation plus it&#x27;s &lt;strong&gt;THE HASKELL&lt;&#x2F;strong&gt; organisation in my opinion. So that&#x27;s the social aspect. Let&#x27;s talk programming.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;ide-backend&quot;&gt;ide-backend&lt;&#x2F;h1&gt;
+&lt;p&gt;So FP Complete recently released a library that acts as a wrapper around the &lt;a href=&quot;https:&#x2F;&#x2F;wiki.haskell.org&#x2F;GHC&#x2F;As_a_library&quot;&gt;GHC API&lt;&#x2F;a&gt;, that is, &lt;a href=&quot;https:&#x2F;&#x2F;hackage.haskell.org&#x2F;package&#x2F;ide-backend-0.9.0.2&quot;&gt;ide-backend&lt;&#x2F;a&gt; (I wrote about it in an earlier post).
+This library was extracted from the online FP Complete haskell ide. It was therefore still aimed at working  a cleint - server model where the client and server are on different boxes. The client (the package depending on ide-backend) had to explicitly specify the files to be copied from the cleint to the server. This worked in the FP Complete use case but wouldn&#x27;t work in our use case.&lt;&#x2F;p&gt;
+&lt;p&gt;So we had to make it work in a local environment. This was my first task.&lt;&#x2F;p&gt;
+&lt;p&gt;The aim here was to enable automatic source file (as well as data files and everything else) discovery by ide-backend so that it can submit these files for compilationa by GHC.&lt;br &#x2F;&gt;
+To do this, one has to specify that they want to use ide-backend with a local working directory under &lt;code&gt;configLocalWorkingDir&lt;&#x2F;code&gt; in &lt;a href=&quot;http:&#x2F;&#x2F;hackage.haskell.org&#x2F;package&#x2F;ide-backend-0.9.0.2&#x2F;docs&#x2F;IdeSession.html#v:defaultSessionConfig&quot;&gt;&lt;code&gt;defaultSessionConfig&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;. &lt;code&gt;configLocalWorkingDir&lt;&#x2F;code&gt; is a value of type &lt;code&gt;Maybe FilePath&lt;&#x2F;code&gt;. It defaults to (Nothing :: Maybe FilePath) and has ide-backend working in a client-server environment. When &lt;code&gt;configLocalWorkingDir&lt;&#x2F;code&gt; is set it uses the given file path as the place it will look for source files, data files and everything in between.&lt;&#x2F;p&gt;
+&lt;p&gt;Functionality for ide-backend to work in a non-server environment was finally merged in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;fpco&#x2F;ide-backend&#x2F;tree&#x2F;19561d9ff5f496d6556f38992bc8d08896d54091&quot;&gt;this commit onwards on github&lt;&#x2F;a&gt;. It&#x27;s not yet on the hackage version of ide-backend as of writing this post but it will be pushed soon enough.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;yesod-devel&quot;&gt;yesod-devel&lt;&#x2F;h1&gt;
+&lt;p&gt;Then came the challenge of yesod-devel. This is the &amp;quot;client&amp;quot; in our case that depends on ide-backend. 
+Quite honestly the fact is that ide-backend is the one doing most of the heavy lifting while yesod-devel coordinates everything.&lt;&#x2F;p&gt;
+&lt;p&gt;The objectives of yesod-devel are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatic source and data file discovery.&lt;&#x2F;li&gt;
+&lt;li&gt;Load code&lt;&#x2F;li&gt;
+&lt;li&gt;Compile to bytecode&lt;&#x2F;li&gt;
+&lt;li&gt;Run the code&lt;&#x2F;li&gt;
+&lt;li&gt;Read environment variables&lt;&#x2F;li&gt;
+&lt;li&gt;Grab compiler error messages and display them on the browser&lt;&#x2F;li&gt;
+&lt;li&gt;Listening for changes in the current working directory&lt;&#x2F;li&gt;
+&lt;li&gt;Automatic code reloading and recompilation&lt;&#x2F;li&gt;
+&lt;li&gt;Perform reverse proxying for the web application&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+</feed>
