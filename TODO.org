@@ -1,6 +1,9 @@
 #+STARTUP: overview
 
-** TODO Fix www redirect to apex                                 :Deployment:
+** TODO [#A] Make mobile view better                                 :Design:
+** DONE [#A] Remove footer and move that content to About page       :Design:
+   CLOSED: [2021-11-22 Mon 10:25]
+** TODO [#A] Fix www redirect to apex                            :Deployment:
 ** DONE [#A] Copy posts, notes & wikis from previous pages          :General:
    CLOSED: [2021-11-12 Fri 10:11]
 ** DONE [#A] Deploy on GitHub Pages and replace current njagi.me :Deployment:
